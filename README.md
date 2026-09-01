@@ -3,7 +3,9 @@ Github repository til 3.semesterprojekt
 
 # Code conventions
 
-Husk at bruge Shift + Alt + F inde på vs code for at få flot opsætning automatisk
+---------------------------------------------------------------------------------------
+Husk at bruge **`Shift + Alt + F`** inde på vs code for at få flot opsætning automatisk
+---------------------------------------------------------------------------------------
 
 All naming and comments must be done in English. 
 
@@ -29,4 +31,6 @@ For C language, the naming conversion should following:
 **DON'T:**
 * Use _ or __ ( double underscore) at the beginning of a variable or function. These are used by some compilers. Examples: _set_variable() // Do not do this
 
-#Doxygen
+
+
+# Doxygen
