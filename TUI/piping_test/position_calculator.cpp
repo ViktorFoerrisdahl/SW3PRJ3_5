@@ -3,7 +3,7 @@
 
 void plotPosition(double x, double y)
 {
-    std::string kommando = "py position_plot.py " + std::to_string(x) + " " + std::to_string(y);
+    std::string kommando = "py position_plot2.py " + std::to_string(x) + " " + std::to_string(y);
     system(kommando.c_str());
 }
 
