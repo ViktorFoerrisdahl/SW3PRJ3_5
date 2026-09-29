@@ -71,11 +71,9 @@ Når klappet identificeres ved sample 1040 på den ene mikrofon, og klappet iden
 
 Der bruges Servomotor, der peger på en bestemt vinkel, som bestemmes af systemet. Vinklen kan beregnes ud fra formlen
 
-``` math
-\theta = atan2(y - y_{m},x - x_{m})
-```
+$$\theta = atan2(y - y_{m},x - x_{m})$$
 
-Hvor $`x_{m},y_{m}`$ er servoens placering og $`(x,y)`$ er den estimerede lydposition. Problemet med denne formel er, at det kun er servomotorer uden continuos rotation, der rigtigt kan gøre brug af vinkelstyring og 360 graders servomotorer uden continuos rotation er sværere at finde. Motorer med continuos rotation gør brug af PWM signal til at styre rotationsretning og hastighed, så der skal bruges en encoder før at vinkelberegningen bliver en realitet, hvilket er en ekstra kompleksitet. Alternativt kan der muligvis bruges 2x $`270{^\circ}`$ servomotorer i et system som skaber fuld $`360{^\circ}`$ rotation.
+Hvor $x_{m},y_{m}$ er servoens placering og $(x,y)$ er den estimerede lydposition. Problemet med denne formel er, at det kun er servomotorer uden continuos rotation, der rigtigt kan gøre brug af vinkelstyring og 360 graders servomotorer uden continuos rotation er sværere at finde. Motorer med continuos rotation gør brug af PWM signal til at styre rotationsretning og hastighed, så der skal bruges en encoder før at vinkelberegningen bliver en realitet, hvilket er en ekstra kompleksitet. Alternativt kan der muligvis bruges 2x $270{^\circ}$ servomotorer i et system som skaber fuld $360{^\circ}$ rotation.
 
 ### **Mulighed 2 - Steppermotor**
 
