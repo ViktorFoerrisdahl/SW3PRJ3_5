@@ -49,7 +49,7 @@ jobs:
         run: python code/tools/context/generate.py --check
       - name: Gem kontekst til review og fejlsøgning
         if: always()
-        uses: actions/upload-artifact@v6
+        uses: actions/upload-artifact@v7
         with:
           name: documentation-context
           path: docs/context/
