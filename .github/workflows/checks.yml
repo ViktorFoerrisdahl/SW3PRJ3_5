@@ -1,0 +1,38 @@
+name: Repositorykontrol
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  checks:
+    name: Konverteringstests og patchkontrol
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/setup-python@v6
+        with:
+          python-version: '3.12'
+      - name: Installér værktøjer
+        run: |
+          sudo apt-get update
+          sudo apt-get install --yes pandoc
+          python -m pip install -r code/tools/context/requirements.txt
+      - name: Test dokumentværktøjet
+        run: python -m unittest discover -s code/tools/context/tests -v
+      - name: Kontrollér nye whitespace-fejl i kode og vejledninger
+        env:
+          BASE_SHA: ${{ github.event.pull_request.base.sha || github.event.before }}
+        run: |
+          if [ -n "$BASE_SHA" ] && git cat-file -e "$BASE_SHA^{commit}" 2>/dev/null; then
+            git diff --check "$BASE_SHA" HEAD -- code .github AGENTS.md README.md docs/Projektstyring
+          else
+            git show --format= --check HEAD -- code .github AGENTS.md README.md docs/Projektstyring
+          fi
