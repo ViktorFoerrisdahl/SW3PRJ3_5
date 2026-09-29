@@ -1,0 +1,170 @@
+[
+  {
+    "source": "Elaboration E1/Domænemodel.url",
+    "sha256": "c667e9f772556e53154cdb90106a89e8b92b49bb8654072cbe2a370cb746f24f",
+    "output": "dom-nemodel--28236135411e0141.md",
+    "output_sha256": "18851f30d8b268a2546fbdd927de5a44cc2d5409aeb782df6383c0bf23f30b24",
+    "status": "manuel læsning kræves"
+  },
+  {
+    "source": "Elaboration E2/Deployment diagram 29092026.png",
+    "sha256": "bced1ff05fda57386a7c7d328f4037f05a10af67c3b5962483719f81e4f554f2",
+    "output": "deployment-diagram-29092026--287283c36e98f852.md",
+    "output_sha256": "f222a54d1225ea2f2dafba0efd74f460f5689beaf8b5e43e2dcfe62c53317adb",
+    "status": "manuel læsning kræves"
+  },
+  {
+    "source": "Elaboration E2/Mikrofon og Hændelsesdetektering/Hændelsesdetektering.docx",
+    "sha256": "d9dd00fb0c101d0fc2743385a3b2255e4f1a0b76acd560ce39239eec92f5cdf5",
+    "output": "h-ndelsesdetektering--f60e91899e42f164.md",
+    "output_sha256": "e182a5e308d5b1fa1010ce156f959bf25e2b1d0dd37ec87a6a2240612c1d2faf",
+    "status": "tekst udtrukket – kontrollér original"
+  },
+  {
+    "source": "Elaboration E2/Mikrofon og Hændelsesdetektering/Mikrofon_Analyse.docx",
+    "sha256": "7e0d31c9bcfa524cb5abdcdfbe167358fce1034b425b9ff7b2540c6fb4e6330e",
+    "output": "mikrofon-analyse--ebecfd292e90c633.md",
+    "output_sha256": "0a5f17775581e4dcff00525746b7cef0a19236b4ce75880bbace00d800e80aa3",
+    "status": "tekst udtrukket – kontrollér original"
+  },
+  {
+    "source": "Elaboration E2/Package Diagram 250926.jpg",
+    "sha256": "3e1afee983db3f2b3bae4358ae5c21ec91df7eb7bfda114b0be433b9c52a69d8",
+    "output": "package-diagram-250926--8b5608d5eb77dcc0.md",
+    "output_sha256": "c097188095e92cfc2bba0c3a6b369032d736278c88ff4370851771e7ef9b3304",
+    "status": "manuel læsning kræves"
+  },
+  {
+    "source": "Elaboration E2/Package diagram 25092026.png",
+    "sha256": "f17bd00945793e5114e55ab9e23698c580c4926f723bd39b91fa517d1f48e764",
+    "output": "package-diagram-25092026--81a82897a42234fa.md",
+    "output_sha256": "c7880a69a28fe8eb34f7b00512193cc96c5024d580c40aa1250b8d5ed199aa76",
+    "status": "manuel læsning kræves"
+  },
+  {
+    "source": "Elaboration E2/SSD.png",
+    "sha256": "ac7d76cc4dc8b5631883299fc61fd80cd542472c555fa1674ae4b6841fdc6cc5",
+    "output": "ssd--ba4a08b9c2a921b8.md",
+    "output_sha256": "f83b2082d226bc3a0f10ecc4f58e05d9a25038485557b16fae5b2a992739c3ed",
+    "status": "manuel læsning kræves"
+  },
+  {
+    "source": "Elaboration E2/System Sekvens Diagram.url",
+    "sha256": "ba5a296298bb2a386d485985fc7169f318cd318f39b4adb800a3e8148af36a88",
+    "output": "system-sekvens-diagram--bf16987347345165.md",
+    "output_sha256": "e42df8fd054af264785ba6c370b31113f65e625811a32708117e48770cfa8981",
+    "status": "manuel læsning kræves"
+  },
+  {
+    "source": "Elaboration E2/Teknisk Analyse.docx",
+    "sha256": "ba291fbfa5fa44d84bd4d8e924fda6be96cdef7cbca71c7ada47b48eb92ea030",
+    "output": "teknisk-analyse--a1f79ad9083580e7.md",
+    "output_sha256": "df57b9e26741a522a5dfbcafba026c5a20c16be54608728437f4a8986802f50b",
+    "status": "tekst udtrukket – kontrollér original"
+  },
+  {
+    "source": "Inception/Noter/CNN Warehouse.md",
+    "sha256": "4109104e874302b3ee20755ef68ad14db421ac65c0372f9e509bbe0e5eb88f6c",
+    "output": "cnn-warehouse--583fd4e8d12e9e18.md",
+    "output_sha256": "8e3d84931fec148759f4e0054de71f7b3e39c2af4077e998501553ea802ce7a5",
+    "status": "tekst kopieret"
+  },
+  {
+    "source": "Inception/Noter/TDOA.md",
+    "sha256": "b698d88a6ec8972ded63a5b4e091fe7b2124d18982ec4daf8b235c5de4947b7c",
+    "output": "tdoa--6562ec8814fbbcac.md",
+    "output_sha256": "0a6e17392ec36600c334a3db40583ac8a7376ad60d0da480b116cc870c06e3c8",
+    "status": "tekst kopieret"
+  },
+  {
+    "source": "Inception/PRJ3 Gruppe 5 Projektformulering.pdf",
+    "sha256": "b2cbf183af5169c07757abda84bd972a223dc6e6342c569baff9c7152d0ca88e",
+    "output": "prj3-gruppe-5-projektformulering--4a15db61402076c4.md",
+    "output_sha256": "33a99cd2fee360d86dcd7d0aea0c1c44355ebe18084cc24b6b3124feb4bf01fd",
+    "status": "tekst udtrukket – kontrollér original"
+  },
+  {
+    "source": "Inception/Samarbejdskontrakt.docx",
+    "sha256": "a27c09af8dface914d9819a4ee377efcd0b7d50ddd273e7e066012a01dd810fd",
+    "output": "samarbejdskontrakt--0c713e3b44571db8.md",
+    "output_sha256": "3f4d9749a25af8d22354ee5fbad6f53dc0370c88eeedc6b514b2bc15ac146941",
+    "status": "tekst udtrukket – kontrollér original"
+  },
+  {
+    "source": "Inception/billede - 20260908-084715-0d4273c9_6801.jpeg",
+    "sha256": "d1bbf4020df121bc206cdd104280d7ed9d971c53104cee786ae4c065327fdb74",
+    "output": "billede-20260908-084715-0d4273c9-6801--283f6d4003ea9c86.md",
+    "output_sha256": "0b9eb75b4291785093e0f7a46370838beab584b89082a5e033a14b2ecfacfd16",
+    "status": "manuel læsning kræves"
+  },
+  {
+    "source": "Projektstyring/BødeKas=9808JK.docx",
+    "sha256": "a7d26257914a3c4304b7ad137738e901f96148040eb1aac9830f0d0e87aa70dd",
+    "output": "b-dekas-9808jk--b0005dfff57090ed.md",
+    "output_sha256": "66d00c343be32652bbf93bc60ac0eb31c7bad4b7185607b413a5fdfb33a0ac05",
+    "status": "manuel læsning kræves"
+  },
+  {
+    "source": "Projektstyring/Draw.io Filer.url",
+    "sha256": "4220b33e90542e06c217efbde662256b04ffaff32a4fe7834f3b18d886288b50",
+    "output": "draw-io-filer--4111f8e2f3a0517d.md",
+    "output_sha256": "974685f78eb75789bc3a166552c0fe516a48097f42b5ab7399b770dd0a7c479a",
+    "status": "manuel læsning kræves"
+  },
+  {
+    "source": "Projektstyring/ai-strategi.md",
+    "sha256": "6de1932bc39e56f85be22068b5d88c77d6fabbcca584f7bf8d068ce67073cbd1",
+    "output": "ai-strategi--0ee3b83c4a285b5f.md",
+    "output_sha256": "d527883457cc7e1fb1b3f322cc4dc80593f3d868d7c494ef9319d56b197e0f7e",
+    "status": "tekst kopieret"
+  },
+  {
+    "source": "Projektstyring/code-conventions.md",
+    "sha256": "981b31462194f697f1fbb5dfb08f8796a101e35346bec178312cf9c3ddaa70cd",
+    "output": "code-conventions--f919fe92ecf7d57a.md",
+    "output_sha256": "4df96cd058be4408af7ad887aef5ec3e8ab92a4bdf343166e84cb1c15709f7d8",
+    "status": "tekst kopieret"
+  },
+  {
+    "source": "Projektstyring/terminology.md",
+    "sha256": "13f149366c07a7c159a9cbf24a413f8113df2a01a47cbed82eef1351e8bf4948",
+    "output": "terminology--48832c567ff8fd39.md",
+    "output_sha256": "4c9b54321359197bf40a77c405f6a69efbf1d5cd47fff0af8098f5300bfc7200",
+    "status": "tekst kopieret"
+  },
+  {
+    "source": "Referater/Referat #1 - 04-09-2026 - Inception møde.docx",
+    "sha256": "5dec8f590c8ddc58b1d942efb7af8ddfde200c87a462a390f32cf98a0bbd091b",
+    "output": "referat-1-04-09-2026-inception-m-de--0e907a499ca27c2e.md",
+    "output_sha256": "81b017b92cfcaedd4e8aa4a666655a48beb377577f18ab0957ab77e0cd16e473",
+    "status": "tekst udtrukket – kontrollér original"
+  },
+  {
+    "source": "Referater/Referat #2 - 11-09-2026.docx",
+    "sha256": "b835b0fb2bb9cb20116f0d81d26ac6f1e11a16dcf7f6b2ae88da6183c254d87b",
+    "output": "referat-2-11-09-2026--65c81e751a9c743a.md",
+    "output_sha256": "92f640c81e9a9249250ca1f77c77b8a946f96f84f183505b2aaafa810b2113b1",
+    "status": "tekst udtrukket – kontrollér original"
+  },
+  {
+    "source": "Referater/Referat #3 - Møde med søren 150926.docx",
+    "sha256": "0a96716fe7b37ea56aeb3b0562198470df090504992d1ff8eb069b01217202f2",
+    "output": "referat-3-m-de-med-s-ren-150926--5bf973b246ada4a5.md",
+    "output_sha256": "54e7ea31065887531d0dba223e4a30ace37a1491191621ed16546043f76e47a8",
+    "status": "tekst udtrukket – kontrollér original"
+  },
+  {
+    "source": "Referater/Referat #4 - 18-09-2026 - Elaboration 1.docx",
+    "sha256": "c80fd2b108949d5ae7cb2af264813eda17b1de098b91d7ee1ff28283218bd343",
+    "output": "referat-4-18-09-2026-elaboration-1--ef4106ff317643ab.md",
+    "output_sha256": "ef565be0d77a7b3bd093c18edfd9f34ac84aa3e75f91ff3bd22c38e6f8827351",
+    "status": "tekst udtrukket – kontrollér original"
+  },
+  {
+    "source": "Referater/Referat #5 - 25-09-2026.docx",
+    "sha256": "b40590a78759eb57bdfc87b15123887ca691fea4bfdebe41edbc422fc9196f2f",
+    "output": "referat-5-25-09-2026--01957541a68ea745.md",
+    "output_sha256": "1e236f2ff49144c6609be26d8467075dd90e645a3d792fdccf71d2f4f7b3f51e",
+    "status": "tekst udtrukket – kontrollér original"
+  }
+]

@@ -1,94 +1,31 @@
-# SW3PRJ3_5
-GitHub repository til 3. semesterprojekt
+# ATLAS – SW3PRJ3_5
 
-# Code conventions
+ATLAS (Acoustic TDOA Localization and Alert System) er gruppe 5's projekt på 3. semester. Projektet undersøger akustisk lokalisering ved hjælp af tidsforskelle mellem mikrofoner (TDOA). Det beskrevne proof of concept bruger fire mikrofoner og et klap til at estimere lydkildens position i 2D.
 
----------------------------------------------------------------------------------------
-Husk at bruge **`Shift + Alt + F`** inde på vs code for at få flot opsætning automatisk
----------------------------------------------------------------------------------------
+Projektet er under udvikling. Projektformulering, analyser og referater beskriver både beslutninger og åbne spørgsmål.
 
-All naming, inline comments & commits must be done in English. 
+## Find det, du har brug for
 
-For C & C++ language, the naming convention should follow:
+| Placering | Indhold |
+| --- | --- |
+| [`docs/Inception/`](docs/Inception/) | Projektformulering, samarbejdskontrakt og tidlige idéer |
+| [`docs/Elaboration E1/`](docs/Elaboration%20E1/) | Materiale fra første elaboration |
+| [`docs/Elaboration E2/`](docs/Elaboration%20E2/) | Tekniske analyser og diagrammer |
+| [`docs/Referater/`](docs/Referater/) | Mødereferater og aftaler |
+| [`docs/Projektstyring/ai-strategi.md`](docs/Projektstyring/ai-strategi.md) | Principper for AI-brug og fælles projektkontekst |
+| [`docs/Projektstyring/terminology.md`](docs/Projektstyring/terminology.md) | Fælles ordvalg, forkortelser og skrivemåde |
+| [`docs/Projektstyring/code-conventions.md`](docs/Projektstyring/code-conventions.md) | Konventioner for kode og Doxygen |
+| [`docs/context/INDEX.md`](docs/context/INDEX.md) | Genereret indgang til dokumenterne for AI-agenter |
+| [`code/`](code/) | Kode, tests og hjælpeværktøjer; endnu ingen systemimplementering |
+| [`AGENTS.md`](AGENTS.md) | Obligatorisk læse- og arbejdsvejledning for AI-agenter |
+| [`.github/workflows/`](.github/workflows/) | Automatisk konvertering og kontrol |
 
-| Type              | Format                              |
-| ----------------- | ----------------------------------- |
-| Defines           | CAPS_WITH_UNDERSCORE                |
-| Public Functions  | Module_CamelCase                    |
-| Private Functions | CamelCase                           |
-| Enums             | CAPS_WITH_UNDERSCORE                |
-| Enum Members      | CAPS_WITH_UNDERSCORE                |
-| Structs           | CAPS_WITH_UNDERSCORE                |
-| Struct Members    | no_cammelcase_with_underscore       |
-| Pointers          | **p**_all_lower_case                |
-| Global Variables  | **g**_no_cammelcase_with_underscore |
-| Local Variables   | no_cammelcase_with_underscore       |
-| Typedefs          | no_cammelcase_t                     |
+## Sprog
 
-**DO:**
-* Use units in variable names like: "relay_timeout_ms" if it makes sense.
+Kode, identifikatorer, kodekommentarer og commitbeskeder er på **engelsk**. Dokumentation er på **dansk**, med etablerede fagudtryk som angivet i terminologilisten. De historiske kildedokumenter bevares uændret.
 
-**DON'T:**
-* Use _ or __ ( double underscore) at the beginning of a variable or function. These are used by some compilers. Examples: _set_variable() // Do not do this
+## Tilføj dokumentation
 
+GitHub Actions bygger Markdown-kopier og et kildeindeks i `docs/context/`. Ved push gemmes opdateringerne automatisk på samme branch, hvis branchens regler tillader det. Pull requests kontrolleres uden skriveadgang og får den genererede kontekst som et downloadbart artifact. Se [AI-strategien](docs/Projektstyring/ai-strategi.md) for principperne bag den fælles kontekst.
 
-# Doxygen
-Når H-filer laves, bruges Doxygen-dokumentation. Disse kan bruges som eksempel:
-@enum - sættes i toppen af en enum, hvor den også navngives
-@class - sættes i toppen af en klasse, hvor den også navngives
-
-@brief - Bruges til at lave en kort beskrivelse af klassen, funktionen osv.
-@param - Bruges til at forklare parametrene, som en funktion bruger
-@return - sættes i bunden af @brief og forklarer, hvad der returneres. Særligt smart når en funktion returenere en enum
-
-Nedenfor ses et eksempel på at bruge "@enum" i en H-fil fra 2. semester:
-```C++
-/**
- * @enum SCD30_Status
- * @brief Returværdi for SCD30 metoder.
- *
- * Bruges til at indikere om en sensor-aflæsning lykkedes,
- * eller hvad der gik galt.
- */
-enum SCD30_Status
-{
-  SCD30_OK,         ///< Måling modtaget og CRC valideret
-  SCD30_TIMEOUT,    ///< Sensor returnerede ikke data inden for timeout (~5 sek)
-  SCD30_CRC_ERROR,  ///< CRC validering fejlede på modtagne data
-  SCD30_BUS_ERROR   ///< I2C kommunikationsfejl
-
-};
-```
-
-Nedenfor ses eksempel på at bruge "@class" og "@param" i en H-fil fra 2. semester. Der laves både @brief i toppen af klassen samt inde i klasses metoder, som bla. constructoren:
-```C++
-/**
- * @class SCD30
- * @brief Håndterer kommunikation med SCD30 CO2 sensoren.
- *
- * Klassen opdaterer sine interne attributter (CO2 og temperatur) når
- * readData() kaldes. Værdierne hentes efterfølgende via getters.
- */
-class SCD30 {
-public:
-  /**
-   * @brief Opretter en SCD30 instans.
-   * @param i2c Reference til I2C-bussen. Adressen er hardcoded (0x61),
-   *            da der kun understøttes én SCD30 per bus.
-   */
-  SCD30(I2C &i2c);
-```
-
-Nedenfor ses eksempel på at bruge "@return" i en funktion, da den returnere en enum fra det første eksempel:
- ```C++
-  /**
-   * @brief Poller sensor for data-ready og læser CO2 + temperatur.
-   *
-   * Venter i op til ~5 sekunder (50 forsøg á 100 ms) på at sensoren
-   * melder data klar. Validerer alle CRC-checksums før data gemmes.
-   *
-   * @return SCD30_OK ved succes, SCD30_TIMEOUT hvis sensoren ikke svarer,
-   *         SCD30_CRC_ERROR ved checksum-fejl, SCD30_BUS_ERROR ved I2C-fejl.
-   */
-  SCD30_Status readData();
-```
+Ret altid originalen. Diagrammer, eksterne genveje og ikke-understøttede formater bliver synlige i indekset med en besked om manuel læsning. Deres indhold må ikke antages at være konverteret.

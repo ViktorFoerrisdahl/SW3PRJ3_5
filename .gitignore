@@ -1,0 +1,69 @@
+# Operating system files
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# Python tooling
+__pycache__/
+*.py[cod]
+.venv/
+
+# C/C++ build directories
+build/
+cmake-build-*/
+
+# CMake and Ninja generated files
+CMakeFiles/
+CMakeCache.txt
+cmake_install.cmake
+CTestTestfile.cmake
+Testing/
+CMakeUserPresets.json
+compile_commands.json
+build.ninja
+rules.ninja
+.ninja_deps
+.ninja_log
+
+# Compiled objects, libraries, executables, and debug symbols
+*.o
+*.obj
+*.a
+*.lib
+*.so
+*.so.*
+*.dylib
+*.dll
+*.exe
+*.out
+*.elf
+*.pdb
+*.ilk
+*.pch
+*.gch
+*.dSYM/
+
+# Coverage and profiling output
+*.gcda
+*.gcno
+*.gcov
+*.profraw
+*.profdata
+
+# Local IDE settings and caches
+.vs/
+.idea/
+**/.cache/clangd/
+*.suo
+*.user
+*.sln.docstates
+*.VC.db
+*.VC.VC.opendb
+
+# Editor temporary files
+*.swp
+*.swo
+*~
+
+# Microsoft Loop files
+*.loop
