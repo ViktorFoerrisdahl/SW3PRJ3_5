@@ -67,3 +67,17 @@ rules.ninja
 
 # Microsoft Loop files
 *.loop
+
+# LaTex build-files
+*.aux
+*.fdb_latexmk
+*.fls
+*.log
+*.synctex.gz
+*.out
+*.toc
+*.bbl
+*.blg
+*.lof
+*.lot
+rapport/*.pdf
