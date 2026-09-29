@@ -1,0 +1,23 @@
+# Build output
+build/
+out/
+cmake-build-*/
+
+# Compiled files
+*.o
+*.obj
+*.exe
+*.a
+*.lib
+*.so
+*.dll
+*.pdb
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+
+# Editors
+.vscode/
+.vs/
