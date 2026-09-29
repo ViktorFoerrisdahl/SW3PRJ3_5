@@ -1,0 +1,136 @@
+\documentclass[10pt,addpoints,answers]{exam}
+\usepackage{graphicx} % Required for inserting images
+\usepackage{booktabs}
+\graphicspath{{bilag/}}
+
+
+\begin{document}
+\begin{center}
+{\Huge \textbf{Kravanalyse}}\\[0.5em]
+\end{center}
+
+\section*{Krav}
+
+
+
+
+\section*{FURPS+ oversigt over funktionelle krav (F) og ikke-funktionelle krav (URPS+)}
+\begin{center}
+\renewcommand{\arraystretch}{1.4}
+\begin{tabular}{| p{50pt} | p{400pt} |}
+\hline
+\textbf{FURPS+} & \textbf{Krav} \\ \hline
+F1 & Mikrofoner kan detektere en lydhændelse over 75 decibel, målt fra 1 meter \\ \hline
+F2 & Systemet kan lokalisere lyden ved hjælp af mikrofonerne, indenfor 30 cm \\ \hline
+F3 & Systemet skal pege en markør der peger på målet, med en præcision på 40 cm  \\ \hline
+F4 & Systemet har et måleområde på 3x3 meter, hvor mikrofoner placeres i hvert hjørne  \\ \hline
+F5 & Tui viser hver hændelse i 1 min før det slettes. Derved kan flere hændelser vises på samme tid\\ \hline
+F6 & Systemet implementeres med 2 mikrofon nodes, og en orchestrator node. Mikrofon nodes er synkroniseret via PTP \\ \hline
+U1 & TUI til bruger, hvor bruger kan se lokation af hændelsen, samt indstille systemet. \\ \hline
+R2 & Sensormodulerne skal kunne genstarte ved crash og gendanne forbindelse til PTP, samt streaming netværket igen automatisk \\ \hline
+R3 & Systemet skal kunne identificerer over 90\% af hændelserne. \\ \hline
+R4 & Ved usikre estimeringer (residualvector > xx), fortæller systemet at estimeringen er usikker.\\ \hline
+P2 & Sensormodulernes clock skal være synkroniseret med maksimalt 200 mikrosekunder \\ \hline
+P3 & Position vises senest 1 s efter hændelsen, i TUI. \\ \hline
+S1 & Mikrofon antal og positioner skal kunne indstilles i runtime via TUI \\
+\hline
+\end{tabular}
+\renewcommand{\arraystretch}{1}
+\end{center}
+
+\newpage
+\section*{Use cases}
+
+\subsection*{UC1 - Lokaliser lydhændelse}
+
+\begin{center}
+\renewcommand{\arraystretch}{1.4}
+\begin{tabular}{| p{150pt} | p{300pt} |}
+\hline
+
+\textbf{Navn:} & Lokaliser lydhændelse \\ \hline
+\textbf{Mål:} & Operatøren får vist den estimerede position af en lydhændelse, der opstår i måleområdet \\ \hline
+\textbf{Initiering:} & En lydhændelse opstår i måleområdet \\ \hline
+\textbf{Aktører:} & Operatør (primær), Lydkilde (sekundær, passiv) \\ \hline
+\textbf{Antal samtidige forekomster:} & 1 \\ \hline
+\textbf{Prækondition:} & UC2 konfigurér opstilling, sensormoduler online og synkroniserede \\ \hline
+\textbf{Postkondition:} & Lydhændelsens estimerede position og tidspunkt er vist for operatøren. \\ \hline
+\textbf{Hovedscenarie:} & 
+1. En lydhændelse opstår i måleområdet. \newline
+2. Alle systemets mikrofoner detekterer lydhændelsen. \newline
+3. Systemet bestemmer ankomsttidspunktet for hver mikrofon. \newline 
+4. Systemet estimerer lydhændelsens position ud fra forskellene i ankomsttid.\newline 
+5. Systemet vurderer at estimatet er troværdigt (ikke-funktionelt krav R6). \newline
+6. Systemet viser den estimerede position og tidspunkt for lydhændelsen til operatøren, samt logger hændelsen. \newline
+7. Use case afsluttes. 
+\\ \hline
+\textbf{Udvidelser/undtagelser:} & 
+
+\textbf{2a. Lydhændelsen detekteres ikke af alle mikrofoner} \newline
+1. Silent kasseres lydhændelsen \newline
+2. Use case afsluttes. \newline
+\newline
+\textbf{5a. Systemet vurderer at estimatet ikke er troværdigt} \newline
+1. Systemet viser den estimerede lokation til operatøren, men markerer den som utroværdig, med en fejlmargin vist. \newline
+2. Use case fortsætter fra trin 6. \newline
+\newline
+\textbf{5b. Den estimerede lokation er udenfor måleområdet} \newline
+1. Systemet markerer positionen som udenfor måleområdet. \newline
+2. Use case fortsætter fra trin 6. \newline
+\newline
+\textbf{5b. En sensornode mister forbindelse, eller kommer} \newline \textbf{ud af sync på et vilkårligt tidspunkt} \newline
+1. Systemet afbryder behandling af lydhændelsen. \newline
+2. Systemet informerer operatøren om fejlen. \newline
+3. Use casen afsluttes.
+
+\\ \hline
+\textbf{Datavariationsliste:} & x \\
+\hline
+\end{tabular}
+\renewcommand{\arraystretch}{1}
+\end{center}
+
+\newpage
+\subsection*{UC2 - Konfigurering af opstilling}
+
+\begin{center}
+\renewcommand{\arraystretch}{1.4}
+\begin{tabular}{| p{150pt} | p{300pt} |}
+\hline
+
+\textbf{Navn:} & Konfigurér opstilling \\ \hline
+\textbf{Mål:} & Operatøren kan indstille systemet med antal af mikrofoner samt deres lokation i måleområdet, under runtime af systemet.\\ \hline
+\textbf{Aktører:} & Operatør \\ \hline
+\textbf{Beskrivelse:} & Brugeren konfigurerer opstillingen af mikrofoner. Dette gøres via. terminalen, mens systemet kører. Operatøren indtaster antallet af mikrofoner, samt deres position (x,y).  \\ \hline
+
+
+
+
+\hline
+\end{tabular}
+\renewcommand{\arraystretch}{1}
+\end{center}
+
+Navneord:
+ Operatør
+ Lydhændelse
+ Mikrofon
+ Lydhændelse
+ Interface
+ sensormoduler
+ System-styring
+
+ Verber:
+ Interfacer
+ Estimerer
+ Detekterer
+ Præsenteret (den estimerede lokation)
+ Synkroniseret
+ Vurderer
+ 
+ 
+ 
+ 
+
+
+\end{document}
