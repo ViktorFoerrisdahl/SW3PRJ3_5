@@ -7,7 +7,7 @@ GitHub repository til 3. semesterprojekt
 Husk at bruge **`Shift + Alt + F`** inde på vs code for at få flot opsætning automatisk
 ---------------------------------------------------------------------------------------
 
-All naming and comments must be done in English. 
+All naming, inline comments & commits must be done in English. 
 
 For C & C++ language, the naming convention should follow:
 
