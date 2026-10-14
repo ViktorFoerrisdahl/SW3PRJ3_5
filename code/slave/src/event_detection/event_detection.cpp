@@ -69,7 +69,7 @@ EventDetector::~EventDetector() { stop(); }
 
 void EventDetector::start() {
 	// Start kun i tilfælde af at der ikke allerede kører en tråd
-    if (!thread_.joinable()) { 
+    if (!thread_.joinable()) {
 		// Start tråden
 		// Lambda funktionen:
 		//  Vi sørger for at tråden har fuld adgang til denne instans af klassen ([this])
