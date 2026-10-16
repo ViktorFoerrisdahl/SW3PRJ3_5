@@ -5,7 +5,7 @@ menu::menu()
 {
 }
 
-void menu::ShowTitle()
+void menu::showTitle()
 {
     std::cout << R"ART(                                                                                 
          ........                                                                                   
@@ -24,4 +24,15 @@ void menu::ShowTitle()
                                                                  
 )ART" << std::endl;
     // https://www.asciiart.eu/image-to-ascii
-}
+
+  }
+
+  void menu::showStartingSequence()
+  {
+    
+  }
+
+  void menu::showMenu()
+  {
+    std::cout << "press 1 and enter for plot \n";
+  }
