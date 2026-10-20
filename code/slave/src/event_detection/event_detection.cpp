@@ -189,7 +189,6 @@ void EventDetector::extractAndSend() {
     DetectedEvent ev;
     ev.node_id = config_.node_id;
     ev.sample_rate = config_.sample_rate;
-    ev.channels = 2;
     ev.trigger_offset = pre_frames_;
     ev.frames.resize(count);
 

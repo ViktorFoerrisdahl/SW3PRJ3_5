@@ -44,7 +44,7 @@ Det kræver af ringbufferen:
 
 ## Output til TCP-modulet
 
-TCP-modulet kalder `EventQueue::pop(stop_token)`, som venter på næste `DetectedEvent`. Hændelsen indeholder node-id, løbenummer, sample rate, antal kanaler, timestamp for udsnittets første frame, triggerpunktets placering i udsnittet og de rå interleaved samples. At pakke det til bytes (header, endianness) er TCP-modulets ansvar. Er køen fuld, smides den ældste hændelse væk, så detektoren aldrig venter på netværket.
+TCP-modulet kalder `EventQueue::pop(stop_token)`, som venter på næste `DetectedEvent`. Hændelsen indeholder node-id, løbenummer, sample rate, timestamp for udsnittets første frame, triggerpunktets placering i udsnittet og de rå interleaved samples. At pakke det til bytes (header, endianness) er TCP-modulets ansvar. Er køen fuld, smides den ældste hændelse væk, så detektoren aldrig venter på netværket.
 
 ## Brug
 

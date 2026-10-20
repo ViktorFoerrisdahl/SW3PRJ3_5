@@ -146,7 +146,6 @@ void testSingleClap() {
     CHECK(ev.node_id == 1);
     CHECK(ev.event_seq == 0);
     CHECK(ev.sample_rate == FS);
-    CHECK(ev.channels == 2);
     CHECK(ev.trigger_offset == 720);   // 15 ms
     CHECK(ev.frames.size() == 2400);   // 50 ms
 
