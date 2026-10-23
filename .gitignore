@@ -81,3 +81,6 @@ rules.ninja
 *.lof
 *.lot
 rapport/*.pdf
+
+# Extensionless build output (compiled without CMake)
+code/tdoa/main

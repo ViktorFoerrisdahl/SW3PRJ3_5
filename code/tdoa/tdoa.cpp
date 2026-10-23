@@ -26,7 +26,7 @@ static int CrossCorrelate(const std::vector<int32_t> &ref, const std::vector<int
     {
         double sum = 0; // Initialise local sum set to zero
         for (int i = 0; i < ref.size(); i++) // Loop through indexes of ref
-        { 
+        {
             int j = i + lag;
             if (j >= 0 && j < sig.size())
             {                                   // For each value thats >= zero, multipy by ref and add to sum
@@ -43,7 +43,7 @@ static int CrossCorrelate(const std::vector<int32_t> &ref, const std::vector<int
 static void GridSearch(const std::vector<MIC_POSITION> &mics, const std::vector<double> &tdoa_s, double &x_m, double &y_m)
 {
     if (mics.empty()) return; //Failsafe
-    
+
     double min_error = std::numeric_limits<double>::max(); // Maximum limit
 
     //For x and y move 20 cm in the grid (0.20 m)
@@ -97,17 +97,17 @@ TDOA_RESULT Tdoa_ComputePosition(const std::vector<NODE_EVENT> &events, const st
     std::vector<MIC_POSITION> positions;        //Vector for microphones
     std::vector<std::vector<int32_t>> channels; //Samples of each channel
     uint32_t sample_rate_hz = 0;
-    
+
     //Unpack events (One from each pi, two microphones per pi)
     for (const auto &event : events){   //For each event
-        
+
         sample_rate_hz = event.sample_rate_hz;              //Grabs sample rate from here (should be same for both events)
         for (int i = 0; i < event.mic_ids.size(); i++){     //For each microphone
             const MIC_POSITION* p_mic = FindMic(mics, event.mic_ids[i]);  //Find mic
             if (p_mic == nullptr) return result;          //Unknown id: Abandon
-            positions.push_back(*p_mic);                  //Push back mic           
+            positions.push_back(*p_mic);                  //Push back mic
             channels.push_back(event.samples[i]);       //Push back samples
-        } 
+        }
     }
     if (channels.size() < 3) return result; //Needs three mics: If not abandon
 
