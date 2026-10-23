@@ -1,3 +1,12 @@
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+
+# Editors
+.vscode/
+.vs/
 # Operating system files
 .DS_Store
 Thumbs.db
@@ -10,6 +19,7 @@ __pycache__/
 
 # C/C++ build directories
 build/
+out/
 cmake-build-*/
 
 # CMake and Ninja generated files
