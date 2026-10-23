@@ -19,6 +19,11 @@ if(ALSA_FOUND)
   add_library(alsa_capture src/alsa_capture.cpp)
   target_include_directories(alsa_capture PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/include)
   target_link_libraries(alsa_capture PUBLIC ringbuffer ALSA::ALSA)
+
+  # Hardware test with the real microphones. Not in ctest: it needs the mics and
+  # someone to clap. Run: ./build/ringbuffer/alsa_hw_test hw:0,0 --wav capture.wav
+  add_executable(alsa_hw_test tests/alsa_hw_test.cpp)
+  target_link_libraries(alsa_hw_test PRIVATE alsa_capture)
 else()
   message(STATUS "ALSA not found: skipping alsa_capture (it only builds on Linux)")
 endif()
