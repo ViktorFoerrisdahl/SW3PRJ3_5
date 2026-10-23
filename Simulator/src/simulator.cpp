@@ -111,7 +111,8 @@ std::vector<NODE_EVENT> Simulator_GenerateEvents(const SIM_CONFIG &config)
 
   for (const SIM_NODE &node : config.nodes)
   {
-    if (node.mics.empty())
+    // A Frame holds exactly two channels, like a real node
+    if (node.mics.size() != 2)
     {
       continue;
     }
@@ -137,11 +138,10 @@ std::vector<NODE_EVENT> Simulator_GenerateEvents(const SIM_CONFIG &config)
     // The node timestamps with its own clock, which is off by clock_offset_s
     event.first_sample_time_ns = std::llround((window_start_s + node.clock_offset_s) * 1e9);
 
-    for (size_t ch = 0; ch < node.mics.size(); ch++)
+    event.frames.resize(num_samples);
+    for (size_t ch = 0; ch < 2; ch++)
     {
       event.mic_ids.push_back(node.mics[ch].id);
-
-      std::vector<int32_t> channel(num_samples);
       for (size_t n = 0; n < num_samples; n++)
       {
         double t_s = (first_sample_index + static_cast<double>(n)) / sample_rate_hz;
@@ -150,9 +150,8 @@ std::vector<NODE_EVENT> Simulator_GenerateEvents(const SIM_CONFIG &config)
         {
           value += noise(rng);
         }
-        channel[n] = ToInt32(value);
+        event.frames[n].ch[ch] = ToInt32(value);
       }
-      event.samples.push_back(channel);
     }
 
     events.push_back(event);
