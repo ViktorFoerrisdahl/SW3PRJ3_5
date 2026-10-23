@@ -1,4 +1,4 @@
-# Hændelsesdetektering (slave)
+# Hændelsesdetektering (node)
 
 Detekterer klap på én mikrofonnode og lægger et udsnit af de rå samples omkring klappet i en kø til TCP-modulet. Designet står i "Hændelsesdetektering" i rapporten.
 

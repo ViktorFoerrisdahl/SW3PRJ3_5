@@ -10,7 +10,7 @@
 
 #include "ring_buffer.h"  // for Frame (antaget, se README.md)
 
-// Én detekteret hændelse, klar til at blive sendt til master.
+// Én detekteret hændelse, klar til at blive sendt til orchestrator.
 // Dette er hændelsesdetekteringens output. TCP-modulet står selv for at
 // pakke felterne til bytes (header + interleaved samples).
 struct DetectedEvent {
