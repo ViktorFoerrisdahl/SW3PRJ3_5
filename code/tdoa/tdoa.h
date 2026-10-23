@@ -4,11 +4,13 @@
 #include "node_event.h"
 
 constexpr double SPEED_OF_SOUND_M_PER_S = 343.0;
+//Hej
 
 //Position of one microphone (in metres)
 struct MIC_POSITION 
 {
-    std::string mic_id;
+    uint16_t node_id;
+    uint16_t channel;
     double x_m;
     double y_m;
 };
