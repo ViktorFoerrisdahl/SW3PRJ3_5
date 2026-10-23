@@ -21,6 +21,9 @@ endif()
 
 find_package(Threads REQUIRED)
 
+# Register tests so they can be run with ctest
+enable_testing()
+
 # Shared types used by several modules (header-only): Frame, NODE_EVENT
 add_library(common INTERFACE)
 target_include_directories(common INTERFACE ${CMAKE_CURRENT_SOURCE_DIR}/common)
