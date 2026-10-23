@@ -6,7 +6,7 @@
 constexpr double SPEED_OF_SOUND_M_PER_S = 343.0;
 
 //Position of one microphone (in metres)
-struct MIC_POSITION 
+struct MIC_POSITION
 {
     std::string mic_id;
     double x_m;
@@ -14,7 +14,7 @@ struct MIC_POSITION
 };
 
 //Estimated source position (in metres)
-struct TDOA_RESULT 
+struct TDOA_RESULT
 {
     bool valid;
     double x_m;
