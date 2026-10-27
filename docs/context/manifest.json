@@ -168,6 +168,13 @@
     "status": "tekst udtrukket – kontrollér original"
   },
   {
+    "source": "construction/IBD-ATLAS.drawio",
+    "sha256": "81f1c67c3cf08dbe97b141487db4cbc4f98358fb4ef9b4cf736cc334ed28feda",
+    "output": "ibd-atlas--0815fca310c0e093.md",
+    "output_sha256": "2a84d74e9736e3daf9d3990e39e2eb50a2c63693bc083ce14bc660f9d695d888",
+    "status": "manuel læsning kræves"
+  },
+  {
     "source": "construction/UML_klassediagram_NODE.drawio",
     "sha256": "5a34b326f566dd46c1d224fe73d37498a20dc9acaf1a2e718fc9e92f38f83fb0",
     "output": "uml-klassediagram-node--8aa3364638b772cf.md",
