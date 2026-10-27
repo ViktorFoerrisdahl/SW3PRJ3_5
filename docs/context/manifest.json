@@ -168,6 +168,13 @@
     "status": "tekst udtrukket – kontrollér original"
   },
   {
+    "source": "construction/BDD-ATLAS.drawio",
+    "sha256": "5ac6f8fcf043f13c5b92361a5fb10deb44d86042d560fb78dd10b3bcbcf55f85",
+    "output": "bdd-atlas--10871c22180e6716.md",
+    "output_sha256": "15e26222a3c60d67be844c752767d64fafff182d3ca3e35afba03bbc7ea2c2b0",
+    "status": "manuel læsning kræves"
+  },
+  {
     "source": "construction/IBD-ATLAS.drawio",
     "sha256": "81f1c67c3cf08dbe97b141487db4cbc4f98358fb4ef9b4cf736cc334ed28feda",
     "output": "ibd-atlas--0815fca310c0e093.md",
