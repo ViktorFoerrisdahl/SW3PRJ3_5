@@ -1,7 +1,8 @@
 #pragma once
 #include <string>
 #include <vector>
-#include "node_event.h"
+//#include "node_event.h"
+#include "detected_event.h"
 
 constexpr double SPEED_OF_SOUND_M_PER_S = 343.0;
 //Hej

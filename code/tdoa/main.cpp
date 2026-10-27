@@ -30,7 +30,7 @@ static std::vector<NODE_EVENT> MakeMockEvents(const std::vector<MIC_POSITION>& m
             samples[256 + delay_samples + i] = clap[i];
 
         NODE_EVENT& node = (m < 2) ? node_1 : node_2;   // A, B -> node 1; C, D -> node 2
-        node.mic_ids.push_back(mics[m].mic_id);
+        node.mic_ids.push_back(std::to_string(mics[m].node_id));
         node.samples.push_back(samples);
     }
 

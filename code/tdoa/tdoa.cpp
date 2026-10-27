@@ -10,7 +10,7 @@ static const MIC_POSITION* FindMic(const std::vector<MIC_POSITION> &mics, const 
 {
     for (const auto &mic : mics)
     {
-        if (mic.node_id == node.id && mic.channel == channel)
+        if (mic.node_id == node_id && mic.channel == channel)
             return &mic;
     }
     return nullptr;
@@ -77,7 +77,74 @@ static void GridSearch(const std::vector<MIC_POSITION> &mics, const std::vector<
 // Computes the position using gauss newton least squares.
 static void GaussNewton(const std::vector<MIC_POSITION> &mics, const std::vector<double> &tdoa_s, double &x_m, double &y_m)
 {
+    if (mics.size() < 3) return;
 
+    //Current guessed position from Grid Search
+    double x = x_m;
+    double y = y_m;
+
+    //Position of mic 0
+    double x0 = mics[0].x_m;
+    double y0 = mics[0].y_m;
+
+    int MAX_ITERATIONS = 20; //Maximum wanted iterations to ensure quick solution
+    double TOLERANCE = 1e-4; //0.1 mm
+    
+    for (int iter = 0; iter < MAX_ITERATIONS; iter++)
+    {
+        //Elements in 2x2 Matrix
+        double Hxx = 0.0, Hxy = 0.0, Hyy = 0.0;
+
+        //Elements in vektor
+        double gx = 0.0, gy = 0.0;
+
+        double d0 = std::sqrt((x - x0)*(x - x0) + (y - y0)*(y - y0)); //Distance til referencemikrofon
+
+        for (size_t i = 1; i < mics.size(); i++)
+        {
+            double xi = mics[i].x_m;
+            double yi = mics[i].y_m;
+
+            double di = std::sqrt((x - xi)*(x - xi) + (y - yi)*(y - yi)); //Distance til den enkelte mikrofon
+
+            //Calculating error r (residual)
+            double theoretical_diff = di - d0;
+            double measured_diff = tdoa_s[i] * SPEED_OF_SOUND_M_PER_S;
+            double r = theoretical_diff - measured_diff;
+
+            //The slope of the given mic 
+            double Jx = (x - xi) / di - (x - x0) / d0;
+            double Jy = (y - yi) / di - (y - y0) / d0;
+
+            //Building J^T * J
+            Hxx += Jx * Jx;
+            Hxy += Jx * Jy;
+            Hyy += Jy * Jy;
+
+            //Building J^T * r
+            gx += Jx * r;
+            gy += Jy * r;
+        }
+
+        //Calculating determinant
+        double det = (Hxx * Hyy) - (Hxy * Hxy);
+
+        //If determinant is close to 0 it is unsolvable
+        if (std::abs(det) < 1e-9) break;
+
+        //Solve the step to take using the inverse matrix
+        double delta_x = (Hyy * gx - Hxy * gy) / det;
+        double delta_y = (Hxx * gy - Hxy * gx) / det;
+
+        x -= delta_x;
+        y -= delta_y;
+
+        //Check if the step is so small that we're there
+        if (std::sqrt(delta_x * delta_x + delta_y * delta_y) < TOLERANCE) break;
+    }
+    //Updating final result
+    x_m = x;
+    y_m = y;
 }
 
 static void SolvePosition(const std::vector<MIC_POSITION> &mics, const std::vector<double> &tdoa_s, double &x_m, double &y_m)
@@ -103,7 +170,7 @@ TDOA_RESULT Tdoa_ComputePosition(const std::vector<NODE_EVENT> &events, const st
 
         sample_rate_hz = event.sample_rate_hz;              //Grabs sample rate from here (should be same for both events)
         for (int i = 0; i < event.mic_ids.size(); i++){     //For each microphone
-            const MIC_POSITION* p_mic = FindMic(mics, event.mic_ids[i]);  //Find mic
+            const MIC_POSITION* p_mic = FindMic(mics, event.node_id[i], std::stoi(event.mic_ids[i]));  //Find mic
             if (p_mic == nullptr) return result;          //Unknown id: Abandon
             positions.push_back(*p_mic);                  //Push back mic
             channels.push_back(event.samples[i]);       //Push back samples
