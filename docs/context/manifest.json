@@ -168,6 +168,13 @@
     "status": "tekst udtrukket – kontrollér original"
   },
   {
+    "source": "construction/UML_klassediagram_NODE.drawio",
+    "sha256": "5a34b326f566dd46c1d224fe73d37498a20dc9acaf1a2e718fc9e92f38f83fb0",
+    "output": "uml-klassediagram-node--8aa3364638b772cf.md",
+    "output_sha256": "d2d37dae7c5cabb96cb17b0fed437ac297f40638656f51f9827256e1719afdb7",
+    "status": "manuel læsning kræves"
+  },
+  {
     "source": "construction/tegnet_udkast_softwarearkitekttur_node.jpeg",
     "sha256": "32551c230c6120f8fa2f7e973916585c60ccfd3c52d0e6a51fd2e0408643bf07",
     "output": "tegnet-udkast-softwarearkitekttur-node--26bf1d8f4377f069.md",
