@@ -32,3 +32,4 @@ Læs først AI-strategien, terminology.md og code-conventions.md via listen nede
 | [Referater/Referat #3 - Møde med søren 150926.docx](../Referater/Referat%20%233%20-%20M%C3%B8de%20med%20s%C3%B8ren%20150926.docx) | [Læs](referat-3-m-de-med-s-ren-150926--5bf973b246ada4a5.md) | tekst udtrukket – kontrollér original |
 | [Referater/Referat #4 - 18-09-2026 - Elaboration 1.docx](../Referater/Referat%20%234%20-%2018-09-2026%20-%20Elaboration%201.docx) | [Læs](referat-4-18-09-2026-elaboration-1--ef4106ff317643ab.md) | tekst udtrukket – kontrollér original |
 | [Referater/Referat #5 - 25-09-2026.docx](../Referater/Referat%20%235%20-%2025-09-2026.docx) | [Læs](referat-5-25-09-2026--01957541a68ea745.md) | tekst udtrukket – kontrollér original |
+| [construction/tegnet_udkast_softwarearkitekttur_node.jpeg](../construction/tegnet_udkast_softwarearkitekttur_node.jpeg) | [Læs](tegnet-udkast-softwarearkitekttur-node--26bf1d8f4377f069.md) | manuel læsning kræves |

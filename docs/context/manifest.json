@@ -166,5 +166,12 @@
     "output": "referat-5-25-09-2026--01957541a68ea745.md",
     "output_sha256": "1e236f2ff49144c6609be26d8467075dd90e645a3d792fdccf71d2f4f7b3f51e",
     "status": "tekst udtrukket – kontrollér original"
+  },
+  {
+    "source": "construction/tegnet_udkast_softwarearkitekttur_node.jpeg",
+    "sha256": "32551c230c6120f8fa2f7e973916585c60ccfd3c52d0e6a51fd2e0408643bf07",
+    "output": "tegnet-udkast-softwarearkitekttur-node--26bf1d8f4377f069.md",
+    "output_sha256": "f955f1a9e19f5f830e446ee4c33e2a21e856b1597b9ff2432fdf82a55761a68f",
+    "status": "manuel læsning kræves"
   }
 ]
