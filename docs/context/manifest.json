@@ -169,16 +169,16 @@
   },
   {
     "source": "construction/BDD-ATLAS.drawio",
-    "sha256": "7f49549b1c397696446b35a02fa187b47e6002f088529aebd4fa23e7fa51c75a",
+    "sha256": "3bc5ae3d1015bd43726210d476f1022de155e40b45849e40d1434fd34a88f0ed",
     "output": "bdd-atlas--10871c22180e6716.md",
-    "output_sha256": "8363bf284637e00d4b9f1a6ce35f29056b9a29ed088fe5eac5c8ae981fb9a52f",
+    "output_sha256": "a93daa74df5635f337b3b80c13e63a187b2226b2e008a31f9a8a3627e5bc4435",
     "status": "manuel læsning kræves"
   },
   {
     "source": "construction/IBD-ATLAS.drawio",
-    "sha256": "81f1c67c3cf08dbe97b141487db4cbc4f98358fb4ef9b4cf736cc334ed28feda",
+    "sha256": "c794b26d038098aabd7659e4194cbc1b011ce2fffd501cf988b578879cc1c571",
     "output": "ibd-atlas--0815fca310c0e093.md",
-    "output_sha256": "2a84d74e9736e3daf9d3990e39e2eb50a2c63693bc083ce14bc660f9d695d888",
+    "output_sha256": "f0fe02fd6fc0043042d34be42f2300ff9606e4f2b305e9c39ed564ef1e9fb760",
     "status": "manuel læsning kræves"
   },
   {
