@@ -1,4 +1,4 @@
 {
-    "cmake.sourceDirectory": "${workspaceFolder}/TUI/ATLAS_TUI",
-    "cmake.buildDirectory": "${workspaceFolder}/TUI/ATLAS_TUI/build"
+    "cmake.sourceDirectory": "${workspaceFolder}/ATLAS_TUI",
+    "cmake.buildDirectory": "${workspaceFolder}/ATLAS_TUI/build"
 }

@@ -1,7 +1,10 @@
-import sys
+import matplotlib
 import matplotlib.pyplot as plt
 import numpy as np
 from matplotlib.patches import Rectangle
+
+matplotlib.use("webagg")
+matplotlib.rcParams["webagg.port"] = 8988
 
 fig, axis = plt.subplots()
 

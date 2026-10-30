@@ -3,6 +3,6 @@
 
 plot::plot()
 {
-    std::string kommando = "py plot.py";
+    std::string kommando = "/home/au786842/SW3/SW3PRJ3_5/.venv/bin/python plot.py";
     system(kommando.c_str());
 }
