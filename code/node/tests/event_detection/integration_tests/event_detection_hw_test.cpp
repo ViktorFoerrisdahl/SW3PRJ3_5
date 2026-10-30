@@ -50,7 +50,7 @@ constexpr std::size_t RING_FRAMES = 131072; // ca. 2,7 s ved 48 kHz
 constexpr int SAMPLE_BITS = 18;            // N: samples skiftes ned til 18 bit
 constexpr double SENSITIVITY_DBFS = -26.0; // SPH0645LM4H-B, typisk værdi (±3 dB)
 constexpr double SPL_REF_DB = 94.0;        // lydtrykket sensitiviteten er målt ved
-constexpr double SPL_TARGET_DB = 75.0;     // gruppens tærskel
+constexpr double SPL_TARGET_DB = 100.0;     // gruppens tærskel
 
 constexpr uint16_t NODE_ID = 1;
 
