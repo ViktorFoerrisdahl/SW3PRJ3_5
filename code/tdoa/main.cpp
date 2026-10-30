@@ -63,7 +63,7 @@ int main()
         {2, 1, 0.0, 3.0}
     };
 
-    double test_points[][2] = {{1.0, 2.0}, {1.5, 1.5}, {0.5, 0.5}, {2.8, 1.5}};
+    double test_points[][2] = {{1.783, 2.988}, {1.575, 1.28999}, {0.59008, 0.29005}, {2.823, 1.512357}};
 
     // 0 ns: both buffers start together. 1.5 ms: node 2 starts later.
     int64_t node2_offsets_ns[] = {0, 1500000};

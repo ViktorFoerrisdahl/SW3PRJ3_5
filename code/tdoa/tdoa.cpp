@@ -196,11 +196,11 @@ TDOA_RESULT Tdoa_ComputePosition(const std::vector<DetectedEvent> &events, const
     std::vector<double> tdoa_s{0.0};                        //Reference 0 at index 0
     for (int i = 1; i < channels.size(); i++){              //Starting at 1
         int lag = CrossCorrelate(channels[0], channels[i]);
-        tdoa_s.push_back((double)lag / sample_rate);     // samples → seconds
+        double offset_s = (t_first_ns[i] - t_first_ns[0]) * 1e-9;   //Convert ns to s
+        tdoa_s.push_back((double)lag / sample_rate + offset_s);     //Samples → seconds
     }
 
     //Call solveposition using vector
-    
     SolvePosition(positions, tdoa_s, result.x_m, result.y_m);
     result.valid = true;
 
