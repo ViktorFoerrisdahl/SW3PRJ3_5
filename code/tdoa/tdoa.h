@@ -30,4 +30,4 @@ struct TDOA_RESULT
  * @param mics Microphone positions, looked up by mic_id.
  * @return Position; valid is false if a mic_id is unknown or there are fewer than 3 microphones.
  */
-TDOA_RESULT Tdoa_ComputePosition(const std::vector<NODE_EVENT>& events, const std::vector<MIC_POSITION>& mics);
+TDOA_RESULT Tdoa_ComputePosition(const std::vector<DetectedEvent>& events, const std::vector<MIC_POSITION>& mics);

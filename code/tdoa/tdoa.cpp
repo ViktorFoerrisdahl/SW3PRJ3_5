@@ -167,7 +167,7 @@ TDOA_RESULT Tdoa_ComputePosition(const std::vector<DetectedEvent> &events, const
     TDOA_RESULT result = {false, 0.0, 0.0};     //Invalid until proven otherwise
     std::vector<MIC_POSITION> positions;        //Vector for microphones
     std::vector<std::vector<int32_t>> channels; //Samples of each channel
-    std::vector<int32_t> t_first_ns;            //Vector for first sample time of each channel 
+    std::vector<int64_t> t_first_ns;            //Vector for first sample time of each channel 
     uint32_t sample_rate = 0;                   //Shared variable for sample rate
 
     //Unpack events (One from each pi, two microphones per pi)
@@ -181,7 +181,7 @@ TDOA_RESULT Tdoa_ComputePosition(const std::vector<DetectedEvent> &events, const
             //De-interleave samples
             std::vector<int32_t> samples;
             for (const Frame& f : event.frames){
-                samples.push_back(samples[i]);            //Push back sample for this mic
+                samples.push_back(f.ch[i]);                 //Push back sample for this mic
             }
 
             //Push back data
@@ -192,7 +192,7 @@ TDOA_RESULT Tdoa_ComputePosition(const std::vector<DetectedEvent> &events, const
     }
     if (channels.size() < 3) return result; //Needs three mics: If not abandon
 
-    // Cross correlation and build a vector from this
+    //Cross correlation and build a vector from this
     std::vector<double> tdoa_s{0.0};                        //Reference 0 at index 0
     for (int i = 1; i < channels.size(); i++){              //Starting at 1
         int lag = CrossCorrelate(channels[0], channels[i]);
@@ -200,9 +200,8 @@ TDOA_RESULT Tdoa_ComputePosition(const std::vector<DetectedEvent> &events, const
     }
 
     //Call solveposition using vector
-    double x_m = 0.0;
-    double y_m = 0.0;
-    SolvePosition(mics, tdoa_s, x_m, y_m);
+    
+    SolvePosition(positions, tdoa_s, result.x_m, result.y_m);
     result.valid = true;
 
     //Return result
