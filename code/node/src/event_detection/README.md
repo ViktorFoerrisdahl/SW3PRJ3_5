@@ -14,12 +14,14 @@ Detekterer klap på én mikrofonnode og lægger et udsnit af de rå samples omkr
 
 Tests og en mock af ringbufferen ligger i `tests/event_detection/`. Byggekommandoen står øverst i testfilen.
 
+`Frame` er defineret i `common/frame.h` i roden af repoet og inkluderes som `"frame.h"`. Når der bygges fra `code/node`, skal g++ derfor have `-I ../../common`.
+
 ## Antagelser om ringbufferen (input)
 
 Ringbufferen laves af et andet gruppemedlem. Indtil den findes, antager vi at `ring_buffer.h` indeholder følgende. Navnene rettes, når den rigtige ringbuffer er skrevet.
 
 ```cpp
-struct Frame { int32_t ch[2]; };   // ét S32_LE-sample pr. mikrofon
+#include "frame.h"   // Frame: ét S32_LE-sample pr. mikrofon (common/frame.h)
 
 class RingBuffer {
 public:

@@ -10,7 +10,8 @@
 #include "dc_remover.h"
 #include "detector_config.h"
 #include "event_queue.h"
-#include "ring_buffer.h"  // antaget grænseflade til ringbufferen, se README.md
+#include "frame.h"        // Frame (fra common/frame.h)
+#include "ring_buffer.h"
 #include "sliding_rms.h"
 
 // Hændelsesdetektering på én mikrofonnode (slave).

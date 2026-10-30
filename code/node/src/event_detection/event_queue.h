@@ -8,7 +8,7 @@
 #include <stop_token>
 #include <vector>
 
-#include "ring_buffer.h"  // for Frame (antaget, se README.md)
+#include "frame.h"  // Frame (fra common/frame.h)
 
 // Én detekteret hændelse, klar til at blive sendt til master.
 // Dette er hændelsesdetekteringens output. TCP-modulet står selv for at
