@@ -1,6 +1,6 @@
 <mxfile host="app.diagrams.net" pages="2">
   <diagram name="BDD-ATLAS" id="aNBUf9bTuJt0JcPdZuam">
-    <mxGraphModel dx="2146" dy="1098" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="2020" dy="1033" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -162,13 +162,6 @@
         <mxCell id="j0nOirfiMa9oKbP5ON1j-49" connectable="0" parent="j0nOirfiMa9oKbP5ON1j-48" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=10;fontColor=#1b2330;labelBackgroundColor=none;" value="1..2" vertex="1">
           <mxGeometry relative="1" x="0.88" as="geometry">
             <mxPoint x="22" as="offset" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="j0nOirfiMa9oKbP5ON1j-50" edge="1" parent="1" source="j0nOirfiMa9oKbP5ON1j-9" style="endArrow=none;html=1;edgeStyle=orthogonalEdgeStyle;rounded=0;strokeColor=#1b2330;strokeWidth=1.5;exitX=1;exitY=0.3846;entryX=0;entryY=0.2597;" target="j0nOirfiMa9oKbP5ON1j-15" value="">
-          <mxGeometry relative="1" as="geometry">
-            <Array as="points">
-              <mxPoint x="610" y="517.5" />
-            </Array>
           </mxGeometry>
         </mxCell>
         <mxCell id="j0nOirfiMa9oKbP5ON1j-51" edge="1" parent="1" source="j0nOirfiMa9oKbP5ON1j-28" style="endArrow=open;endFill=0;endSize=10;startArrow=diamondThin;startFill=1;startSize=16;html=1;edgeStyle=orthogonalEdgeStyle;rounded=0;strokeColor=#1b2330;strokeWidth=1.5;entryX=0.5;entryY=0;exitX=0.501;exitY=1.014;exitDx=0;exitDy=0;exitPerimeter=0;" target="j0nOirfiMa9oKbP5ON1j-35" value="">
