@@ -1,6 +1,7 @@
 #include "tdoa.h"
 #include <limits>
 #include <cmath>
+#include <iostream>
 
 // Maximum lag between mics based on maximum distance between mics in (3x3m)
 static const int MAX_LAG_SAMPLES = 600; // 3x3 m diagonal (4.24 m) - 4.24m divided by speed of sound then multiplied with sample frequency 48kHz: Roughly 594 samples (600 cap to be safe)
@@ -87,9 +88,9 @@ static void GaussNewton(const std::vector<MIC_POSITION> &mics, const std::vector
     double x0 = mics[0].x_m;
     double y0 = mics[0].y_m;
 
-    int MAX_ITERATIONS = 20; //Maximum wanted iterations to ensure quick solution
+    int MAX_ITERATIONS = 80; //Maximum wanted iterations to ensure quick solution
     double TOLERANCE = 1e-4; //0.1 mm
-    
+
     for (int iter = 0; iter < MAX_ITERATIONS; iter++)
     {
         //Elements in 2x2 Matrix
@@ -112,7 +113,7 @@ static void GaussNewton(const std::vector<MIC_POSITION> &mics, const std::vector
             double measured_diff = tdoa_s[i] * SPEED_OF_SOUND_M_PER_S;
             double r = theoretical_diff - measured_diff;
 
-            //The slope of the given mic 
+            //The slope of the given mic
             double Jx = (x - xi) / di - (x - x0) / d0;
             double Jy = (y - yi) / di - (y - y0) / d0;
 
@@ -153,27 +154,40 @@ static void SolvePosition(const std::vector<MIC_POSITION> &mics, const std::vect
 
     GridSearch(mics, tdoa_s, x_m, y_m);  //Call grid search
 
+    std::cout << "Result after Grid Search: {" << x_m << ", " << y_m << "}\n";
+
     GaussNewton(mics, tdoa_s, x_m, y_m);  //Call gauss newton
 
+    std::cout << "Result after Gauss Newton: {" << x_m << ", " << y_m << "}\n";
 }
 
-TDOA_RESULT Tdoa_ComputePosition(const std::vector<NODE_EVENT> &events, const std::vector<MIC_POSITION> &mics)
+TDOA_RESULT Tdoa_ComputePosition(const std::vector<DetectedEvent> &events, const std::vector<MIC_POSITION> &mics)
 {
     //Intialise lists and result
     TDOA_RESULT result = {false, 0.0, 0.0};     //Invalid until proven otherwise
     std::vector<MIC_POSITION> positions;        //Vector for microphones
     std::vector<std::vector<int32_t>> channels; //Samples of each channel
-    uint32_t sample_rate_hz = 0;
+    std::vector<int32_t> t_first_ns;            //Vector for first sample time of each channel 
+    uint32_t sample_rate = 0;                   //Shared variable for sample rate
 
     //Unpack events (One from each pi, two microphones per pi)
     for (const auto &event : events){   //For each event
 
-        sample_rate_hz = event.sample_rate_hz;              //Grabs sample rate from here (should be same for both events)
-        for (int i = 0; i < event.mic_ids.size(); i++){     //For each microphone
-            const MIC_POSITION* p_mic = FindMic(mics, event.node_id[i], std::stoi(event.mic_ids[i]));  //Find mic
-            if (p_mic == nullptr) return result;          //Unknown id: Abandon
-            positions.push_back(*p_mic);                  //Push back mic
-            channels.push_back(event.samples[i]);       //Push back samples
+        sample_rate = event.sample_rate;                    //Grabs sample rate from here (should be same for both events)
+        for (int i = 0; i < 2; i++){                        //For each microphone
+            const MIC_POSITION* p_mic = FindMic(mics, event.node_id, i);  //Find mic
+            if (p_mic == nullptr) return result;            //Unknown id: Abandon
+
+            //De-interleave samples
+            std::vector<int32_t> samples;
+            for (const Frame& f : event.frames){
+                samples.push_back(samples[i]);            //Push back sample for this mic
+            }
+
+            //Push back data
+            positions.push_back(*p_mic);                    //Push back mic
+            channels.push_back(samples);                    //Push back samples
+            t_first_ns.push_back(event.t_first_ns);         //Push back first sample time
         }
     }
     if (channels.size() < 3) return result; //Needs three mics: If not abandon
@@ -182,11 +196,13 @@ TDOA_RESULT Tdoa_ComputePosition(const std::vector<NODE_EVENT> &events, const st
     std::vector<double> tdoa_s{0.0};                        //Reference 0 at index 0
     for (int i = 1; i < channels.size(); i++){              //Starting at 1
         int lag = CrossCorrelate(channels[0], channels[i]);
-        tdoa_s.push_back((double)lag / sample_rate_hz);     // samples → seconds
+        tdoa_s.push_back((double)lag / sample_rate);     // samples → seconds
     }
 
     //Call solveposition using vector
-    SolvePosition(positions, tdoa_s, result.x_m, result.y_m);
+    double x_m = 0.0;
+    double y_m = 0.0;
+    SolvePosition(mics, tdoa_s, x_m, y_m);
     result.valid = true;
 
     //Return result
