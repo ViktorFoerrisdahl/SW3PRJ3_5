@@ -1,6 +1,6 @@
 // Tests af hændelsesdetekteringen med en mock-ringbuffer og syntetiske klap.
 //
-// Byg og kør fra code/slave:
+// Byg og kør fra code/node:
 //   g++ -std=c++23 -Wall -Wextra -O2 -pthread -I tests/event_detection/mocks -I src/event_detection src/event_detection/event_detection.cpp src/event_detection/sliding_rms.cpp tests/event_detection/test_event_detection.cpp -o test_event_detection
 //   ./test_event_detection
 //
