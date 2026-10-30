@@ -4,69 +4,57 @@
 #include "tdoa.h"
 
 static constexpr uint32_t SAMPLE_RATE_HZ = 48000;
-static constexpr size_t SAMPLE_COUNT = 2048;
+static constexpr size_t FRAME_COUNT = 2048;     // Frames per event
+static constexpr long PRE_TRIGGER_FRAMES = 300; // Silence before the clap in each buffer
 
-static std::vector<NODE_EVENT>
-MakeMockEvents(const std::vector<MIC_POSITION>& mics,
-               double src_x,
-               double src_y)
+// Builds one DetectedEvent per node with the same clap in every channel,
+// delayed by distance / speed of sound. Node 2's buffer starts node2_offset_ns
+// later than node 1's, to test that t_first_ns is taken into account.
+static std::vector<DetectedEvent> MakeMockEvents(const std::vector<MIC_POSITION>& mics,
+                                                 double src_x_m, double src_y_m,
+                                                 int64_t node2_offset_ns)
 {
-    // Samme signal til alle mikrofoner
+    // 1. The clap: 64 random values, fixed seed -> same every run
     std::mt19937 rng(42);
     std::uniform_int_distribution<int32_t> noise(-1000, 1000);
-
     std::vector<int32_t> clap(64);
+    for (int32_t& sample : clap) sample = noise(rng);
 
-    for (auto& s : clap)
-        s = noise(rng);
+    // 2. One event per node, filled with silent frames
+    DetectedEvent node1;
+    node1.node_id = 1;
+    node1.sample_rate = SAMPLE_RATE_HZ;
+    node1.t_first_ns = 0;
+    node1.frames.assign(FRAME_COUNT, Frame{{0, 0}});
 
-    NODE_EVENT node1;
-    node1.node_id = "1";
-    node1.sample_rate_hz = SAMPLE_RATE_HZ;
+    DetectedEvent node2 = node1;
+    node2.node_id = 2;
+    node2.t_first_ns = node2_offset_ns;
 
-    NODE_EVENT node2;
-    node2.node_id = "2";
-    node2.sample_rate_hz = SAMPLE_RATE_HZ;
-
+    // 3. Write the clap into the channel belonging to each microphone
     for (const auto& mic : mics)
     {
-        double distance =
-            std::hypot(src_x - mic.x_m,
-                       src_y - mic.y_m);
+        DetectedEvent& event = (mic.node_id == 1) ? node1 : node2;
 
-        int delay =
-            (int)std::lround(
-                distance /
-                SPEED_OF_SOUND_M_PER_S *
-                SAMPLE_RATE_HZ);
-
-        std::vector<int32_t> samples(SAMPLE_COUNT, 0);
+        double arrival_s = std::hypot(src_x_m - mic.x_m, src_y_m - mic.y_m) / SPEED_OF_SOUND_M_PER_S;
+        double arrival_in_buffer_s = arrival_s - event.t_first_ns * 1e-9; // Relative to this buffer's first frame
+        long start = PRE_TRIGGER_FRAMES + std::lround(arrival_in_buffer_s * SAMPLE_RATE_HZ);
 
         for (size_t i = 0; i < clap.size(); i++)
         {
-            size_t idx = 300 + delay + i;
-
-            if (idx < SAMPLE_COUNT)
-                samples[idx] = clap[i];
-        }
-
-        if (mic.node_id == 1)
-        {
-            node1.mic_ids.push_back(std::to_string(mic.channel));
-            node1.samples.push_back(samples);
-        }
-        else
-        {
-            node2.mic_ids.push_back(std::to_string(mic.channel));
-            node2.samples.push_back(samples);
+            long idx = start + (long)i;
+            if (idx >= 0 && idx < (long)FRAME_COUNT)
+                event.frames[idx].ch[mic.channel] = clap[i]; // Interleaved: channel picks ch[0] or ch[1]
         }
     }
 
+    // 4.
     return {node1, node2};
 }
 
 int main()
 {
+    // {node_id, channel, x_m, y_m}
     std::vector<MIC_POSITION> mics =
     {
         {1, 0, 0.0, 0.0},
@@ -75,39 +63,24 @@ int main()
         {2, 1, 0.0, 3.0}
     };
 
-    double test_points[][2] =
+    double test_points[][2] = {{1.0, 2.0}, {1.5, 1.5}, {0.5, 0.5}, {2.8, 1.5}};
+
+    // 0 ns: both buffers start together. 1.5 ms: node 2 starts later.
+    int64_t node2_offsets_ns[] = {0, 1500000};
+
+    for (int64_t offset_ns : node2_offsets_ns)
     {
-        {1.0, 2.0},
-        {1.5, 1.5},
-        {0.5, 0.5},
-        {2.8, 1.5}
-    };
+        std::printf("--- Node 2 offset: %lld ns ---\n", (long long)offset_ns);
 
-    for (auto& p : test_points)
-    {
-        auto events = MakeMockEvents(mics, p[0], p[1]);
+        for (auto& point : test_points)
+        {
+            TDOA_RESULT result = Tdoa_ComputePosition(MakeMockEvents(mics, point[0], point[1], offset_ns), mics);
+            double error_cm = 100.0 * std::hypot(result.x_m - point[0], result.y_m - point[1]);
 
-        TDOA_RESULT result =
-            Tdoa_ComputePosition(events, mics);
-
-        double error_cm =
-            100.0 *
-            std::hypot(
-                result.x_m - p[0],
-                result.y_m - p[1]);
-
-        printf(
-            "TRUE=(%.2f, %.2f)  "
-            "EST=(%.2f, %.2f)  "
-            "ERROR=%.1f cm  "
-            "VALID=%d\n",
-            p[0],
-            p[1],
-            result.x_m,
-            result.y_m,
-            error_cm,
-            result.valid);
+            std::printf("TRUE=(%.2f, %.2f)  EST=(%.2f, %.2f)  ERROR=%.1f cm  VALID=%d\n",
+                        point[0], point[1], result.x_m, result.y_m, error_cm, result.valid);
+        }
     }
-    
+
     return 0;
 }
