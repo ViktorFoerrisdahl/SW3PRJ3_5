@@ -1,6 +1,6 @@
 set (INC ${PROJECT_SOURCE_DIR}/inc)
 
-set(SRC main.cpp menu.cpp plot.cpp)
+set(SRC main.cpp menu.cpp plot.cpp microphones.cpp)
 
 add_executable(main.out ${SRC})
 
