@@ -33,7 +33,7 @@ int main()
             
             for (int i = 1; i <= m.get_AmountOfMicrophones(); i++)
             {
-                Vec2 tempVector;
+                MIC_COORDINATES tempVector;
                 std::cout << "What is the x position of microphone " << i << "?: \n";
                 int temp_x_y{};
                 std::cin >> temp_x_y;

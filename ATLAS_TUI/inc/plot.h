@@ -11,7 +11,7 @@ private:
 
 public:
     plot();
-    void startPyPlot(int AmountOfMics, std::vector<Vec2> vectorMic);
+    void startPyPlot(int AmountOfMics, std::vector<MIC_COORDINATES> vectorMic);
     void plotNewEvent(int ID);
 };
 

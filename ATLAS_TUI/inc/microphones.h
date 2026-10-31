@@ -3,7 +3,7 @@
 
 #include <vector>
 
-struct Vec2 
+struct MIC_COORDINATES 
 {
     int x, y;
 };
@@ -12,14 +12,14 @@ class microphones
 {
 private:
     int AmountOfMicrophones_ = 0;
-    std::vector<Vec2> Microphones_;
+    std::vector<MIC_COORDINATES> Microphones_;
     
 public:
     microphones(int amount);
-    void AppendMicToVector(Vec2 micLocation);
+    void AppendMicToVector(MIC_COORDINATES micLocation);
 
     int get_AmountOfMicrophones() const;
-    const std::vector<Vec2>& get_MicrophonesVector() const;
+    const std::vector<MIC_COORDINATES>& get_MicrophonesVector() const;
 };
 
 

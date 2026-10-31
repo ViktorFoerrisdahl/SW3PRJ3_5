@@ -1,8 +1,6 @@
 import matplotlib
 import sys
 import matplotlib.pyplot as plt
-import numpy as np
-from matplotlib.patches import Rectangle
 
 matplotlib.use("webagg")
 matplotlib.rcParams["webagg.port"] = 8988
@@ -27,6 +25,6 @@ for x, y, name in zip(x_array, y_array, micName_array):
 
 axis.set_ylabel("Meter")
 axis.set_xlabel("Meter")
-axis.set_xlim(0, 5)
-axis.set_ylim(0, 5)
+axis.set_xlim(min(x_array) - 2, max(x_array) + 2)
+axis.set_ylim(min(y_array) - 2, max(y_array) + 2)
 plt.show()

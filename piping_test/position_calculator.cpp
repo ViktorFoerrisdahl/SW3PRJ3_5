@@ -10,7 +10,6 @@ void plotPosition(double x, double y)
 
 int main ()
 {
-    
 
     double x = 3.2;
     double y = 1.9;

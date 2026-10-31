@@ -5,7 +5,7 @@
 
 plot::plot() : EventID_(0) {}
 
-void plot::startPyPlot(int AmountOfMics, std::vector<Vec2> vectorMic)
+void plot::startPyPlot(int AmountOfMics, std::vector<MIC_COORDINATES> vectorMic)
 {
 
 
