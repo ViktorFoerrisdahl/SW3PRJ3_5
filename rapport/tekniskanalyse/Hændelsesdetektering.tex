@@ -1,0 +1,366 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+\PassOptionsToPackage{dvipsnames,svgnames,x11names}{xcolor}
+\documentclass[
+  danish,
+]{article}
+\usepackage{xcolor}
+\usepackage[margin=2.5cm]{geometry}
+\usepackage{amsmath,amssymb}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math} % this also loads fontspec
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else
+  % xetex/luatex font selection
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\ifLuaTeX
+\usepackage[bidi=basic,shorthands=off]{babel}
+\else
+\usepackage[bidi=default,shorthands=off]{babel}
+\fi
+\ifLuaTeX
+  \usepackage{selnolig} % disable illegal ligatures
+\fi
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\usepackage{bookmark}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same}
+\hypersetup{
+  pdflang={da-DK},
+  colorlinks=true,
+  linkcolor={Maroon},
+  filecolor={Maroon},
+  citecolor={Blue},
+  urlcolor={Blue},
+  pdfcreator={LaTeX via pandoc}}
+
+\author{}
+\date{}
+
+\begin{document}
+
+\section{Hændelsesdetektering}\label{huxe6ndelsesdetektering}
+
+Når der registreres en lydhændelse i mikrofonerne, skal der afgøres om
+lyden kom fra en drone eller ej, samt hvor den kom fra. Hvor lyden kom
+fra bestemmes ved hjælp af TDOA (henvis til TDOA analyse). Det vil sige
+at hændelsesdetekteringen skal afgøre om der kom en lyd fra en
+``drone'', samt hvornår lyden ankom til hver mikrofon. Dette er altså de
+to problemer som skal løses:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  At afgøre om lyden er kommet fra en drone
+\item
+  At bestemme hvornår lyden ankom til hver mikrofon
+\end{enumerate}
+
+\subsection{At bestemme om lyden er kommet fra en
+drone}\label{at-bestemme-om-lyden-er-kommet-fra-en-drone}
+
+Lyden kommer løbende fra vores datastream (henvis til datastream) i en
+ringbuffer der konstant opdateres. Til hændelsesdetekteringen tilgås
+bufferen via dens read pointer. Hvert index i ringbufferen indeholder en
+frame, som består af ét sample fra hver af mikrofonnodens to mikrofoner,
+og hver frame har et tilhørende timestamp. Vi sampler med 48 kHz og
+bruger ALSA-formatet S32\_LE, dvs. hvert sample er et 32-bit signed
+heltal (int32\_t).
+
+Ifølge databladet for SPH0645LM4H-B leverer mikrofonen data i et 24-bit
+format, men kun med 18 bits præcision, resten af bitsene er nuller. I en
+32-bit container ligger de 18 gyldige bits øverst, og de nederste 14
+bits er altid 0. Vi skifter derfor hvert sample 14 bits til højre, før
+vi bruger det:
+
+\[x = x_{\text{rå}} \gg 14\]
+
+Et aritmetisk skift bevarer fortegnet, så hvert sample får en talværdi
+mellem \(-131072\) og \(131071\). At de nederste 14 bits altid er 0, skal
+verificeres på den faktiske opstilling.
+
+Mikrofonen kan desuden have en DC-offset, altså en konstant forskydning
+af signalet. En DC-offset tæller med i RMS-værdien og skal derfor
+fjernes, inden vi kvadrerer. Det gør vi ved løbende at trække
+gennemsnittet af signalet fra hvert sample. Om det er nødvendigt,
+tjekkes ved at optage stilhed og se om middelværdien er tæt på 0.
+
+Hændelsesdetekteringen står ikke selv for timestamps. Vi antager, at de
+timestamps vi modtager fra ringbufferen er i en tidsbase, der er
+synkroniseret mellem de to mikrofonnoder via PTP, så timestamps fra de
+to noder kan sammenlignes direkte i master RPI'en.
+
+\subsubsection{PCM tærskel}\label{pcm-tuxe6rskel}
+
+Vi vil registrere lyden som et klap, hvis den overstiger en bestemt
+tærskel i dB. Tærsklen er endnu ikke endeligt fastsat. Kravet F1 nævner
+75 dB, men da lydniveauet af et klap er lavere ved de mikrofoner der
+ligger længere væk, kommer tærsklen til at blive sænket, så et klap kan
+detekteres alle steder inde i 3x3 meter målområdet. Det er dyrt og
+unødvendigt at omregne for hver rå værdi, så derfor skal der på forhånd
+udregnes en værdi i PCM-data for vores tærskel.
+
+Vi starter med at finde fuld skala for den digitale repræsentation:
+
+\[A_{\mathrm{fullscale}} = 2^{(N - 1)} - 1\]
+
+Her er N antallet af bits i mikrofonens output. Det afhænger både af
+mikrofonen og hvordan driveren pakker vores samples. Da vi skifter vores
+samples ned til 18 bit, er N = 18.
+
+Herefter vil vi finde den rå amplitude ved databladets reference
+lydtryk:
+
+\[A_{\mathrm{ref}} = A_{\mathrm{fullscale}} \cdot 10^{\frac{S_{\mathrm{dBFS}}}{20}}\]
+
+Her er \(S_{\mathrm{dBFS}}\) mikrofonens sensitivity spec fra databladet. For
+SPH0645LM4H-B er den typisk -26 dBFS, men den kan variere mellem -29 og
+-23 dBFS fra mikrofon til mikrofon.
+
+Nu vil vi finde den rå PCM-tærskel svarende til vores tærskel i dB:
+
+\[\mathit{THRESHOLD}_{\mathrm{RAW}} = A_{\mathrm{ref}} \cdot 10^{\frac{\mathit{SPL}_{\mathrm{target}} - \mathit{SPL}_{\mathrm{ref}}}{20}}\]
+
+Her er \(\mathit{SPL}_{\mathrm{target}}\) den tærskel i dB vi bestemmer, og \(\mathit{SPL}_{\mathrm{ref}}\)
+er det lydtryksniveau sensitiviteten er målt ved, som for SPH0645LM4H-B
+er 94 dB SPL.
+
+Disse 3 skridt kan samles i en formel:
+
+\[\mathit{THRESHOLD}_{\mathrm{RAW}} = (2^{N - 1} - 1) \cdot 10^{\frac{S_{\mathrm{dBFS}} + (\mathit{SPL}_{\mathrm{target}} - \mathit{SPL}_{\mathrm{ref}})}{20}}\]
+
+Da sensitiviteten kan variere ±3 dB, kan to mikrofoner give op til 6 dB
+forskel for det samme lydtryk. Det skal vi tage højde for, når tærsklen
+fastsættes, f.eks. ved at måle på hver mikrofon.
+
+\subsubsection{Tjek om lyd er oversteget
+tærskel}\label{tjek-om-lyd-er-oversteget-tuxe6rskel}
+
+Da et klap er en meget kort transient, skal RMS-vinduet ikke være alt
+for stort, vi vil gerne have et 2-5 ms vindue til at vurdere om en
+hændelse har fundet sted:
+
+Antallet af samples i vinduet findes ud fra vinduets længde og vores
+sample rate \(f_{s}\) = 48000 Hz:
+
+\[N_{\mathrm{vindue}} = t_{\mathrm{vindue}} \cdot f_{s}\]
+
+\[N \approx 2\text{--}5\ \mathrm{ms} \Longrightarrow \text{ca. } 96\text{--}240 \text{ samples ved } 48\ \mathrm{kHz}\]
+
+Vi beregner RMS-værdien for hver af nodens to mikrofoner hver for sig. I
+stedet for at dele bufferen op i faste blokke af f.eks. 200 samples,
+bruger vi et glidende vindue. Hvis vi brugte faste blokke, kunne et klap
+blive delt over to blokke, så ingen af dem overstiger tærsklen. Med et
+glidende vindue flytter vinduet sig ét sample ad gangen sammen med read
+pointeren:
+
+\[\lbrack \mathit{readpointer} - N + 1,\ \mathit{readpointer}\rbrack\]
+
+For hvert nyt sample kvadrerer vi værdien og lægger den til summen, mens
+vi trækker kvadratet af det ældste sample i vinduet fra. På den måde
+behøver vi ikke at summere hele vinduet igen for hvert sample:
+
+\[\mathit{sum}_{\mathrm{ny}} = \mathit{sum}_{\mathrm{gammel}} + x_{n}^{2} - x_{n - N}^{2}\]
+
+Da den kvadrerede værdi af hvert sample kan blive ekstremt høj:
+
+Den største værdi et 18-bit sample kan have er \(2^{N - 1} - 1 = 131071\), så det største kvadrat er:
+
+\[x_{\max}^{2} = \left( 2^{N - 1} - 1 \right)^{2}\]
+
+\[131071^{2} = 17179607041 \approx 1{,}717961 \cdot 10^{10}\]
+
+Skal summens type kunne indeholde et endnu højere tal:
+
+\[\mathit{sum}_{\max} = N_{\mathrm{vindue}} \cdot \left( 2^{N - 1} - 1 \right)^{2}\]
+
+\[17179607041 \cdot 240 = 4123105689840 \approx 4{,}123106 \cdot 10^{12}\]
+
+Vi vælger derfor at repræsentere summen med en int64\_t, som kan
+indeholde værdier op til ca. \(9{,}2 \cdot 10^{18}\). Det er også en af grundene til,
+at vi skifter vores samples ned til 18 bit. Kvadratet af et råt 32-bit
+sample kan blive op til ca. \(4{,}6 \cdot 10^{18}\), og allerede to af disse vil
+overskride grænsen for en int64\_t.
+
+Til sidst sammenligner vi med vores tærskel. I stedet for at udregne
+RMS-værdien med en kvadratrod, sammenligner vi summen direkte med den
+kvadrerede tærskel ganget med antallet af samples i vinduet. Det giver
+samme resultat, men sparer en kvadratrod for hvert sample:
+
+\[\frac{\sqrt{\mathit{sum}}}{\sqrt{N}} > \mathit{THRESHOLD}_{\mathrm{RAW}} \quad \Longleftrightarrow \quad \mathit{sum} > N \cdot \mathit{THRESHOLD}_{\mathrm{RAW}}^{2}\]
+
+\subsubsection{Hvornår har en mikrofonnode detekteret en
+hændelse}\label{hvornuxe5r-har-en-mikrofonnode-detekteret-en-huxe6ndelse}
+
+En mikrofonnode registrerer kun en hændelse, hvis begge dens mikrofoner
+overstiger tærsklen. De to mikrofoner sidder i nabohjørner af
+målområdet, altså 3 meter fra hinanden. Den største forsinkelse mellem
+de to mikrofoner er:
+
+\[\Delta t_{\max} = \frac{d}{c}\]
+
+hvor d er afstanden mellem de to mikrofoner og c er lydens hastighed,
+ca. 343 m/s ved 20 °C:
+
+\[\frac{3\ \mathrm{m}}{343\ \mathrm{m/s}} \approx 8{,}7\ \mathrm{ms}\]
+
+Lyden kan altså ankomme op til 8,7 ms senere til den ene mikrofon end
+til den anden. Den anden mikrofon skal derfor overstige tærsklen senest
+ca. 8,7 ms plus en lille margin efter den første, for at det tælles som
+samme hændelse. Tidspunktet hvor den første mikrofon overstiger
+tærsklen, kalder vi triggerpunktet.
+
+Efter en hændelse ignorerer detektoren nye hændelser i en periode
+(holdoff). Ellers kan efterklang og ekko i rummet give flere hændelser
+fra det samme klap. Holdoff skal mindst være lige så lang som den del af
+udsnittet, der ligger efter triggerpunktet (se næste afsnit).
+
+\subsection{At bestemme hvornår lyden ankom til hver
+mikrofon}\label{at-bestemme-hvornuxe5r-lyden-ankom-til-hver-mikrofon}
+
+RMS-vinduet fortæller kun, at der er sket en hændelse inden for de
+seneste 2-5 ms, ikke præcis hvornår lyden ankom. Det præcise
+ankomsttidspunkt bestemmes først i master RPI'en ved krydskorrelation
+(henvis til TDOA analyse). Mikrofonnodens opgave er derfor at sende et
+udsnit af de rå samples omkring triggerpunktet videre til master, for
+begge mikrofoner.
+
+\subsubsection{Udsnittets størrelse}\label{udsnittets-stuxf8rrelse}
+
+Udsnittet skal indeholde starten af klappet på begge mikrofoner, samt
+nok af klappet til at krydskorrelationen kan bruge det. Vi vælger et
+udsnit på 50 ms, fordelt således:
+
+\begin{itemize}
+\item
+  15 ms før triggerpunktet. Klappet starter før RMS-værdien overstiger
+  tærsklen, da RMS-vinduet først skal fyldes, og det tager længere tid
+  ved en mikrofon der ligger langt væk.
+\item
+  35 ms efter triggerpunktet. Det dækker de op til 8,7 ms før lyden når
+  nodens anden mikrofon, de første ca. 10 ms af klappet som
+  krydskorrelationen skal bruge, samt en margin.
+\end{itemize}
+
+\[N_{\mathrm{frames}} = t_{\mathrm{udsnit}} \cdot f_{s}\]
+
+\[0{,}050\ \mathrm{s} \cdot 48000\ \mathrm{Hz} = 2400 \text{ frames}\]
+
+Med 2 kanaler og 4 bytes pr. sample bliver det \(2400 \cdot 2 \cdot 4 = 19200\) bytes,
+altså ca. 19 KB pr. hændelse. Fordelingen på 15 ms før og 35 ms efter er
+et udgangspunkt og bør efterprøves ved at klappe i det fjerneste hjørne
+af målområdet og se på dataene. Derfor laves begge værdier som
+parametre, der kan justeres uden at ændre koden.
+
+Når klappet detekteres, er data efter triggerpunktet endnu ikke skrevet
+til ringbufferen. Detektoren venter derfor, til write pointeren er
+mindst 35 ms foran triggerpunktet, før udsnittet kopieres ud af
+ringbufferen. Efter kopien tjekkes det, at starten af udsnittet ikke er
+blevet overskrevet i mellemtiden. Er den det, kasseres hændelsen.
+
+\subsubsection{Afsendelse til master}\label{afsendelse-til-master}
+
+Udsnittet sendes til master RPI'en over en TCP-forbindelse, med én fast
+forbindelse fra hver mikrofonnode. TCP sikrer at hele udsnittet når frem
+i den rigtige rækkefølge, hvilket UDP ikke gør, og forsinkelsen er
+ubetydelig i forhold til kravet om at positionen vises senest 1 s efter
+hændelsen (P3). Hver besked består af en header efterfulgt af de rå
+samples:
+
+\begin{itemize}
+\item
+  Node-id: hvilken mikrofonnode beskeden kommer fra
+\item
+  Løbenummer for hændelsen
+\item
+  Sample rate (48000 Hz)
+\item
+  Antal kanaler (2)
+\item
+  Antal frames i udsnittet (2400)
+\item
+  Timestamp for udsnittets første frame
+\item
+  Placeringen af triggerpunktet i udsnittet
+\item
+  De rå samples, hvor de to kanaler ligger skiftevis (interleaved)
+\end{itemize}
+
+Mikrofonnoden skal automatisk genoprette forbindelsen, hvis den mistes
+(R2).
+
+\subsubsection{Behandling i master}\label{behandling-i-master}
+
+Master RPI'en parrer hændelser fra de to mikrofonnoder ud fra deres
+timestamps. To hændelser hører sammen, hvis deres triggerpunkter ligger
+tættere på hinanden end den største mulige tidsforskel i målområdet,
+plus usikkerheden på synkroniseringen:
+
+\[\Delta t_{\max} = \frac{d}{c}, \qquad d = \sqrt{3^{2} + 3^{2}} = 3\sqrt{2}\ \mathrm{m}\]
+
+\[\frac{3\sqrt{2}\ \mathrm{m}}{343\ \mathrm{m/s}} \approx 12{,}4\ \mathrm{ms}\]
+
+Hvis kun én mikrofonnode har detekteret en hændelse, kasseres den.
+Krydskorrelationen giver en forskydning (lag) i samples mellem to
+udsnit. Da udsnittene fra de to noder ikke starter på samme tidspunkt,
+er tidsforskellen:
+
+\[\Delta t = (t_{B} - t_{A}) + \frac{\mathit{lag}}{48000\ \mathrm{Hz}}\]
+
+Her er \(t_{A}\) og \(t_{B}\) timestamps for de to udsnits første frame.
+
+\paragraph{Små noter}
+
+\begin{itemize}
+\item
+  Hændelsesdetekteringen kører i en separat tråd i hver af de to
+  mikrofonnoder (de to slaver)
+\item
+  Mikrofonmodellen er ``SPH0645LM4H-B''
+\item
+  En mikrofonnode registrerer kun en hændelse, hvis begge dens
+  mikrofoner har overskredet tærsklen
+\item
+  En hændelse behandles kun hvis begge slaver har detekteret en
+  hændelse. Dette vurderes i master RPI.
+\item
+  Vi sampler med 48 kHz i ALSA-formatet S32\_LE
+\item
+  Hver mikrofonnodes to mikrofoner sidder i nabohjørner af målområdet
+\item
+  Timestamps leveres sammen med data fra ringbufferen og antages at være
+  synkroniseret mellem noderne via PTP
+\item
+  Hver hændelse sendes som et udsnit på 50 ms (15 ms før og 35 ms efter
+  triggerpunktet) til master over TCP
+\end{itemize}
+
+\end{document}

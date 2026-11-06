@@ -166,5 +166,33 @@
     "output": "referat-5-25-09-2026--01957541a68ea745.md",
     "output_sha256": "1e236f2ff49144c6609be26d8467075dd90e645a3d792fdccf71d2f4f7b3f51e",
     "status": "tekst udtrukket – kontrollér original"
+  },
+  {
+    "source": "construction/BDD-ATLAS.drawio",
+    "sha256": "942e3a0b4351273f98b7e3f03d8e593aee068281bee7c35b0c5dabd2eb252e13",
+    "output": "bdd-atlas--10871c22180e6716.md",
+    "output_sha256": "fd0ff7831719fdaba18848c55e713f2ce9aef3483956df67b4195e83287e0c38",
+    "status": "manuel læsning kræves"
+  },
+  {
+    "source": "construction/IBD-ATLAS.drawio",
+    "sha256": "3564b26df0428bf41af4a8549129b156faae3f68ad91464dfdcd3ed6b631dfb0",
+    "output": "ibd-atlas--0815fca310c0e093.md",
+    "output_sha256": "f337560d3a65e0b063c5aae3833b20b4c7a3f511b5f1b903909d4c0e8c58d620",
+    "status": "manuel læsning kræves"
+  },
+  {
+    "source": "construction/UML_klassediagram_NODE.drawio",
+    "sha256": "5a34b326f566dd46c1d224fe73d37498a20dc9acaf1a2e718fc9e92f38f83fb0",
+    "output": "uml-klassediagram-node--8aa3364638b772cf.md",
+    "output_sha256": "d2d37dae7c5cabb96cb17b0fed437ac297f40638656f51f9827256e1719afdb7",
+    "status": "manuel læsning kræves"
+  },
+  {
+    "source": "construction/tegnet_udkast_softwarearkitekttur_node.jpeg",
+    "sha256": "32551c230c6120f8fa2f7e973916585c60ccfd3c52d0e6a51fd2e0408643bf07",
+    "output": "tegnet-udkast-softwarearkitekttur-node--26bf1d8f4377f069.md",
+    "output_sha256": "f955f1a9e19f5f830e446ee4c33e2a21e856b1597b9ff2432fdf82a55761a68f",
+    "status": "manuel læsning kræves"
   }
 ]
