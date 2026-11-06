@@ -5,16 +5,16 @@
 
 plot::plot() : EventID_(0) {}
 
-void plot::startPyPlot(int AmountOfMics, std::vector<MIC_COORDINATES> vectorMic)
+void plot::startPyPlot(int AmountOfMics, std::vector<MIC_POSITION> vectorMic)
 {
 
 
     std::string kommando = "/home/au786842/SW3/SW3PRJ3_5/.venv/bin/python plot.py " + std::to_string(AmountOfMics) + " ";
     for (auto m : vectorMic)
     {
-        kommando.append(std::to_string(m.x));
+        kommando.append(std::to_string(m.x_m));
         kommando.append(" ");
-        kommando.append(std::to_string(m.y));
+        kommando.append(std::to_string(m.y_m));
         kommando.append(" ");
     }
     system(kommando.c_str());

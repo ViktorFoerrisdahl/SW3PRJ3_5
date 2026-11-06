@@ -7,12 +7,12 @@ int microphones::get_AmountOfMicrophones() const
     return AmountOfMicrophones_;
 }
 
-const std::vector<MIC_COORDINATES>& microphones::get_MicrophonesVector() const
+const std::vector<MIC_POSITION>& microphones::get_MicrophonesVector() const
 {
     return Microphones_;
 }
 
-void microphones::AppendMicToVector(MIC_COORDINATES micLocation)
+void microphones::AppendMicToVector(MIC_POSITION micLocation)
 {
     Microphones_.push_back(micLocation);
 }
