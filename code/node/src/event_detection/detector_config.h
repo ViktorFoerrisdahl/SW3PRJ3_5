@@ -44,7 +44,7 @@ struct DetectorConfig {
 
     // Hvor længe efter et triggerpunkt nye hændelser ignoreres (efterklang,
     // ekko). Skal mindst være post_ms, så samme klap ikke sendes to gange.
-    double holdoff_ms = 35.0;
+    double holdoff_ms = 200.0;
 
     // Tidskonstant for det løbende gennemsnit, der fjerner DC-offset:
     // mean += (x - mean) >> dc_shift_k. Tidskonstanten er ca. 2^k / fs,

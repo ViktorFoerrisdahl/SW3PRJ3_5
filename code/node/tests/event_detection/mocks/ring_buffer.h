@@ -14,10 +14,7 @@
 #include <stop_token>
 #include <vector>
 
-// Én frame: ét S32_LE-sample fra hver af nodens to mikrofoner.
-struct Frame {
-    int32_t ch[2];
-};
+#include "frame.h"  // Frame (fra common/frame.h)
 
 class RingBuffer {
 public:
