@@ -196,6 +196,13 @@
     "status": "manuel læsning kræves"
   },
   {
+    "source": "construction/Package diagram.drawio",
+    "sha256": "7fedf99c1f988146910cfd92e07f4f0cf6ff528041f69af4a5a6322eda92ff1f",
+    "output": "package-diagram--ed503d2bc63cea95.md",
+    "output_sha256": "e0e877fd5395ca90828160a4755f74fee4d2963328d7b4556dcb1e393928cbb3",
+    "status": "manuel læsning kræves"
+  },
+  {
     "source": "construction/UML_klassediagram_NODE.drawio",
     "sha256": "5a34b326f566dd46c1d224fe73d37498a20dc9acaf1a2e718fc9e92f38f83fb0",
     "output": "uml-klassediagram-node--8aa3364638b772cf.md",

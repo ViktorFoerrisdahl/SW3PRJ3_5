@@ -36,5 +36,6 @@ Læs først AI-strategien, terminology.md og code-conventions.md via listen nede
 | [Referater/Referat #5 - 25-09-2026.docx](../Referater/Referat%20%235%20-%2025-09-2026.docx) | [Læs](referat-5-25-09-2026--01957541a68ea745.md) | tekst udtrukket – kontrollér original |
 | [construction/BDD-ATLAS.drawio](../construction/BDD-ATLAS.drawio) | [Læs](bdd-atlas--10871c22180e6716.md) | manuel læsning kræves |
 | [construction/IBD-ATLAS.drawio](../construction/IBD-ATLAS.drawio) | [Læs](ibd-atlas--0815fca310c0e093.md) | manuel læsning kræves |
+| [construction/Package diagram.drawio](../construction/Package%20diagram.drawio) | [Læs](package-diagram--ed503d2bc63cea95.md) | manuel læsning kræves |
 | [construction/UML_klassediagram_NODE.drawio](../construction/UML_klassediagram_NODE.drawio) | [Læs](uml-klassediagram-node--8aa3364638b772cf.md) | manuel læsning kræves |
 | [construction/tegnet_udkast_softwarearkitekttur_node.jpeg](../construction/tegnet_udkast_softwarearkitekttur_node.jpeg) | [Læs](tegnet-udkast-softwarearkitekttur-node--26bf1d8f4377f069.md) | manuel læsning kræves |
