@@ -1,13 +1,13 @@
 <mxfile host="app.diagrams.net" pages="4">
   <diagram id="QGUAymgN74PlnS4tDJN6" name="Nyt Package Diagram">
-    <mxGraphModel dx="858" dy="439" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="1030" dy="527" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
         <mxCell id="ipIZnPvofeiyOLEnU6Cu-1" parent="1" style="text;html=1;align=left;fontStyle=1;fontSize=14;" value="Package Diagram ATLAS&amp;nbsp;" vertex="1">
           <mxGeometry height="30" width="520" x="40" y="10" as="geometry" />
         </mxCell>
-        <mxCell id="ipIZnPvofeiyOLEnU6Cu-2" parent="1" style="shape=folder;fontStyle=1;tabWidth=227;tabHeight=18;tabPosition=left;html=1;whiteSpace=wrap;container=1;collapsible=0;verticalAlign=top;align=left;spacingLeft=6;recursiveResize=0;fontSize=11;fillColor=#FFFFFF;strokeColor=#222222;" value="Orchestrator (Raspberry Pi 4)" vertex="1">
+        <mxCell id="ipIZnPvofeiyOLEnU6Cu-2" parent="1" style="shape=folder;fontStyle=1;tabWidth=227;tabHeight=18;tabPosition=left;html=1;whiteSpace=wrap;container=1;collapsible=0;verticalAlign=top;align=left;spacingLeft=6;recursiveResize=0;fontSize=11;fillColor=#FFFFFF;strokeColor=#222222;" value="Orchestrator" vertex="1">
           <mxGeometry height="270" width="600" x="40" y="60" as="geometry" />
         </mxCell>
         <mxCell id="ipIZnPvofeiyOLEnU6Cu-3" parent="ipIZnPvofeiyOLEnU6Cu-2" style="swimlane;fontStyle=1;startSize=22;horizontal=1;collapsible=0;html=1;fontSize=11;fillColor=#FFFFFF;strokeColor=#888888;dashed=1;fontColor=#555555;" value="Orchestrator" vertex="1">
@@ -53,7 +53,7 @@
         <mxCell id="ipIZnPvofeiyOLEnU6Cu-80" parent="ipIZnPvofeiyOLEnU6Cu-79" style="swimlane;fontStyle=1;startSize=22;horizontal=1;collapsible=0;html=1;fontSize=11;fillColor=#E8F5E9;strokeColor=#2E7D32;" value="Protokol" vertex="1">
           <mxGeometry height="71" width="110" x="10" y="32" as="geometry" />
         </mxCell>
-        <mxCell id="ipIZnPvofeiyOLEnU6Cu-17" parent="1" style="shape=folder;fontStyle=1;tabWidth=276;tabHeight=18;tabPosition=left;html=1;whiteSpace=wrap;container=1;collapsible=0;verticalAlign=top;align=left;spacingLeft=6;recursiveResize=0;fontSize=11;fillColor=#FFFFFF;strokeColor=#222222;" value="Node (Raspberry Pi 5)" vertex="1">
+        <mxCell id="ipIZnPvofeiyOLEnU6Cu-17" parent="1" style="shape=folder;fontStyle=1;tabWidth=276;tabHeight=18;tabPosition=left;html=1;whiteSpace=wrap;container=1;collapsible=0;verticalAlign=top;align=left;spacingLeft=6;recursiveResize=0;fontSize=11;fillColor=#FFFFFF;strokeColor=#222222;" value="Node" vertex="1">
           <mxGeometry height="284" width="710" x="760" y="60" as="geometry" />
         </mxCell>
         <mxCell id="ipIZnPvofeiyOLEnU6Cu-18" parent="ipIZnPvofeiyOLEnU6Cu-17" style="swimlane;fontStyle=1;startSize=22;horizontal=1;collapsible=0;html=1;fontSize=11;fillColor=#FFFFFF;strokeColor=#888888;dashed=1;fontColor=#555555;" value="NodeOrchestrator" vertex="1">
