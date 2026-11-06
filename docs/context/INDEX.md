@@ -8,6 +8,7 @@ Læs først AI-strategien, terminology.md og code-conventions.md via listen nede
 
 | Kilde | Markdown | Status |
 | --- | --- | --- |
+| [Construction/SD UC1 Lokaliser lydhændelse.drawio](../Construction/SD%20UC1%20Lokaliser%20lydh%C3%A6ndelse.drawio) | [Læs](sd-uc1-lokaliser-lydh-ndelse--5b999b29003084f5.md) | manuel læsning kræves |
 | [Elaboration E1/Domænemodel.url](../Elaboration%20E1/Dom%C3%A6nemodel.url) | [Læs](dom-nemodel--28236135411e0141.md) | manuel læsning kræves |
 | [Elaboration E2/Deployment diagram 29092026.png](../Elaboration%20E2/Deployment%20diagram%2029092026.png) | [Læs](deployment-diagram-29092026--287283c36e98f852.md) | manuel læsning kræves |
 | [Elaboration E2/Mikrofon og Hændelsesdetektering/Hændelsesdetektering.docx](../Elaboration%20E2/Mikrofon%20og%20H%C3%A6ndelsesdetektering/H%C3%A6ndelsesdetektering.docx) | [Læs](h-ndelsesdetektering--f60e91899e42f164.md) | tekst udtrukket – kontrollér original |
@@ -17,6 +18,7 @@ Læs først AI-strategien, terminology.md og code-conventions.md via listen nede
 | [Elaboration E2/SSD.png](../Elaboration%20E2/SSD.png) | [Læs](ssd--ba4a08b9c2a921b8.md) | manuel læsning kræves |
 | [Elaboration E2/System Sekvens Diagram.url](../Elaboration%20E2/System%20Sekvens%20Diagram.url) | [Læs](system-sekvens-diagram--bf16987347345165.md) | manuel læsning kræves |
 | [Elaboration E2/Teknisk Analyse.docx](../Elaboration%20E2/Teknisk%20Analyse.docx) | [Læs](teknisk-analyse--a1f79ad9083580e7.md) | tekst udtrukket – kontrollér original |
+| [Elaboration E2/UML Controller (1).drawio](../Elaboration%20E2/UML%20Controller%20%281%29.drawio) | [Læs](uml-controller-1--781f015bfc7e898a.md) | manuel læsning kræves |
 | [Inception/Noter/CNN Warehouse.md](../Inception/Noter/CNN%20Warehouse.md) | [Læs](cnn-warehouse--583fd4e8d12e9e18.md) | tekst kopieret |
 | [Inception/Noter/TDOA.md](../Inception/Noter/TDOA.md) | [Læs](tdoa--6562ec8814fbbcac.md) | tekst kopieret |
 | [Inception/PRJ3 Gruppe 5 Projektformulering.pdf](../Inception/PRJ3%20Gruppe%205%20Projektformulering.pdf) | [Læs](prj3-gruppe-5-projektformulering--4a15db61402076c4.md) | tekst udtrukket – kontrollér original |

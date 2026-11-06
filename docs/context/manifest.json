@@ -1,5 +1,12 @@
 [
   {
+    "source": "Construction/SD UC1 Lokaliser lydhændelse.drawio",
+    "sha256": "199dd938c06aaf6b7366846391248d37d1900aaa7a26c6698280e576e82a5be6",
+    "output": "sd-uc1-lokaliser-lydh-ndelse--5b999b29003084f5.md",
+    "output_sha256": "b761591e78c559636f0c3953fd8a1657ea5fb96603e9ebe8d1753ffbe13954b6",
+    "status": "manuel læsning kræves"
+  },
+  {
     "source": "Elaboration E1/Domænemodel.url",
     "sha256": "c667e9f772556e53154cdb90106a89e8b92b49bb8654072cbe2a370cb746f24f",
     "output": "dom-nemodel--28236135411e0141.md",
@@ -61,6 +68,13 @@
     "output": "teknisk-analyse--a1f79ad9083580e7.md",
     "output_sha256": "d81cf00cedf1275741d014bfa612a7ee45d61380a02cc1629e4d936e8a8a1339",
     "status": "tekst udtrukket – kontrollér original"
+  },
+  {
+    "source": "Elaboration E2/UML Controller (1).drawio",
+    "sha256": "814cfb6318870dcaac0c768f355068947e956900d06ebbb61fa969ef87f4bdf1",
+    "output": "uml-controller-1--781f015bfc7e898a.md",
+    "output_sha256": "8a3b3f553caa071eba6c92e7b3f513d9ba4b1ec8de9481598d94d12d055a87b2",
+    "status": "manuel læsning kræves"
   },
   {
     "source": "Inception/Noter/CNN Warehouse.md",
