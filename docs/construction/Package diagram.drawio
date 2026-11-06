@@ -1,6 +1,6 @@
 <mxfile host="app.diagrams.net" pages="4">
   <diagram id="QGUAymgN74PlnS4tDJN6" name="Nyt Package Diagram">
-    <mxGraphModel dx="1030" dy="527" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="858" dy="439" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -52,6 +52,11 @@
         </mxCell>
         <mxCell id="ipIZnPvofeiyOLEnU6Cu-80" parent="ipIZnPvofeiyOLEnU6Cu-79" style="swimlane;fontStyle=1;startSize=22;horizontal=1;collapsible=0;html=1;fontSize=11;fillColor=#E8F5E9;strokeColor=#2E7D32;" value="Protokol" vertex="1">
           <mxGeometry height="71" width="110" x="10" y="32" as="geometry" />
+        </mxCell>
+        <mxCell id="ipIZnPvofeiyOLEnU6Cu-53" edge="1" parent="ipIZnPvofeiyOLEnU6Cu-2" source="ipIZnPvofeiyOLEnU6Cu-3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;fontSize=10;endArrow=open;endFill=0;dashed=1;entryX=0;entryY=0;entryDx=30;entryDy=0;entryPerimeter=0;" target="ipIZnPvofeiyOLEnU6Cu-79" value="">
+          <mxGeometry relative="1" x="0.1807" as="geometry">
+            <mxPoint x="515" y="130" as="targetPoint" />
+          </mxGeometry>
         </mxCell>
         <mxCell id="ipIZnPvofeiyOLEnU6Cu-17" parent="1" style="shape=folder;fontStyle=1;tabWidth=276;tabHeight=18;tabPosition=left;html=1;whiteSpace=wrap;container=1;collapsible=0;verticalAlign=top;align=left;spacingLeft=6;recursiveResize=0;fontSize=11;fillColor=#FFFFFF;strokeColor=#222222;" value="Node" vertex="1">
           <mxGeometry height="284" width="710" x="760" y="60" as="geometry" />
@@ -115,15 +120,6 @@
         <mxCell id="ipIZnPvofeiyOLEnU6Cu-99" parent="ipIZnPvofeiyOLEnU6Cu-98" style="swimlane;fontStyle=1;startSize=22;horizontal=1;collapsible=0;html=1;fontSize=11;fillColor=#E8F5E9;strokeColor=#2E7D32;" value="PTP_Service" vertex="1">
           <mxGeometry height="45" width="71" x="15" y="30" as="geometry" />
         </mxCell>
-        <mxCell id="ipIZnPvofeiyOLEnU6Cu-37" parent="1" style="shape=folder;fontStyle=1;tabWidth=87;tabHeight=18;tabPosition=left;html=1;whiteSpace=wrap;container=1;collapsible=0;verticalAlign=top;align=left;spacingLeft=6;recursiveResize=0;fontSize=11;fillColor=#FFFFFF;strokeColor=#222222;" value="Simulator" vertex="1">
-          <mxGeometry height="115" width="230" x="40" y="400" as="geometry" />
-        </mxCell>
-        <mxCell id="ipIZnPvofeiyOLEnU6Cu-38" parent="ipIZnPvofeiyOLEnU6Cu-37" style="swimlane;fontStyle=1;startSize=22;horizontal=1;collapsible=0;html=1;fontSize=11;fillColor=#E8F5E9;strokeColor=#2E7D32;" value="Simulator" vertex="1">
-          <mxGeometry height="58" width="170" x="30" y="32" as="geometry" />
-        </mxCell>
-        <mxCell id="ipIZnPvofeiyOLEnU6Cu-39" parent="ipIZnPvofeiyOLEnU6Cu-38" style="text;html=1;align=left;verticalAlign=top;fontSize=9;spacingLeft=4;spacingTop=2;whiteSpace=wrap;fillColor=none;strokeColor=none;" value="GenerateEvents()&lt;br&gt;DefaultConfig()" vertex="1">
-          <mxGeometry height="36" width="170" y="22" as="geometry" />
-        </mxCell>
         <mxCell id="ipIZnPvofeiyOLEnU6Cu-40" parent="1" style="shape=folder;fontStyle=1;tabWidth=164;tabHeight=18;tabPosition=left;html=1;whiteSpace=wrap;container=1;collapsible=0;verticalAlign=top;align=left;spacingLeft=6;recursiveResize=0;fontSize=11;fillColor=#FFFFFF;strokeColor=#222222;" value="Shared_data (common)" vertex="1">
           <mxGeometry height="115" width="300" x="310" y="400" as="geometry" />
         </mxCell>
@@ -151,11 +147,6 @@
         <mxCell id="ipIZnPvofeiyOLEnU6Cu-50" edge="1" parent="1" source="ipIZnPvofeiyOLEnU6Cu-3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;fontSize=10;endArrow=open;endFill=0;dashed=1;entryX=0;entryY=0;entryDx=30;entryDy=0;entryPerimeter=0;" target="ipIZnPvofeiyOLEnU6Cu-5" value="">
           <mxGeometry relative="1" x="-0.1266" as="geometry" />
         </mxCell>
-        <mxCell id="ipIZnPvofeiyOLEnU6Cu-53" edge="1" parent="1" source="ipIZnPvofeiyOLEnU6Cu-3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;fontSize=10;endArrow=open;endFill=0;dashed=1;" value="">
-          <mxGeometry relative="1" as="geometry">
-            <mxPoint x="555" y="190" as="targetPoint" />
-          </mxGeometry>
-        </mxCell>
         <mxCell id="ipIZnPvofeiyOLEnU6Cu-55" edge="1" parent="1" source="ipIZnPvofeiyOLEnU6Cu-18" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;fontSize=10;endArrow=open;endFill=0;dashed=1;" target="ipIZnPvofeiyOLEnU6Cu-23" value="">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
@@ -167,8 +158,9 @@
             <mxPoint x="1395" y="190" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="ipIZnPvofeiyOLEnU6Cu-58" edge="1" parent="1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;fontSize=10;endArrow=open;endFill=0;dashed=1;" value="TCP: NODE_EVENT">
-          <mxGeometry relative="1" as="geometry">
+        <mxCell id="ipIZnPvofeiyOLEnU6Cu-58" edge="1" parent="1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;fontSize=10;endArrow=open;endFill=0;dashed=1;" value="NODE_EVENT">
+          <mxGeometry relative="1" x="0.0065" y="10" as="geometry">
+            <mxPoint as="offset" />
             <mxPoint x="775" y="252.5" as="sourcePoint" />
             <mxPoint x="620" y="252.5" as="targetPoint" />
           </mxGeometry>
@@ -180,9 +172,6 @@
           <mxGeometry relative="1" as="geometry">
             <mxPoint x="1395" y="315" as="sourcePoint" />
           </mxGeometry>
-        </mxCell>
-        <mxCell id="ipIZnPvofeiyOLEnU6Cu-66" edge="1" parent="1" source="ipIZnPvofeiyOLEnU6Cu-37" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;fontSize=10;endArrow=open;endFill=0;dashed=1;" target="ipIZnPvofeiyOLEnU6Cu-40" value="NODE_EVENT">
-          <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="ipIZnPvofeiyOLEnU6Cu-67" parent="1" style="text;html=1;align=left;fontStyle=1;fontSize=11;" value="Signaturforklaring" vertex="1">
           <mxGeometry height="20" width="200" x="40" y="545" as="geometry" />
@@ -273,7 +262,7 @@
     </mxGraphModel>
   </diagram>
   <diagram name="Package Diagram IT1" id="H6y4VmwF95BNCTigRgoT">
-    <mxGraphModel dx="1493" dy="764" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel grid="1" page="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
