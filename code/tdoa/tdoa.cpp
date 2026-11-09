@@ -3,11 +3,9 @@
 #include <cmath>
 #include <iostream>
 
-// Maximum lag between mics based on maximum distance between mics in (3x3m)
-static const int MAX_LAG_SAMPLES = 600; // 3x3 m diagonal (4.24 m) - 4.24m divided by speed of sound then multiplied with sample frequency 48kHz: Roughly 594 samples (600 cap to be safe)
 
 // Function to find specific microphone. Failsafe to get mics in right order.
-static const MIC_POSITION* FindMic(const std::vector<MIC_POSITION> &mics, const uint16_t &node_id, const uint16_t &channel)
+const MIC_POSITION* tdoa::FindMic(const std::vector<MIC_POSITION> &mics, const uint16_t &node_id, const uint16_t &channel)
 {
     for (const auto &mic : mics)
     {
@@ -18,7 +16,7 @@ static const MIC_POSITION* FindMic(const std::vector<MIC_POSITION> &mics, const 
 }
 
 // Lag in samples where sig best matches ref.
-static int CrossCorrelate(const std::vector<int32_t> &ref, const std::vector<int32_t> &sig)
+int tdoa::CrossCorrelate(const std::vector<int32_t> &ref, const std::vector<int32_t> &sig)
 {
     double best_sum = -1e300; // Comparison metric: Initialised to an extremely small number that any real sum will surpass
     int best_lag = 0;         // Lag that matches the best sum (this value is returned)
@@ -41,7 +39,7 @@ static int CrossCorrelate(const std::vector<int32_t> &ref, const std::vector<int
 }
 
 // Computes a rough estimate using grid search. 20cm steps.
-static void GridSearch(const std::vector<MIC_POSITION> &mics, const std::vector<double> &tdoa_s, double &x_m, double &y_m)
+void tdoa::GridSearch(const std::vector<MIC_POSITION> &mics, const std::vector<double> &tdoa_s, double &x_m, double &y_m)
 {
     if (mics.empty()) return; //Failsafe
 
@@ -76,7 +74,7 @@ static void GridSearch(const std::vector<MIC_POSITION> &mics, const std::vector<
 }
 
 // Computes the position using gauss newton least squares.
-static void GaussNewton(const std::vector<MIC_POSITION> &mics, const std::vector<double> &tdoa_s, double &x_m, double &y_m)
+void tdoa::GaussNewton(const std::vector<MIC_POSITION> &mics, const std::vector<double> &tdoa_s, double &x_m, double &y_m)
 {
     if (mics.size() < 3) return;
 
@@ -96,7 +94,7 @@ static void GaussNewton(const std::vector<MIC_POSITION> &mics, const std::vector
         //Elements in 2x2 Matrix
         double Hxx = 0.0, Hxy = 0.0, Hyy = 0.0;
 
-        //Elements in vektor
+        //Elements in vector
         double gx = 0.0, gy = 0.0;
 
         double d0 = std::sqrt((x - x0)*(x - x0) + (y - y0)*(y - y0)); //Distance til referencemikrofon
@@ -148,20 +146,20 @@ static void GaussNewton(const std::vector<MIC_POSITION> &mics, const std::vector
     y_m = y;
 }
 
-static void SolvePosition(const std::vector<MIC_POSITION> &mics, const std::vector<double> &tdoa_s, double &x_m, double &y_m)
+void tdoa::SolvePosition(const std::vector<MIC_POSITION> &mics, const std::vector<double> &tdoa_s, double &x_m, double &y_m)
 {
     if (mics.size() < 3) return;  //Check for mics
 
-    GridSearch(mics, tdoa_s, x_m, y_m);  //Call grid search
+    tdoa::GridSearch(mics, tdoa_s, x_m, y_m);  //Call grid search
 
     std::cout << "Result after Grid Search: {" << x_m << ", " << y_m << "}\n";
 
-    GaussNewton(mics, tdoa_s, x_m, y_m);  //Call gauss newton
+    tdoa::GaussNewton(mics, tdoa_s, x_m, y_m);  //Call gauss newton
 
     std::cout << "Result after Gauss Newton: {" << x_m << ", " << y_m << "}\n";
 }
 
-TDOA_RESULT Tdoa_ComputePosition(const std::vector<DetectedEvent> &events, const std::vector<MIC_POSITION> &mics)
+TDOA_RESULT tdoa::ComputePosition(const std::vector<DetectedEvent> &events, const std::vector<MIC_POSITION> &mics)
 {
     //Intialise lists and result
     TDOA_RESULT result = {false, 0.0, 0.0};     //Invalid until proven otherwise
@@ -175,7 +173,7 @@ TDOA_RESULT Tdoa_ComputePosition(const std::vector<DetectedEvent> &events, const
 
         sample_rate = event.sample_rate;                    //Grabs sample rate from here (should be same for both events)
         for (int i = 0; i < 2; i++){                        //For each microphone
-            const MIC_POSITION* p_mic = FindMic(mics, event.node_id, i);  //Find mic
+            const MIC_POSITION* p_mic = tdoa::FindMic(mics, event.node_id, i);  //Find mic
             if (p_mic == nullptr) return result;            //Unknown id: Abandon
 
             //De-interleave samples
@@ -195,13 +193,13 @@ TDOA_RESULT Tdoa_ComputePosition(const std::vector<DetectedEvent> &events, const
     //Cross correlation and build a vector from this
     std::vector<double> tdoa_s{0.0};                        //Reference 0 at index 0
     for (int i = 1; i < channels.size(); i++){              //Starting at 1
-        int lag = CrossCorrelate(channels[0], channels[i]);
+        int lag = tdoa::CrossCorrelate(channels[0], channels[i]);
         double offset_s = (t_first_ns[i] - t_first_ns[0]) * 1e-9;   //Convert ns to s
         tdoa_s.push_back((double)lag / sample_rate + offset_s);     //Samples → seconds
     }
 
     //Call solveposition using vector
-    SolvePosition(positions, tdoa_s, result.x_m, result.y_m);
+    tdoa::SolvePosition(positions, tdoa_s, result.x_m, result.y_m);
     result.valid = true;
 
     //Return result

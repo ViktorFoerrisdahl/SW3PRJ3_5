@@ -36,7 +36,7 @@ static std::vector<DetectedEvent> MakeMockEvents(const std::vector<MIC_POSITION>
     {
         DetectedEvent& event = (mic.node_id == 1) ? node1 : node2;
 
-        double arrival_s = std::hypot(src_x_m - mic.x_m, src_y_m - mic.y_m) / SPEED_OF_SOUND_M_PER_S;
+        double arrival_s = std::hypot(src_x_m - mic.x_m, src_y_m - mic.y_m) / tdoa::SPEED_OF_SOUND_M_PER_S;
         double arrival_in_buffer_s = arrival_s - event.t_first_ns * 1e-9; // Relative to this buffer's first frame
         long start = PRE_TRIGGER_FRAMES + std::lround(arrival_in_buffer_s * SAMPLE_RATE_HZ);
 
@@ -54,6 +54,8 @@ static std::vector<DetectedEvent> MakeMockEvents(const std::vector<MIC_POSITION>
 
 int main()
 {
+    tdoa locator; // TDOA object used for all tests
+
     // {node_id, channel, x_m, y_m}
     std::vector<MIC_POSITION> mics =
     {
@@ -74,7 +76,7 @@ int main()
 
         for (auto& point : test_points)
         {
-            TDOA_RESULT result = Tdoa_ComputePosition(MakeMockEvents(mics, point[0], point[1], offset_ns), mics);
+            TDOA_RESULT result = locator.ComputePosition(MakeMockEvents(mics, point[0], point[1], offset_ns), mics);
             double error_cm = 100.0 * std::hypot(result.x_m - point[0], result.y_m - point[1]);
 
             std::printf("TRUE=(%.2f, %.2f)  EST=(%.2f, %.2f)  ERROR=%.1f cm  VALID=%d\n",
