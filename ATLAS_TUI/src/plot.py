@@ -7,7 +7,6 @@ matplotlib.use("webagg")
 matplotlib.rcParams["webagg.port"] = 8988
 
 import matplotlib.pyplot as plt
-import matplotlib.animation as ani
 
 # gets filedescriptor from sys which is used by select and os.read
 stdin_fd = sys.stdin.fileno() 
@@ -16,7 +15,7 @@ input_buffer = b""        # saves half messages if they are read in the tick
 
 def poll_stdin():
     # ready is a list of filedescriptors, that has data that is ready to be read
-    # select makes readin the stdin from sys non-blocking
+    # select makes reading the stdin from sys non-blocking
     ready, _, _ = select.select([stdin_fd], [], [], 0)  # timeout 0 = non blocking
     if not ready: #if data is not ready. return empty bytes
         return b""
@@ -34,16 +33,16 @@ def pipe_reciver():
         if not message_argv: # if message_argv is empty - continue. Whitespaces message was recieved
             continue
         try:
-            if message_argv[0] == "NewD": # NewD means new datapoint. Add data to pipe_to_plot_array
+            if message_argv[0] == "NEW": # NEW means new datapoint. Add data to pipe_to_plot_array
                 new_data = []
-                new_data.append(message_argv[0]) # NewD
+                new_data.append(message_argv[0]) # NEW
                 new_data.append(float(message_argv[1])) # x value
                 new_data.append(float(message_argv[2])) # y value
                 new_data.append(int(message_argv[3])) # event ID
                 pipe_to_plot_array.append(new_data) #append new data to pipe to plot array
                 message_recived_from_pipe = True
 
-            elif message_argv[0] == "Del": #Del means delete datapoint. Pops the datapoints array at the front to create FIFO.
+            elif message_argv[0] == "DEL": #DEL means delete datapoint. Pops the datapoints array at the front to create FIFO.
                 if data_x_array:
                     data_event_id.pop(0)
                     data_x_array.pop(0)
@@ -60,12 +59,15 @@ def pipe_reciver():
         except (ValueError, IndexError):
             print(f" error in message: {line!r}", file=sys.stderr)
 
-def update_plot(placeholder): # Needs placeholder in argument, to be able to be used in ani.funcanimation call, even through it is not used
+def update_plot():
+
+    pipe_reciver()
+
     global message_recived_from_pipe
     if message_recived_from_pipe: # If we recieved a new message:
         while pipe_to_plot_array: # if not-empty = place data from pipe into data_arrays or mic arrays
             new_data = pipe_to_plot_array.pop(0) #place new data into new arrays
-            if new_data[0] == "NewD": # NewD = new event data
+            if new_data[0] == "NEW": # NEW = new event data
                 data_x_array.append(new_data[1])
                 data_y_array.append(new_data[2])
                 data_event_id.append(new_data[3])
@@ -97,8 +99,8 @@ def update_plot(placeholder): # Needs placeholder in argument, to be able to be 
             axis.annotate(name, (x, y), textcoords="offset points", xytext=(5, 5), fontsize=10)
 
         message_recived_from_pipe = False
+        fig.canvas.draw_idle() # redraw canves when new message is received.
 
-    pipe_reciver()
 
 if __name__ == "__main__":
 
@@ -127,9 +129,11 @@ if __name__ == "__main__":
         mic_y_array.append(float(sys.argv[3 + mic * 2]))
         micName_array.append(f"mic {mic + 1}")
 
-    # start server with desired fig, function to be called every 200 ms to update fig 
-    # cache frame data = false, as we dont want to cache the frames as it goes on forever
-    webplot = ani.FuncAnimation(fig,update_plot,interval=200,cache_frame_data=False) 
+    # start timer to use to run update plot at desired interval
+    timer = fig.canvas.new_timer(interval=200)
+    # add callback function to execute every interval
+    timer.add_callback(update_plot)
+    timer.start()
 
     # blocking call to show open web and show fig. Now webplot function gets called every 200 ms to update plot.
     plt.show() 
