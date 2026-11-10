@@ -43,14 +43,20 @@ def pipe_reciver():
                 message_recived_from_pipe = True
 
             elif message_argv[0] == "DEL": #DEL means delete datapoint. Pops the datapoints array at the front to create FIFO.
-                if data_x_array:
-                    data_event_id.pop(0)
-                    data_x_array.pop(0)
-                    data_y_array.pop(0)
-                    message_recived_from_pipe = True
+                new_data = []
+                new_data.append(message_argv[0]) # DEL
+                pipe_to_plot_array.append(new_data) #append new data to pipe to plot array
+                message_recived_from_pipe = True
+
             elif message_argv[0] == "MIC":
-                #TODO
-                pass
+                new_data = []
+                new_data.append(message_argv[0]) # MIC means that new mic positions is recieved
+                new_data.append(message_argv[1]) # Amount of mics
+                for mic in range(int(new_data[1])):
+                    i = 2 + mic * 2
+                    new_data.append(message_argv[i])      # x position of mic
+                    new_data.append(message_argv[i + 1])  # y position of mic
+                pipe_to_plot_array.append(new_data) #append new data to pipe to plot array
                 message_recived_from_pipe = True
 
             elif message_argv[0] == "STOP":
@@ -71,7 +77,27 @@ def update_plot():
                 data_x_array.append(new_data[1])
                 data_y_array.append(new_data[2])
                 data_event_id.append(new_data[3])
-        
+
+            elif new_data[0] == "DEL":
+                if data_x_array:
+                    data_event_id.pop(0)
+                    data_x_array.pop(0)
+                    data_y_array.pop(0)
+
+            elif new_data[0] == "MIC":
+                # Clears old mic arrays and datapoints as they are obsolete
+                mic_x_array.clear() 
+                mic_y_array.clear()
+                micName_array.clear()
+                if data_x_array:
+                    data_event_id.clear()
+                    data_x_array.clear()
+                    data_y_array.clear()
+                for mic in range(int(new_data[1])):
+                    mic_x_array.append(float(new_data[2 + mic * 2]))
+                    mic_y_array.append(float(new_data[3 + mic * 2]))
+                    micName_array.append(f"mic {mic + 1}")
+
         #Clears everything drawn on the axis. 
         #This is done to wipe the board clean everytime we update to NOT draw the same things twice on top of each other
         axis.clear()
@@ -79,16 +105,15 @@ def update_plot():
         # Draw axis parameters again after they have been cleared
         axis.set_ylabel("Meter")
         axis.set_xlabel("Meter")
-        axis.set_xlim(min(mic_x_array) - 1, max(mic_x_array) + 1)
-        axis.set_ylim(min(mic_y_array) - 1, max(mic_y_array) + 1)
-
+        axis.set_xlim(min(mic_x_array) - 1.5, max(mic_x_array) + 1.5)
+        axis.set_ylim(min(mic_y_array) - 1.5, max(mic_y_array) + 1.5)
 
         #Plot events as red x
         axis.plot(data_x_array,data_y_array, 'rx')
 
         #Plot event ID's and coordinates next to events coordinates
         for x, y, event_id in zip(data_x_array, data_y_array, data_event_id):
-            text = f"EventID: {event_id}: ({x:.2f}, {y:.2f})"
+            text = f"EventID: {event_id} - ({x:.2f}, {y:.2f})"
             axis.annotate(text, (x, y), textcoords="offset points", xytext=(5, 5), fontsize=10)
 
         #Plot mics as red dots
