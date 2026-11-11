@@ -27,7 +27,7 @@ def pipe_reciver():
     input_buffer += poll_stdin() #updates input buffer with mesasages from stdin
 
     while b"\n" in input_buffer: # while we have a new message
-        line, input_buffer = input_buffer.split(b"\n", 1) #split new message into their own lines
+        line, input_buffer = input_buffer.split(b"\n", 1) #split new message into their own line
         message_argv = line.decode(errors="replace").split() #split only the first line into their own arguments and save in message argv
 
         if not message_argv: # if message_argv is empty - continue. Whitespaces message was recieved
