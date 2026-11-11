@@ -24,6 +24,7 @@ void menu::showTitle()
          ........                           
                                                                  
 )ART" << std::endl;
+    sleep(1);
     // https://www.asciiart.eu/image-to-ascii
 }
 
@@ -48,11 +49,22 @@ void menu::showStartingSequence()
 
         if (i == total)
             std::cout << '\n';
-        usleep(5000);
+        usleep(30000);
     }
+    sleep(1);
+    std::cout << "\n";
 }
 
 void menu::showMenu()
 {
-    std::cout << "press 1 and enter for plot \n";
+    std::cout << "Welcome to ATLAS! \n";
+    sleep(1);
+    std::cout << "Before starting ATLAS for the first time - information is needed: \n";
+    sleep(1);
+}
+
+void menu::showUserOptions()
+{
+  std::cout << "Press 1 to update MIC positions\n";
+  std::cout << "Press 0 to shutdown ATLAS\n";
 }

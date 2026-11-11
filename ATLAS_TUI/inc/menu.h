@@ -10,6 +10,7 @@ public:
     void showTitle();
     void showStartingSequence();
     void showMenu();
+    void showUserOptions();
 };
 
 
