@@ -52,7 +52,6 @@ void menu::showStartingSequence()
         usleep(30000);
     }
     sleep(1);
-    std::cout << "\n";
 }
 
 void menu::showMenu()

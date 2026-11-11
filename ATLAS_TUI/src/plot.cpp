@@ -59,3 +59,14 @@ void plot::plotNewEventAndDelete(int ID, float x, float y, int waittime)
     fputs(DEL.c_str(), plot_);
     fflush(plot_);
 }
+
+void plot::stopPyPlot()
+{
+    std::string STOP;
+
+    STOP.append("STOP");
+    STOP.append("\n");
+
+    fputs(STOP.c_str(), plot_);
+    fflush(plot_);
+}

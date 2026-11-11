@@ -6,7 +6,7 @@
 #include "microphones.h"
 #include "plot.h"
 
-#define WAITTIME_BEFORE_DELETION 60
+#define WAITTIME_BEFORE_DELETION 10
 
 int main()
 {
@@ -65,6 +65,12 @@ int main()
 
         p.startPyPlot(m.get_AmountOfMicrophones(), m.get_MicrophonesVector());
 
+        sleep(5);
+
+        std::thread t1([&p]() { p.plotNewEventAndDelete(1, 1, 2, WAITTIME_BEFORE_DELETION); });
+
+        std::thread t2([&p]() { p.plotNewEventAndDelete(2, 2, 2, WAITTIME_BEFORE_DELETION); });
+
         menu.showUserOptions();
 
         int input{};
@@ -72,6 +78,13 @@ int main()
 
         switch (input)
         {
+        case 0:
+        {
+            p.stopPyPlot();
+            std::cout << "ATLAS now closing! BYE! \n";
+            break;
+        }
+
         case 1:
         {
         }
@@ -79,13 +92,12 @@ int main()
         default:
             break;
         }
-        std::thread t1([&p]() { p.plotNewEventAndDelete(1, 1, 2, WAITTIME_BEFORE_DELETION); });
 
-        std::thread t2([&p]() { p.plotNewEventAndDelete(2, 2, 2, WAITTIME_BEFORE_DELETION); });
 
         t1.join();
         t2.join();
         break;
+       
     }
 
     return 0;
