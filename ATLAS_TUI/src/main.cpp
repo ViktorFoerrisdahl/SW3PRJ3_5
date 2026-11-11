@@ -1,8 +1,12 @@
 #include <iostream>
+#include <thread>
+#include <unistd.h>
 
 #include "menu.h"
-#include "plot.h"
 #include "microphones.h"
+#include "plot.h"
+
+#define WAITTIME_BEFORE_DELETION 60
 
 int main()
 {
@@ -30,7 +34,7 @@ int main()
                 std::cin >> tempMic;
             }
             microphones m(static_cast<int>(tempMic));
-            
+
             for (int i = 0; i < m.get_AmountOfMicrophones(); i++)
             {
                 MIC_POSITION tempVector;
@@ -46,23 +50,28 @@ int main()
                     tempVector.channel = 0;
                     tempVector.node_id = 0;
                     if (i == 1)
-                    tempVector.channel = 1;
+                        tempVector.channel = 1;
                     tempVector.node_id = 0;
                 }
-                else 
+                else
                 {
                     tempVector.channel = 0;
                     tempVector.node_id = 1;
                     if (i == 3)
-                    tempVector.channel = 1;
-                    tempVector.node_id = 1; 
+                        tempVector.channel = 1;
+                    tempVector.node_id = 1;
                 }
                 m.AppendMicToVector(tempVector);
             }
 
-
-            
             p.startPyPlot(m.get_AmountOfMicrophones(), m.get_MicrophonesVector());
+
+            std::thread t1([&p]() { p.plotNewEventAndDelete(1, 1, 2, WAITTIME_BEFORE_DELETION); });
+
+            std::thread t2([&p]() { p.plotNewEventAndDelete(2, 2, 2, WAITTIME_BEFORE_DELETION); });
+
+            t1.join();
+            t2.join();
             break;
         }
 
