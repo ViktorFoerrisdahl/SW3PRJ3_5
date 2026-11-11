@@ -1,8 +1,8 @@
 #include "plot.h"
 #include "microphones.h"
 #include <iostream>
-#include <vector>
 #include <unistd.h>
+#include <vector>
 
 plot::plot() : EventID_(0) {}
 
@@ -58,5 +58,4 @@ void plot::plotNewEventAndDelete(int ID, float x, float y, int waittime)
 
     fputs(DEL.c_str(), plot_);
     fflush(plot_);
-
 }

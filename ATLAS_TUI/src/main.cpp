@@ -10,11 +10,11 @@
 
 int main()
 {
-    menu m;
+    menu menu;
     plot p;
 
-    m.showTitle();
-    m.showMenu();
+    menu.showTitle();
+    menu.showMenu();
 
     while (1)
     {
@@ -50,21 +50,27 @@ int main()
                     tempVector.channel = 0;
                     tempVector.node_id = 0;
                     if (i == 1)
+                    {
                         tempVector.channel = 1;
-                    tempVector.node_id = 0;
+                        tempVector.node_id = 0;
+                    }
                 }
                 else
                 {
                     tempVector.channel = 0;
                     tempVector.node_id = 1;
                     if (i == 3)
+                    {
                         tempVector.channel = 1;
-                    tempVector.node_id = 1;
+                        tempVector.node_id = 1;
+                    }
                 }
                 m.AppendMicToVector(tempVector);
             }
 
             p.startPyPlot(m.get_AmountOfMicrophones(), m.get_MicrophonesVector());
+
+            menu.showStartingSequence();
 
             std::thread t1([&p]() { p.plotNewEventAndDelete(1, 1, 2, WAITTIME_BEFORE_DELETION); });
 
