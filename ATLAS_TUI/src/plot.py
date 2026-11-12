@@ -1,12 +1,31 @@
 import sys
 import os
 import select
+import tornado.ioloop
+
+import matplotlib.pyplot as plt
 
 import matplotlib
 matplotlib.use("webagg")
 matplotlib.rcParams["webagg.port"] = 8988
 
-import matplotlib.pyplot as plt
+def stop_ioloop():
+    tornado.ioloop.IOLoop.current().stop() # stops webagg server
+
+def shutdown_webagg_server():
+    global shutting_down
+    if shutting_down:
+        return
+    shutting_down = True
+    axis.clear() # clears whole fig
+    #redraw labels and limits
+    axis.set_ylabel("Meter")
+    axis.set_xlabel("Meter")
+    axis.set_xlim(min(mic_x_array) - 1.5, max(mic_x_array) + 1.5)
+    axis.set_ylim(min(mic_y_array) - 1.5, max(mic_y_array) + 1.5)
+    timer.stop() # stop timer that updates plot
+    fig.canvas.draw() # draw new fig with only label and limits
+    shutdown_timer.start() #start shutdown timer
 
 # gets filedescriptor from sys which is used by select and os.read
 stdin_fd = sys.stdin.fileno() 
@@ -17,16 +36,26 @@ def poll_stdin():
     # ready is a list of filedescriptors, that has data that is ready to be read
     # select makes reading the stdin from sys non-blocking
     ready, _, _ = select.select([stdin_fd], [], [], 0)  # timeout 0 = non blocking
-    if not ready: #if data is not ready. return empty bytes
-        return b""
+    if not ready: #if data is not ready. return None
+        return None
     return os.read(stdin_fd, 4096)   # else return messages from terminal using file descriptor
 
 def pipe_reciver():
     global message_recived_from_pipe, input_buffer #makes both global and ready to use in function
 
-    input_buffer += poll_stdin() #updates input buffer with mesasages from stdin
+    stdin_input = poll_stdin() #updates stdin_input buffer with mesasages from stdin
 
-    while b"\n" in input_buffer: # while we have a new message
+    #checks if input has new message, empty message or if cpp program is closed
+    if stdin_input is None:
+        pass
+
+    elif stdin_input == b"": #cpp has closed
+        shutdown_webagg_server()
+
+    else:
+        input_buffer += stdin_input # new message
+
+    while b"\n" in input_buffer: # while we have a new message - indicated with \n
         line, input_buffer = input_buffer.split(b"\n", 1) #split new message into their own line
         message_argv = line.decode(errors="replace").split() #split only the first line into their own arguments and save in message argv
 
@@ -48,7 +77,7 @@ def pipe_reciver():
                 pipe_to_plot_array.append(new_data) #append new data to pipe to plot array
                 message_recived_from_pipe = True
 
-            elif message_argv[0] == "MIC":
+            elif message_argv[0] == "MICS":
                 new_data = []
                 new_data.append(message_argv[0]) # MIC means that new mic positions is recieved
                 new_data.append(message_argv[1]) # Amount of mics
@@ -60,7 +89,7 @@ def pipe_reciver():
                 message_recived_from_pipe = True
 
             elif message_argv[0] == "STOP":
-                plt.close(fig)
+                shutdown_webagg_server()
 
         except (ValueError, IndexError):
             print(f" error in message: {line!r}", file=sys.stderr)
@@ -84,7 +113,7 @@ def update_plot():
                     data_x_array.pop(0)
                     data_y_array.pop(0)
 
-            elif new_data[0] == "MIC":
+            elif new_data[0] == "MICS":
                 # Clears old mic arrays and datapoints as they are obsolete
                 mic_x_array.clear() 
                 mic_y_array.clear()
@@ -124,7 +153,7 @@ def update_plot():
             axis.annotate(name, (x, y), textcoords="offset points", xytext=(5, 5), fontsize=10)
 
         message_recived_from_pipe = False
-        fig.canvas.draw_idle() # redraw canves when new message is received.
+        fig.canvas.draw_idle() # redraw canves when new message is received when the event loop got time for it.
 
 
 if __name__ == "__main__":
@@ -132,6 +161,8 @@ if __name__ == "__main__":
     fig, axis = plt.subplots() # Make figure
 
     message_recived_from_pipe = True # new message is reveived when program is opened for the first time
+
+    shutting_down = False # Flag for shutting down as shut_down_webagg server can be called two times. This flag avoids it.
 
     amountOfMics = int(sys.argv[1]) # save amount of mic from syscall, as plot is made from syscall at the start.
 
@@ -159,6 +190,10 @@ if __name__ == "__main__":
     # add callback function to execute every interval
     timer.add_callback(update_plot)
     timer.start()
+
+    shutdown_timer = fig.canvas.new_timer(interval=1000)
+    shutdown_timer.single_shot = True # only makes callback once
+    shutdown_timer.add_callback(stop_ioloop) # stops server
 
     # blocking call to show open web and show fig. Now webplot function gets called every 200 ms to update plot.
     plt.show() 
