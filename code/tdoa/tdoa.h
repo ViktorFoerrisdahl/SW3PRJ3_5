@@ -30,7 +30,7 @@ private:
 
     // Initiliaze functions
     static const MIC_POSITION* FindMic(const std::vector<MIC_POSITION> &mics, const uint16_t &node_id, const uint16_t &channel);
-    static int CrossCorrelate(const std::vector<int32_t> &ref, const std::vector<int32_t> &sig);
+    static double CrossCorrelate(const std::vector<int32_t> &ref, const std::vector<int32_t> &sig);
     static void GridSearch(const std::vector<MIC_POSITION> &mics, const std::vector<double> &tdoa_s, double &x_m, double &y_m);
     static void GaussNewton(const std::vector<MIC_POSITION> &mics, const std::vector<double> &tdoa_s, double &x_m, double &y_m);
     static void SolvePosition(const std::vector<MIC_POSITION> &mics, const std::vector<double> &tdoa_s, double &x_m, double &y_m);

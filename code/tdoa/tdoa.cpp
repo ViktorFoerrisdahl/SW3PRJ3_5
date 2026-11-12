@@ -16,8 +16,9 @@ const MIC_POSITION* tdoa::FindMic(const std::vector<MIC_POSITION> &mics, const u
 }
 
 // Lag in samples where sig best matches ref.
-int tdoa::CrossCorrelate(const std::vector<int32_t> &ref, const std::vector<int32_t> &sig)
+double tdoa::CrossCorrelate(const std::vector<int32_t> &ref, const std::vector<int32_t> &sig)
 {
+    std::vector<double> sums(2 * MAX_LAG_SAMPLES + 1); // One score per lag
     double best_sum = -1e300; // Comparison metric: Initialised to an extremely small number that any real sum will surpass
     int best_lag = 0;         // Lag that matches the best sum (this value is returned)
 
@@ -32,10 +33,35 @@ int tdoa::CrossCorrelate(const std::vector<int32_t> &ref, const std::vector<int3
                 sum += (double)ref[i] * sig[j]; //>= zero: doesn't calculate on indexes outside the vector
             }
         }
+        sums[lag + MAX_LAG_SAMPLES] = sum;  // Remember the score (index 0 = lag -600): Used in parabolic interpolation
         if (sum > best_sum)
             best_sum = sum, best_lag = lag; // If the found sum for this lag is bigger than the previous best, overwrite best_lag
-    }
-    return best_lag; // Return best lag found
+    
+    } 
+
+    // Parabolic interpolation: Using neighbours of the best lag, where is the true peak.
+
+    // If the best lag is at the edge: Return (Both would reach past the vector indices)
+    if (best_lag == -MAX_LAG_SAMPLES || best_lag == MAX_LAG_SAMPLES)
+    {
+        return best_lag;
+    }    
+
+    // Set left, right and peak using the best_lag found
+    double y_left  = sums[best_lag - 1 + MAX_LAG_SAMPLES];
+    double y_peak  = best_sum;
+    double y_right = sums[best_lag + 1 + MAX_LAG_SAMPLES];
+
+    // Fit a parabola through the three points
+    double denom = y_left - 2.0 * y_peak + y_right;
+    if (denom >= 0.0) return best_lag;
+
+    // Calculate the delta
+    double delta = 0.5 * (y_left - y_right) / denom;
+    if (std::abs(delta) > 0.5) return best_lag;
+
+    // Add the delta to get the true lag and return it
+    return best_lag + delta;
 }
 
 // Computes a rough estimate using grid search. 20cm steps.
@@ -193,7 +219,7 @@ TDOA_RESULT tdoa::ComputePosition(const std::vector<DetectedEvent> &events, cons
     //Cross correlation and build a vector from this
     std::vector<double> tdoa_s{0.0};                        //Reference 0 at index 0
     for (int i = 1; i < channels.size(); i++){              //Starting at 1
-        int lag = tdoa::CrossCorrelate(channels[0], channels[i]);
+        double lag = tdoa::CrossCorrelate(channels[0], channels[i]);
         double offset_s = (t_first_ns[i] - t_first_ns[0]) * 1e-9;   //Convert ns to s
         tdoa_s.push_back((double)lag / sample_rate + offset_s);     //Samples → seconds
     }
