@@ -37,12 +37,12 @@ std::optional<DetectedEvent> OrchestratorTCP::jsonToStruct(const std::string& js
 	DetectedEvent ev;
 
 	try {
-    	ev = json_dto::from_json<DetectedEvent>(jsonLine); // Throws exception if struct not valid
+		ev = json_dto::from_json<DetectedEvent>(jsonLine); // Throws exception if struct not valid
 	} catch(const json_dto::ex_t& e) {
 		return std::nullopt;
 	}
-	
-    return ev;
+
+	return ev;
 }
 
 void OrchestratorTCP::pushToQueue(DetectedEvent& ev){

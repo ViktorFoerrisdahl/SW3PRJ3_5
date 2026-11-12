@@ -12,7 +12,7 @@ public:
 	OrchestratorTCP(int port, EventQueue& queue);
 
 	void start();
-    
+
 private:
 	std::optional<DetectedEvent> jsonToStruct(const std::string& jsonLine);
 
