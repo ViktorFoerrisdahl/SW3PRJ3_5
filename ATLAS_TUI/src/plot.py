@@ -30,7 +30,9 @@ def shutdown_webagg_server():
 # gets filedescriptor from sys which is used by select and os.read
 stdin_fd = sys.stdin.fileno() 
 # Creates input buffer to store incoming messages from stdin
-input_buffer = b""        # saves half messages if they are read in the tick
+# Collects bytes read from stdin. A message can arrive in pieces,
+# so incomplete lines stay here until the newline arrives
+input_buffer = b""       
 
 def poll_stdin():
     # ready is a list of filedescriptors, that has data that is ready to be read

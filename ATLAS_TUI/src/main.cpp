@@ -15,7 +15,6 @@ int main()
 
     bool ATLAS_RUNNING = true;
 
-
     menu.showTitle();
     menu.showMenu();
 
