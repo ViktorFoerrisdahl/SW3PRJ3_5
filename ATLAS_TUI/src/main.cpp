@@ -13,10 +13,13 @@ int main()
     menu menu;
     plot p;
 
+    bool ATLAS_RUNNING = true;
+
+
     menu.showTitle();
     menu.showMenu();
 
-    while (1)
+    while (ATLAS_RUNNING)
     {
         std::cout << "How many microphones? \n";
         int tempMic;
@@ -67,37 +70,41 @@ int main()
 
         sleep(5);
 
-        std::thread t1([&p]() { p.plotNewEventAndDelete(1, 1, 2, WAITTIME_BEFORE_DELETION); });
+        std::thread t1([&p]() { p.plotNewEventAndDelete(1, 1, 3, WAITTIME_BEFORE_DELETION); });
 
         std::thread t2([&p]() { p.plotNewEventAndDelete(2, 2, 2, WAITTIME_BEFORE_DELETION); });
 
-        menu.showUserOptions();
+        int input{23};
 
-        int input{};
-        std::cin >> input;
-
-        switch (input)
+        while (ATLAS_RUNNING)
         {
-        case 0:
-        {
-            p.stopPyPlot();
-            std::cout << "ATLAS now closing! BYE! \n";
-            break;
+            menu.showUserOptions();
+
+            std::cin >> input;
+
+            switch (input)
+            {
+            case 0:
+            {
+                p.stopPyPlot();
+                std::cout << "ATLAS now closing! BYE! \n";
+                ATLAS_RUNNING = false;
+                break;
+            }
+
+            case 1:
+            {
+                p.EnterNewMics(m);
+                std::cout << "New MICS recieved and updated \n \n";
+                break;
+            }
+
+            default:
+                break;
+            }
         }
-
-        case 1:
-        {
-        }
-
-        default:
-            break;
-        }
-
-
         t1.join();
         t2.join();
-        break;
-       
     }
 
     return 0;

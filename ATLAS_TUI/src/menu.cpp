@@ -59,11 +59,12 @@ void menu::showMenu()
     std::cout << "Welcome to ATLAS! \n";
     sleep(1);
     std::cout << "Before starting ATLAS for the first time - information is needed: \n";
-    sleep(1);
+    sleep(2);
 }
 
 void menu::showUserOptions()
 {
-  std::cout << "Press 1 to update MIC positions\n";
-  std::cout << "Press 0 to shutdown ATLAS\n";
+    std::cout << "\n::::::::::::::::::USER MENU:::::::::::::::::: \n";
+    std::cout << "--- Press 0 to shutdown ATLAS\n";
+    std::cout << "--- Press 1 to update MIC positions\n";
 }
