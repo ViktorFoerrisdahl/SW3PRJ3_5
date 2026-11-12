@@ -12,7 +12,17 @@ const std::vector<MIC_POSITION>& microphones::get_MicrophonesVector() const
     return Microphones_;
 }
 
+void microphones::setAmoutOfMics(int amount)
+{
+    AmountOfMicrophones_ = amount;
+}
+
 void microphones::AppendMicToVector(MIC_POSITION micLocation)
 {
     Microphones_.push_back(micLocation);
+}
+
+void microphones::clearMicVector()
+{
+    Microphones_.clear();
 }

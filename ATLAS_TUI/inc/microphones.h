@@ -19,11 +19,16 @@ private:
     std::vector<MIC_POSITION> Microphones_;
     
 public:
+
     microphones(int amount);
     void AppendMicToVector(MIC_POSITION micLocation);
+    void clearMicVector();
 
     int get_AmountOfMicrophones() const;
     const std::vector<MIC_POSITION>& get_MicrophonesVector() const;
+
+    void setAmoutOfMics(int amount);
+
 };
 
 

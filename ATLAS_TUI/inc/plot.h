@@ -15,6 +15,7 @@ public:
     void startPyPlot(int AmountOfMics, std::vector<MIC_POSITION> vectorMic);
     void plotNewEventAndDelete(int ID, float x, float y, int waittime);
     void stopPyPlot();
+    void EnterNewMics(microphones &m);
 };
 
 
