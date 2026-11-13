@@ -6,16 +6,11 @@ __pycache__/
 
 # Editors
 .vscode/
-.vs/
+
 # Operating system files
 .DS_Store
 Thumbs.db
 Desktop.ini
-
-# Python tooling
-__pycache__/
-*.py[cod]
-.venv/
 
 # C/C++ build directories
 build/
@@ -84,7 +79,6 @@ rules.ninja
 *.fls
 *.log
 *.synctex.gz
-*.out
 *.toc
 *.bbl
 *.blg
