@@ -40,3 +40,9 @@ Brug Markdown som primær læsekilde. **Klar til læsning** har ingen fundne kon
 | [construction/Package diagram.drawio](../construction/Package%20diagram.drawio) | [Læs](package-diagram--ed503d2bc63cea95.md) | manuel læsning kræves |
 | [construction/UML_klassediagram_NODE.drawio](../construction/UML_klassediagram_NODE.drawio) | [Læs](uml-klassediagram-node--8aa3364638b772cf.md) | manuel læsning kræves |
 | [construction/tegnet_udkast_softwarearkitekttur_node.jpeg](../construction/tegnet_udkast_softwarearkitekttur_node.jpeg) | [Læs](tegnet-udkast-softwarearkitekttur-node--26bf1d8f4377f069.md) | billede med OCR |
+| [rapport/bilag/ATLAS systemskitse.png](../rapport/bilag/ATLAS%20systemskitse.png) | [Læs](atlas-systemskitse--093af2fc393c2103.md) | billede med OCR |
+| [rapport/bilag/aulogo_dk_var2_blaa.png](../rapport/bilag/aulogo_dk_var2_blaa.png) | [Læs](aulogo-dk-var2-blaa--15360835d25d0fe8.md) | billede med OCR |
+| [rapport/bilag/ausegl_blaa.png](../rapport/bilag/ausegl_blaa.png) | [Læs](ausegl-blaa--776324719b80f4ff.md) | billede med OCR |
+| [rapport/kravanalyse.tex](../rapport/kravanalyse.tex) | [Læs](kravanalyse--ce9a3597f7b7d747.md) | manuel læsning kræves |
+| [rapport/projektformulering.tex](../rapport/projektformulering.tex) | [Læs](projektformulering--fedf7d6851d2cd43.md) | manuel læsning kræves |
+| [rapport/tekniskanalyse/Hændelsesdetektering.tex](../rapport/tekniskanalyse/H%C3%A6ndelsesdetektering.tex) | [Læs](h-ndelsesdetektering--6f0f02eb851714ef.md) | manuel læsning kræves |

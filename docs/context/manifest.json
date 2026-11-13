@@ -195,9 +195,9 @@
   },
   {
     "source": "README.md",
-    "sha256": "ad60a00ea709d44f679694cd30903260f0d0fcf43ab03298afcac3c13e4529db",
+    "sha256": "5a98b5bbb3cce2f65b80c3533daf934e2046278b0a67e0202e42a4a70425cd09",
     "output": "readme--b335630551682c19.md",
-    "output_sha256": "f9a600f047370fb007ff9ae6f1c93f6d1c62d0a503a546f39cbd68e3a6fbaf8b",
+    "output_sha256": "0516addc54248a75854cf1720d6cb727c4406f089ab789d81fa085b8198f31a6",
     "status": "klar til læsning",
     "notes": []
   },
@@ -290,6 +290,68 @@
     "notes": [
       "OCR markerer 67 af 95 ord som usikre; sammenhold dem med den viste illustration.",
       "OCR gengiver tekst, ikke pile, geometri eller relationer. Brug den viste illustration til visuel information."
+    ]
+  },
+  {
+    "source": "rapport/bilag/ATLAS systemskitse.png",
+    "sha256": "654519a7cec9ee2737111f2b5135af07c67a86c061f18f1376066978998a232f",
+    "output": "atlas-systemskitse--093af2fc393c2103.md",
+    "output_sha256": "7db75694009484614244dd7e3d8528ced2f7eebece4efcdaeacc9378420ec6ed",
+    "status": "billede med OCR",
+    "notes": [
+      "OCR markerer 115 af 145 ord som usikre; sammenhold dem med den viste illustration.",
+      "OCR gengiver tekst, ikke pile, geometri eller relationer. Brug den viste illustration til visuel information."
+    ]
+  },
+  {
+    "source": "rapport/bilag/aulogo_dk_var2_blaa.png",
+    "sha256": "e531aa8f26c67730d38651f2474bf592cc446dc509926c64d777b489a68077dd",
+    "output": "aulogo-dk-var2-blaa--15360835d25d0fe8.md",
+    "output_sha256": "f69207c7ec9093548072ffcb8e7019aa06643ef2bb78aa5f930dadbb8851df53",
+    "status": "billede med OCR",
+    "notes": [
+      "OCR gengiver tekst, ikke pile, geometri eller relationer. Brug den viste illustration til visuel information."
+    ]
+  },
+  {
+    "source": "rapport/bilag/ausegl_blaa.png",
+    "sha256": "2f7fed112d37a88a84bd4b871d112914ad0414d96ef1dcc210a5d06a544b8d66",
+    "output": "ausegl-blaa--776324719b80f4ff.md",
+    "output_sha256": "5ccb8201312281a5c15f4f48dfb53703b61f35e9df255050db80702e57ea3073",
+    "status": "billede med OCR",
+    "notes": [
+      "OCR markerer 5 af 7 ord som usikre; sammenhold dem med den viste illustration.",
+      "OCR gengiver tekst, ikke pile, geometri eller relationer. Brug den viste illustration til visuel information."
+    ]
+  },
+  {
+    "source": "rapport/kravanalyse.tex",
+    "sha256": "94bd441369b34d9bcbf7adbf336e92c68f8b244ff4cd2eab9a6f4ea8cfe0c90f",
+    "output": "kravanalyse--ce9a3597f7b7d747.md",
+    "output_sha256": "bc05e429e98a248555bfcc018bf2984e73f996e357256f8f9bf98109c1ce5a32",
+    "status": "manuel læsning kræves",
+    "notes": [
+      "Formatet .tex understøttes ikke til tekstudtræk. Eksportér til DOCX, PDF eller Markdown; originalen er bevaret."
+    ]
+  },
+  {
+    "source": "rapport/projektformulering.tex",
+    "sha256": "9f8eab17d5f814dc4ef5c6d7590febfe86430d8f53e7fa27b29d480fe883962c",
+    "output": "projektformulering--fedf7d6851d2cd43.md",
+    "output_sha256": "609a689b173b06b57ae05354c53b900ea1de05e10ebe8014c6ca69c1f4b31c96",
+    "status": "manuel læsning kræves",
+    "notes": [
+      "Formatet .tex understøttes ikke til tekstudtræk. Eksportér til DOCX, PDF eller Markdown; originalen er bevaret."
+    ]
+  },
+  {
+    "source": "rapport/tekniskanalyse/Hændelsesdetektering.tex",
+    "sha256": "11182c6a41cf03c060eb0f122bc68cfe9f3b8ad59da7652c8b4638c92ec415b2",
+    "output": "h-ndelsesdetektering--6f0f02eb851714ef.md",
+    "output_sha256": "0f20ec6e8a03c57f6292027e9a891afc6556c12b629965c3abbfbc048d6f7ec0",
+    "status": "manuel læsning kræves",
+    "notes": [
+      "Formatet .tex understøttes ikke til tekstudtræk. Eksportér til DOCX, PDF eller Markdown; originalen er bevaret."
     ]
   }
 ]
