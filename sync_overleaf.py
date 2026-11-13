@@ -21,7 +21,7 @@ from pathlib import Path
 
 HOST = "https://overleaf.trit.au.dk"
 PROJECT_ID = "6a9fc168660ee8a35677b63a"
-DEST = Path("rapport")  # Mappen bliver overskrevet, så brug en mappe kun til rapporten
+DEST = Path("docs/rapport")  # Mappen bliver overskrevet, så brug en mappe kun til rapporten
 
 
 def load_cookie() -> str:
