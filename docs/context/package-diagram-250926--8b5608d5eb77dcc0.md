@@ -6,7 +6,7 @@
 - SHA-256: `3e1afee983db3f2b3bae4358ae5c21ec91df7eb7bfda114b0be433b9c52a69d8`
 - Status: billede med OCR
 
-> OCR markerer 55 af 70 ord som usikre; sammenhold dem med den viste illustration.
+> OCR markerer 51 af 73 ord som usikre; sammenhold dem med den viste illustration.
 > OCR gengiver tekst, ikke pile, geometri eller relationer. Brug den viste illustration til visuel information.
 
 ---
@@ -18,47 +18,49 @@
 ```text
 —
 ==
--_
-= PYth oA,
+me
+= Pyt ss,
 Tce
-~ ce
-Thoh Ea Besre vm. oe
-A j.
+- ce
+TDoh Epa Besre vm. ae
+ce
 —
-Wee sc h
+Wee Sc h
 |
 r
-—
+-
 =
 J
-="
--
-Fm
+Sel
+vs
+fm
 —
-DENG hy)
-lot Chest faz oy ~Lniciehze
+WEG Thy)
+lor Chest faz ER -Iniich2e
 {
-)
-OOK rm
+ZEN
+OOK rm.
 —J3on RTC,
-fouls
-= Dicherey;
-Line WH
+tou
+eee
+~bichever,
+Wer-
 ——_
 =
 PTT
-| xe DL = EURO
+1 xx DL = EVR
 a
 HandlMes—
 i
-}
-Teseths
+!
+Teseihs
+—
+==
 =
-=
-=
-ors Sttestips
-Mir S¥S=Cer!
+ae A) (255720
+Deore Sttestips
+Sr SYS (or!
 Mics
-mFS
-—_]
+= FS
+—_]|
 ```

@@ -16,11 +16,11 @@
 
 ## Konceptet
 
-Fire mikrofoner, to på hver Raspberry Pi. Et klap rammer dem på forskellige tidspunkter. 4 mics -\> 3 hyperbler -\> 3 ligninger 2 ubekendte -\> lstsq -\> skæringspunktet er positionen. Distribueret constraint ($`\ge2`$ pi's) er ikke forced: uden fysisk adskilte mikrofoner er der ingen tidsforskel at måle.
+Fire mikrofoner, to på hver Raspberry Pi. Et klap rammer dem på forskellige tidspunkter. 4 mics -\> 3 hyperbler -\> 3 ligninger 2 ubekendte -\> lstsq -\> skæringspunktet er positionen. Distribueret constraint ($\ge2$ pi's) er ikke forced: uden fysisk adskilte mikrofoner er der ingen tidsforskel at måle.
 
 ## Opstilling
 
-- $`1.5m^2`$ , mikrofoner i hjørnerne
+- $1.5m^2$ , mikrofoner i hjørnerne
 - 2x raspberry pi's med 2x mics (kort kabel \> 30cm, for at sikre timing sikkerhed)
 - Pi's forbundet via ethernet.
 - Faktisk muligt med kun 2 pi's, hvor én af dem også står for beregningerne -\> mere interresant med 3, hvor timestamps streames til en buffer på "beregner pi'en"
