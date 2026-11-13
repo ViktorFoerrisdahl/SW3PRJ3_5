@@ -16,6 +16,8 @@
 
 ## PTP:
 
+##
+
 ## Datastreaming: Mads
 
 Med en sample rate på 44 KhZ er det 44,000 samples per sekund. Hvis vi antager at hver frame (2 samples fra de 2 mikrofoner per pi) er 32 bit (16bit per frame), og en ringbuffer på 10 sekunder, koster vores ringbuffer 3,840,000 bytes (3.84 MB).

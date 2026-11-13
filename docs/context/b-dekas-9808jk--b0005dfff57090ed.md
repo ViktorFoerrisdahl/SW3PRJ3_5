@@ -7,5 +7,3 @@
 - Status: tomt dokument
 
 ---
-
-Dokumentet indeholder ingen hovedtekst, tabeller eller formler.
