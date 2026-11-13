@@ -15,7 +15,7 @@ import posixpath
 import zipfile
 
 from pypdf import PdfReader
-from code.tools.context.quality import audit_docx, ocr
+from quality import audit_docx, ocr
 
 ROOT = Path(__file__).resolve().parents[3]
 PANDOC_FORMATS = {'.docx': 'docx', '.odt': 'odt', '.rtf': 'rtf', '.html': 'html',
