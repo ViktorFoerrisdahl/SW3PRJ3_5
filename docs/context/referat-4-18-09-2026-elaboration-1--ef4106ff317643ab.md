@@ -4,9 +4,9 @@
 
 - Kilde: [Referater/Referat #4 - 18-09-2026 - Elaboration 1.docx](../Referater/Referat%20%234%20-%2018-09-2026%20-%20Elaboration%201.docx)
 - SHA-256: `c80fd2b108949d5ae7cb2af264813eda17b1de098b91d7ee1ff28283218bd343`
-- Status: tekst udtrukket – kontrollér original
+- Status: klar til læsning
 
-> Automatisk tekstudtræk: kontrollér layout, formler og tabeller i originalen.
+
 
 ---
 
@@ -57,3 +57,8 @@ For at vise vores position, skal vi bruge pyplot. Både i 2d og 3d.
 **Bødekasse:**
 
 - Frederik 8kr
+
+
+---
+
+Kontrol: 109 ord/tal, 0 tabeller og 0 formler sammenholdt med Word-kilden.

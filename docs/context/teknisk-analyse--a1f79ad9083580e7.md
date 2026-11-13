@@ -4,10 +4,9 @@
 
 - Kilde: [Elaboration E2/Teknisk Analyse.docx](../Elaboration%20E2/Teknisk%20Analyse.docx)
 - SHA-256: `ba291fbfa5fa44d84bd4d8e924fda6be96cdef7cbca71c7ada47b48eb92ea030`
-- Status: tekst udtrukket – kontrollér original
+- Status: kontrollér markerede mangler
 
-> Automatisk tekstudtræk: kontrollér layout, formler og tabeller i originalen.
-> 1 illustration(er) skal læses i originalen; billedindhold er ikke konverteret.
+> OCR markerer 3 af 46 ord som usikre; sammenhold dem med den viste illustration.
 
 ---
 
@@ -16,8 +15,6 @@
 ## Mikrofon/hændelsdetektering:
 
 ## PTP:
-
-##
 
 ## Datastreaming: Mads
 
@@ -29,7 +26,7 @@ En ringbuffer har et fast antal pladser. Når hukommelsen er fuld, overskriver v
 
 Chatten har lavet:
 
-<a href="../Elaboration%20E2/Teknisk%20Analyse.docx" width="6.268055555555556in" height="2.41875in">Illustration: se originaldokumentet</a>
+![The image displays a visual representation of an array with 8 positions, each containing a numbered sample ranging from 0 to 10, and includes instructions for updating the array based on specific rules. AI-generated content may be incorrect.](asset-19bc66e881d5e55e3064.png)
 
 Som det kan ses, har vi wrap around ved sample nummer 8. Altså efter 0-7 er udfyldt, starter vi forfra ved index 0, og ligger sample 8 ind her.
 
@@ -85,4 +82,21 @@ Der bruges en KY-008 laser module som pegepind.
 
 ## TDOA-algoritme:
 
-##
+### Billedtekst (OCR) — asset-19bc66e881d5e55e3064.png
+
+Her er et mini-eksempel med kun 8 pladser, hvor der er skrevet 11 samples ind (#0 til #10):
+Næste sample skrives her
+plads 0
+plads1
+plads 2
+plads 3
+plads 4
+plads 5
+plads 6
+plads 7
+©) Nyeste (skrevet efter wrap)
+© Ældste, overskrives nu
+
+---
+
+Kontrol: 610 ord/tal, 0 tabeller og 5 formler sammenholdt med Word-kilden.

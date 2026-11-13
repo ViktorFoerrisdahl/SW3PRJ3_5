@@ -4,9 +4,9 @@
 
 - Kilde: [Elaboration E2/Mikrofon og Hændelsesdetektering/Hændelsesdetektering.docx](../Elaboration%20E2/Mikrofon%20og%20H%C3%A6ndelsesdetektering/H%C3%A6ndelsesdetektering.docx)
 - SHA-256: `d9dd00fb0c101d0fc2743385a3b2255e4f1a0b76acd560ce39239eec92f5cdf5`
-- Status: tekst udtrukket – kontrollér original
+- Status: klar til læsning
 
-> Automatisk tekstudtræk: kontrollér layout, formler og tabeller i originalen.
+
 
 ---
 
@@ -57,3 +57,8 @@ $$N \approx 2 - 5\ ms \Longrightarrow 100 - 250\ samples\ ved\ 44,1\ kHz$$
 Altså vil vi gerne læse mellem 100-250 samples fra ringbufferen ad gangen. Vi tager altså positionen af read pointeren og kigger på bidden i mellem dens eget indeks i bufferen, og dens indeks + antallet af samples. Hvis dette skulle struktureres i et array, ville det se således ud:
 
 $$\lbrack readpointer,readpointer + 200\rbrack\ for\ N = 200\ samples$$
+
+
+---
+
+Kontrol: 357 ord/tal, 0 tabeller og 9 formler sammenholdt med Word-kilden.

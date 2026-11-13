@@ -16,7 +16,7 @@ Projektet er under udvikling. Projektformulering, analyser og referater beskrive
 | [`docs/Projektstyring/terminology.md`](docs/Projektstyring/terminology.md) | Fælles ordvalg, forkortelser og skrivemåde |
 | [`docs/Projektstyring/code-conventions.md`](docs/Projektstyring/code-conventions.md) | Konventioner for kode og Doxygen |
 | [`docs/context/INDEX.md`](docs/context/INDEX.md) | Genereret indgang til dokumenterne for AI-agenter |
-| [`code/`](code/) | Kode, tests og hjælpeværktøjer; endnu ingen systemimplementering |
+| [`code/`](code/) | Kode, tests og hjælpeværktøjer, herunder PTP-modulet til mikrofonnoderne |
 | [`AGENTS.md`](AGENTS.md) | Obligatorisk læse- og arbejdsvejledning for AI-agenter |
 | [`.github/workflows/`](.github/workflows/) | Automatisk konvertering og kontrol |
 
@@ -28,4 +28,4 @@ Kode, identifikatorer, kodekommentarer og commitbeskeder er på **engelsk**. Dok
 
 GitHub Actions bygger Markdown-kopier og et kildeindeks i `docs/context/`. Ved push gemmes opdateringerne automatisk på samme branch, hvis branchens regler tillader det. Pull requests kontrolleres uden skriveadgang og får den genererede kontekst som et downloadbart artifact. Se [AI-strategien](docs/Projektstyring/ai-strategi.md) for principperne bag den fælles kontekst.
 
-Ret altid originalen. Diagrammer, eksterne genveje og ikke-understøttede formater bliver synlige i indekset med en besked om manuel læsning. Deres indhold må ikke antages at være konverteret.
+Ret altid originalen. Markdown-kopierne bevarer tekst og illustrationer og supplerer billeder med OCR. Indekset markerer konkrete mangler; eksterne genveje indeholder fortsat kun links, ikke dokumenternes indhold.

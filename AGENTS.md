@@ -6,7 +6,7 @@
 2. Find og læs kopierne af `docs/Projektstyring/ai-strategi.md`, `docs/Projektstyring/terminology.md` og `docs/Projektstyring/code-conventions.md` i indekset. Læs derefter de relevante projektdokumenter og referater. Indekset alene er ikke tilstrækkelig kontekst.
 3. Kontrollér aktualitet med `python code/tools/context/generate.py --check`. Hvis konteksten mangler eller er forældet, kør `python code/tools/context/generate.py` med værktøjets afhængigheder installeret. Kan konverteringen ikke køres, skal originalerne læses direkte, og begrænsningen skal fremgå af svaret.
 4. Læs relevante filer i `code/`, før du beskriver den faktiske implementering. Skeln mellem dokumenterede krav, implementeret adfærd og forslag.
-5. Angiv de konkrete kildefiler, som væsentlige anbefalinger bygger på. Gå til originalen ved tvivl, manglende indhold eller status »manuel læsning kræves«.
+5. Angiv de konkrete kildefiler, som væsentlige anbefalinger bygger på. Brug Markdown og de viste illustrationer som primær læsekilde. Åbn kun originalen ved konkrete markerede mangler, faglig tvivl eller behov for originalt layout. OCR-tekst er maskinlæst; brug billedet til usikre ord og diagramrelationer.
 
 ## Kilder og uoverensstemmelser
 
@@ -36,3 +36,7 @@ Ved hver opgave skal du vurdere, om ændringerne kræver opdatering af projektet
 - **Agentinstruktioner:** Opdatér `AGENTS.md`, når ændringer i struktur, arbejdsgange, kommandoer eller aftaler gør instruktionerne forældede. Hold dem korte og generelle; opgavehistorik hører ikke hjemme her.
 - **Kontekstindeks:** Sørg for, at `docs/context/INDEX.md` og de tilhørende kopier følger tilføjelser, ændringer, flytninger og sletninger under `docs/`. Brug konverteringen; redigér aldrig indekset manuelt. CI opdaterer det automatisk, og ved lokalt agentarbejde regenereres det før afslutning. Ændringer i selve indeksformatet foretages i generatoren.
 - **Afslutning:** Kontrollér berørte henvisninger og kontekstens aktualitet. Opret ikke ekstra dokumenter eller nye regler uden et konkret behov. Hvis en nødvendig opdatering ikke kan udføres, angiv præcist, hvad der mangler.
+
+## README-navigation
+
+`code/README.md` og `docs/README.md` har et automatisk filoverblik mellem `BEGIN GENERATED NAVIGATION` og `END GENERATED NAVIGATION`. Ret kun den forklarende tekst uden for markørerne. CI opdaterer oversigterne ved ændringer under `code/` og `docs/`. Ved lokal opdatering køres `python code/tools/navigation/generate.py` før kontekstgeneratoren og derefter `python code/tools/navigation/generate.py --check`. Ignorerede og slettede filer udelades; genereret kontekst vises via ét indekslink.

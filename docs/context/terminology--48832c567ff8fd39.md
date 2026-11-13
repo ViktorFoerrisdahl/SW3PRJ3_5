@@ -3,10 +3,10 @@
 > Genereret fil. Ret originalen, ikke denne kopi.
 
 - Kilde: [Projektstyring/terminology.md](../Projektstyring/terminology.md)
-- SHA-256: `13f149366c07a7c159a9cbf24a413f8113df2a01a47cbed82eef1351e8bf4948`
-- Status: tekst kopieret
+- SHA-256: `8d22c5f5cfa49d254719f8157a1e550b8183d9857328d0cf20f3f0ef1005003b`
+- Status: klar til læsning
 
-> Relative links i kildeteksten er relative til originalfilens mappe.
+
 
 ---
 
@@ -16,36 +16,41 @@ Denne liste fastlægger fælles sprogbrug. Definitionerne er sproglige konventio
 
 ## Projektets begreber
 
-| Foretrukken betegnelse i dokumentation | Engelsk term i kode og kommentarer | Betydning og brug |
-| --- | --- | --- |
-| ATLAS | ATLAS | Acoustic TDOA Localization and Alert System. Brug store bogstaver. |
-| lydkilde | sound source | Den fysiske kilde, som udsender et akustisk signal; i proof of concept et klap. |
-| akustisk signal | acoustic signal | Lyden før systemet har afgjort, om den indeholder en relevant hændelse. |
-| lydhændelse | sound event | En hændelse identificeret i det optagne signal. Undgå skift mellem lydevent, sound-event og lydbegivenhed. |
-| hændelsesdetektering | event detection | Afgørelse af, om en relevant lydhændelse findes, og bestemmelse af dens tidspunkt. |
-| klassifikation | classification | Bestemmelse af lydkildens type. Er ikke det samme som hændelsesdetektering. |
-| mikrofonnode | microphone node | En node, der opsamler lyd fra tilsluttede mikrofoner. Antal mikrofoner afhænger af den dokumenterede konfiguration. |
-| central node | central node | Rollen, der samler data og beregner position. Rollen betyder ikke nødvendigvis en ekstra fysisk Raspberry Pi. |
-| Raspberry Pi | Raspberry Pi | Produktnavnet. Brug »Raspberry Pi-enheder« i flertal; undgå rapsberry og pi's. |
-| TDOA | time difference of arrival | Forskel i et signals ankomsttid mellem to mikrofoner. Projektformuleringens »Time-Delay of Arrival« normaliseres sprogligt hertil. |
-| lokalisering | localization | Estimering af lydkildens position; en position er et estimat med måleusikkerhed. |
-| multilateration | multilateration | Positionsberegning ud fra afstandsforskelle eller tilsvarende tidsforskelle. Brug ikke triangulering som synonym. |
-| mindste kvadraters metode | least squares | En løsningsmetode, der minimerer en sum af kvadrerede fejl. |
-| krydskorrelation | cross-correlation | Sammenligning af to signaler ved forskellige tidsforskydninger. |
-| timestamp | timestamp | Et tidspunkt knyttet til en eksplicit tidsreference. Brug ikke modtagelsestid som synonym for optagelsestid. |
-| ursynkronisering | clock synchronization | Tilpasning af ure mellem noder. Angiv, om der menes systemur eller samplingur. |
-| PTP | Precision Time Protocol | Protokol til ursynkronisering. Skriv linuxptp om softwarepakken og `ptp4l` om programmet. |
-| samplingur | sample clock | Uret, der bestemmer optagelsens samplingtidspunkter; skeln fra systemuret. |
-| sample | sample | Én måleværdi fra én kanal. Flertal: samples. |
-| frame | frame | Ét sample fra hver kanal ved samme samplingtidspunkt. Antal bytes afhænger af kanaler og sampleformat. |
-| samplingfrekvens | sample rate | Antal samples pr. sekund pr. kanal, angivet i Hz. En bestemt værdi er ikke fastlagt af denne liste. |
-| PCM | pulse-code modulation | Digital repræsentation af signalværdier; bitdybde og pakning skal angives særskilt. |
-| ringbuffer | ring buffer | Buffer med fast kapacitet og cirkulær indeksering. Overskrivningspolitikken skal beskrives. |
-| ALSA | Advanced Linux Sound Architecture | Linux' lydinfrastruktur. `libasound` er bibliotekets navn; `libasound2` er et pakkenavn. |
-| I²S | I2S | Digital lydgrænseflade. Brug I²S i løbende dokumenttekst og I2S i kode. |
-| MEMS-mikrofon | MEMS microphone | Mikrofon baseret på mikroelektromekanisk teknologi. Brug I²S MEMS-mikrofon om den type, mikrofonanalysen vælger. |
-| TUI | text-based user interface | Tekstbaseret brugergrænseflade. Må ikke bruges som synonym for alle former for visualisering. |
-| proof of concept | proof of concept | Afgrænset demonstration af princippets gennemførlighed; forkortes PoC efter første forklaring. |
+| Foretrukken betegnelse i dokumentation | Engelsk term i kode og kommentarer | Betydning og brug                                                                                                                                                                                |
+|----------------------------------------|------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| ATLAS                                  | ATLAS                              | Acoustic TDOA Localization and Alert System. Brug store bogstaver.                                                                                                                               |
+| lydkilde                               | sound source                       | Den fysiske kilde, som udsender et akustisk signal; i proof of concept et klap.                                                                                                                  |
+| akustisk signal                        | acoustic signal                    | Lyden før systemet har afgjort, om den indeholder en relevant hændelse.                                                                                                                          |
+| lydhændelse                            | sound event                        | En hændelse identificeret i det optagne signal. Undgå skift mellem lydevent, sound-event og lydbegivenhed.                                                                                       |
+| hændelsesdetektering                   | event detection                    | Afgørelse af, om en relevant lydhændelse findes, og bestemmelse af dens tidspunkt.                                                                                                               |
+| klassifikation                         | classification                     | Bestemmelse af lydkildens type. Er ikke det samme som hændelsesdetektering.                                                                                                                      |
+| mikrofonnode                           | microphone node                    | En node, der opsamler lyd fra tilsluttede mikrofoner. Antal mikrofoner afhænger af den dokumenterede konfiguration.                                                                              |
+| central node                           | central node                       | Rollen, der samler data og beregner position. Rollen betyder ikke nødvendigvis en ekstra fysisk Raspberry Pi.                                                                                    |
+| Raspberry Pi                           | Raspberry Pi                       | Produktnavnet. Brug »Raspberry Pi-enheder« i flertal; undgå rapsberry og pi's.                                                                                                                   |
+| TDOA                                   | time difference of arrival         | Forskel i et signals ankomsttid mellem to mikrofoner. Projektformuleringens »Time-Delay of Arrival« normaliseres sprogligt hertil.                                                               |
+| lokalisering                           | localization                       | Estimering af lydkildens position; en position er et estimat med måleusikkerhed.                                                                                                                 |
+| multilateration                        | multilateration                    | Positionsberegning ud fra afstandsforskelle eller tilsvarende tidsforskelle. Brug ikke triangulering som synonym.                                                                                |
+| mindste kvadraters metode              | least squares                      | En løsningsmetode, der minimerer en sum af kvadrerede fejl.                                                                                                                                      |
+| krydskorrelation                       | cross-correlation                  | Sammenligning af to signaler ved forskellige tidsforskydninger.                                                                                                                                  |
+| timestamp                              | timestamp                          | Et tidspunkt knyttet til en eksplicit tidsreference. Brug ikke modtagelsestid som synonym for optagelsestid.                                                                                     |
+| ursynkronisering                       | clock synchronization              | Tilpasning af ure mellem noder. Angiv, om der menes systemur eller samplingur.                                                                                                                   |
+| PTP                                    | Precision Time Protocol            | Protokol til ursynkronisering. Skriv linuxptp om softwarepakken og `ptp4l` om programmet.                                                                                                        |
+| PTP-grandmaster                        | PTP grandmaster                    | Node, der leverer tidsreferencen i PTP-netværket. Rollen er uafhængig af rollen som central node.                                                                                                |
+| PTP-slave                              | PTP slave                          | Node, der synkroniserer sit ur til den valgte grandmaster.                                                                                                                                       |
+| PTP-hardwareur (PHC)                   | PTP Hardware Clock                 | Hardwareur knyttet til netværksinterfacet. Skeln fra Linux' systemur og mikrofonernes samplingur.                                                                                                |
+| PTP-service                            | PtpService                         | C++-komponent til lokal styring af linuxptp og aflæsning af synkroniseringsstatus på en mikrofonnode. En softwaretest med simulerede systemkommandoer er adskilt fra afprøvning på Raspberry Pi. |
+| samplingur                             | sample clock                       | Uret, der bestemmer optagelsens samplingtidspunkter; skeln fra systemuret.                                                                                                                       |
+| sample                                 | sample                             | Én måleværdi fra én kanal. Flertal: samples.                                                                                                                                                     |
+| frame                                  | frame                              | Ét sample fra hver kanal ved samme samplingtidspunkt. Antal bytes afhænger af kanaler og sampleformat.                                                                                           |
+| samplingfrekvens                       | sample rate                        | Antal samples pr. sekund pr. kanal, angivet i Hz. En bestemt værdi er ikke fastlagt af denne liste.                                                                                              |
+| PCM                                    | pulse-code modulation              | Digital repræsentation af signalværdier; bitdybde og pakning skal angives særskilt.                                                                                                              |
+| ringbuffer                             | ring buffer                        | Buffer med fast kapacitet og cirkulær indeksering. Overskrivningspolitikken skal beskrives.                                                                                                      |
+| ALSA                                   | Advanced Linux Sound Architecture  | Linux' lydinfrastruktur. `libasound` er bibliotekets navn; `libasound2` er et pakkenavn.                                                                                                         |
+| I²S                                    | I2S                                | Digital lydgrænseflade. Brug I²S i løbende dokumenttekst og I2S i kode.                                                                                                                          |
+| MEMS-mikrofon                          | MEMS microphone                    | Mikrofon baseret på mikroelektromekanisk teknologi. Brug I²S MEMS-mikrofon om den type, mikrofonanalysen vælger.                                                                                 |
+| TUI                                    | text-based user interface          | Tekstbaseret brugergrænseflade. Må ikke bruges som synonym for alle former for visualisering.                                                                                                    |
+| proof of concept                       | proof of concept                   | Afgrænset demonstration af princippets gennemførlighed; forkortes PoC efter første forklaring.                                                                                                   |
+| OCR                                    | optical character recognition      | Automatisk genkendelse af tekst i billeder og scannede dokumenter. Gengiver ikke i sig selv diagrammers pile og relationer.                                                                      |
 
 ## Skriveregler
 
@@ -60,6 +65,6 @@ Denne liste fastlægger fælles sprogbrug. Definitionerne er sproglige konventio
 
 ## Kildegrundlag og åbne spørgsmål
 
-Listen bygger på projektformuleringen i `Inception/`, referat #4 og analyserne i `Elaboration E2/`. Betegnelser fra et tidligere chatresumé, f.eks. ToI og Orchestrator, gøres ikke til vedtagne komponentnavne uden belæg i de relevante projektfiler og diagrammer.
+Listen bygger på projektformuleringen i `Inception/`, referat \#4 og analyserne i `Elaboration E2/`. Betegnelser fra et tidligere chatresumé, f.eks. ToI og Orchestrator, gøres ikke til vedtagne komponentnavne uden belæg i de relevante projektfiler og diagrammer.
 
 Projektformuleringens Product Goal udelader klassifikation, mens hændelsesdetekteringsanalysen omtaler at afgøre, om lyd kommer fra en drone. Dette skal afklares fagligt; fælles ordvalg løser ikke konflikten.

@@ -4,9 +4,9 @@
 
 - Kilde: [Referater/Referat #1 - 04-09-2026 - Inception møde.docx](../Referater/Referat%20%231%20-%2004-09-2026%20-%20Inception%20m%C3%B8de.docx)
 - SHA-256: `5dec8f590c8ddc58b1d942efb7af8ddfde200c87a462a390f32cf98a0bbd091b`
-- Status: tekst udtrukket – kontrollér original
+- Status: klar til læsning
 
-> Automatisk tekstudtræk: kontrollér layout, formler og tabeller i originalen.
+
 
 ---
 
@@ -37,3 +37,8 @@ Lagerstyring
 Vi aftaler med Lars, at vi har et fast vejledermøde om fredagen klokken 9. Hvor vi så har arbejdsmodulet efterfølgende.
 
 Lars undersøger om vi kan booke et lokale til vejledermøde om fredagen klokken 9.
+
+
+---
+
+Kontrol: 165 ord/tal, 0 tabeller og 0 formler sammenholdt med Word-kilden.
