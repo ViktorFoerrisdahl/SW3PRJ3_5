@@ -54,4 +54,4 @@ Eksemplet illustrerer dokumentationsformen og definerer ikke projektets kommende
 
 ## Ved ændringer
 
-Følg den eksisterende struktur, skriv relevante tests og kontrollér ændringerne før review. Skeln mellem kodekonventioner og faktisk understøttede buildkommandoer; repoet har endnu ikke et buildsystem for ATLAS. Python-værktøjer bruger almindelig Python-navngivning (`snake_case`); C/C++-tabellen gælder ikke Python.
+Følg den eksisterende struktur, skriv relevante tests og kontrollér ændringerne før review. Repoets CMake bruger C++20; registrér nye moduler og softwaretests dér. Angiv særskilt, når en test kræver Raspberry Pi, systemd eller tilsluttet hardware. Python-værktøjer bruger almindelig Python-navngivning (`snake_case`); C/C++-tabellen gælder ikke Python.

@@ -1,0 +1,40 @@
+# Dokumentation
+
+Her ligger projektets dokumentation fordelt på projektfaser, referater og projektstyring. Tilføj dokumenter i den relevante mappe; CI opdaterer filoversigten og den fælles AI-kontekst ved push.
+
+Ret originaldokumenterne. De genererede kopier i `context/` er beregnet til læsning og henviser tilbage til kilderne. Se [AI-strategien](Projektstyring/ai-strategi.md) for principperne bag arbejdet.
+
+<!-- BEGIN GENERATED NAVIGATION -->
+
+## Filoversigt
+
+Dette afsnit opdateres automatisk af CI. Ret teksten uden for markørerne.
+
+[Genereret AI-kontekst og kildeindeks](context/INDEX.md)
+
+- [Elaboration E1/Domænemodel.url](Elaboration%20E1/Dom%C3%A6nemodel.url)
+- [Elaboration E2/Deployment diagram 29092026.png](Elaboration%20E2/Deployment%20diagram%2029092026.png)
+- [Elaboration E2/Mikrofon og Hændelsesdetektering/Hændelsesdetektering.docx](Elaboration%20E2/Mikrofon%20og%20H%C3%A6ndelsesdetektering/H%C3%A6ndelsesdetektering.docx)
+- [Elaboration E2/Mikrofon og Hændelsesdetektering/Mikrofon_Analyse.docx](Elaboration%20E2/Mikrofon%20og%20H%C3%A6ndelsesdetektering/Mikrofon_Analyse.docx)
+- [Elaboration E2/Package diagram 25092026.png](Elaboration%20E2/Package%20diagram%2025092026.png)
+- [Elaboration E2/Package Diagram 250926.jpg](Elaboration%20E2/Package%20Diagram%20250926.jpg)
+- [Elaboration E2/SSD.png](Elaboration%20E2/SSD.png)
+- [Elaboration E2/System Sekvens Diagram.url](Elaboration%20E2/System%20Sekvens%20Diagram.url)
+- [Elaboration E2/Teknisk Analyse.docx](Elaboration%20E2/Teknisk%20Analyse.docx)
+- [Inception/billede - 20260908-084715-0d4273c9_6801.jpeg](Inception/billede%20-%2020260908-084715-0d4273c9_6801.jpeg)
+- [Inception/Noter/CNN Warehouse.md](Inception/Noter/CNN%20Warehouse.md)
+- [Inception/Noter/TDOA.md](Inception/Noter/TDOA.md)
+- [Inception/PRJ3 Gruppe 5 Projektformulering.pdf](Inception/PRJ3%20Gruppe%205%20Projektformulering.pdf)
+- [Inception/Samarbejdskontrakt.docx](Inception/Samarbejdskontrakt.docx)
+- [Projektstyring/ai-strategi.md](Projektstyring/ai-strategi.md)
+- [Projektstyring/BødeKas=9808JK.docx](Projektstyring/B%C3%B8deKas%3D9808JK.docx)
+- [Projektstyring/code-conventions.md](Projektstyring/code-conventions.md)
+- [Projektstyring/Draw.io Filer.url](Projektstyring/Draw.io%20Filer.url)
+- [Projektstyring/terminology.md](Projektstyring/terminology.md)
+- [Referater/Referat #1 - 04-09-2026 - Inception møde.docx](Referater/Referat%20%231%20-%2004-09-2026%20-%20Inception%20m%C3%B8de.docx)
+- [Referater/Referat #2 - 11-09-2026.docx](Referater/Referat%20%232%20-%2011-09-2026.docx)
+- [Referater/Referat #3 - Møde med søren 150926.docx](Referater/Referat%20%233%20-%20M%C3%B8de%20med%20s%C3%B8ren%20150926.docx)
+- [Referater/Referat #4 - 18-09-2026 - Elaboration 1.docx](Referater/Referat%20%234%20-%2018-09-2026%20-%20Elaboration%201.docx)
+- [Referater/Referat #5 - 25-09-2026.docx](Referater/Referat%20%235%20-%2025-09-2026.docx)
+
+<!-- END GENERATED NAVIGATION -->

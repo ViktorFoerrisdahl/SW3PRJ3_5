@@ -3,10 +3,10 @@
 > Genereret fil. Ret originalen, ikke denne kopi.
 
 - Kilde: [Projektstyring/code-conventions.md](../Projektstyring/code-conventions.md)
-- SHA-256: `981b31462194f697f1fbb5dfb08f8796a101e35346bec178312cf9c3ddaa70cd`
-- Status: tekst kopieret
+- SHA-256: `b977655e7fd56b4eb7232b3dc0830fb3975855858e4bf2a4e797cd08815747fc`
+- Status: klar til læsning
 
-> Relative links i kildeteksten er relative til originalfilens mappe.
+
 
 ---
 
@@ -18,19 +18,19 @@ Brug editorens »Format Document« (typisk `Shift + Alt + F` i VS Code; genvejen
 
 ## Navngivning i C og C++
 
-| Type | Format | Eksempel |
-| --- | --- | --- |
-| Makroer/defines | CAPS_WITH_UNDERSCORE | `BUFFER_CAPACITY` |
-| Offentlige funktioner | Module_CamelCase | `Audio_ReadFrame` |
-| Private funktioner | CamelCase | `ReadFrame` |
-| Enum-typer | CAPS_WITH_UNDERSCORE | `AUDIO_STATUS` |
-| Enum-medlemmer | CAPS_WITH_UNDERSCORE | `AUDIO_OK` |
-| Struct-typer | CAPS_WITH_UNDERSCORE | `AUDIO_FRAME` |
-| Struct-medlemmer | lower_case_with_underscores | `timestamp_ns` |
-| Pointere | p_lower_case_with_underscores | `p_samples` |
-| Globale variabler | g_lower_case_with_underscores | `g_sample_count` |
-| Lokale variabler | lower_case_with_underscores | `sample_count` |
-| Typedef-aliaser | lower_case_t | `sample_index_t` |
+| Type                  | Format                        | Eksempel          |
+|-----------------------|-------------------------------|-------------------|
+| Makroer/defines       | CAPS_WITH_UNDERSCORE          | `BUFFER_CAPACITY` |
+| Offentlige funktioner | Module_CamelCase              | `Audio_ReadFrame` |
+| Private funktioner    | CamelCase                     | `ReadFrame`       |
+| Enum-typer            | CAPS_WITH_UNDERSCORE          | `AUDIO_STATUS`    |
+| Enum-medlemmer        | CAPS_WITH_UNDERSCORE          | `AUDIO_OK`        |
+| Struct-typer          | CAPS_WITH_UNDERSCORE          | `AUDIO_FRAME`     |
+| Struct-medlemmer      | lower_case_with_underscores   | `timestamp_ns`    |
+| Pointere              | p_lower_case_with_underscores | `p_samples`       |
+| Globale variabler     | g_lower_case_with_underscores | `g_sample_count`  |
+| Lokale variabler      | lower_case_with_underscores   | `sample_count`    |
+| Typedef-aliaser       | lower_case_t                  | `sample_index_t`  |
 
 Den tidligere README brugte staveformen »no_cammelcase_with_underscore«; tabellen præciserer den som små bogstaver med underscores uden at ændre konventionen. Hvis et navn både er globalt og en pointer, bruges `g_p_`, f.eks. `g_p_samples`.
 
@@ -42,7 +42,7 @@ Den tidligere README brugte staveformen »no_cammelcase_with_underscore«; tabel
 
 Dokumentér grænseflader i headerfiler med Doxygen. Brug `@enum` og `@class` til typer, `@brief` til en kort forklaring, `@param` til parametre og `@return` til returværdien. Forklar relevante enheder, ejerskab og fejltilfælde.
 
-```cpp
+``` cpp
 /**
  * @enum AUDIO_STATUS
  * @brief Result of an audio capture operation.
@@ -66,4 +66,4 @@ Eksemplet illustrerer dokumentationsformen og definerer ikke projektets kommende
 
 ## Ved ændringer
 
-Følg den eksisterende struktur, skriv relevante tests og kontrollér ændringerne før review. Skeln mellem kodekonventioner og faktisk understøttede buildkommandoer; repoet har endnu ikke et buildsystem for ATLAS. Python-værktøjer bruger almindelig Python-navngivning (`snake_case`); C/C++-tabellen gælder ikke Python.
+Følg den eksisterende struktur, skriv relevante tests og kontrollér ændringerne før review. Repoets CMake bruger C++20; registrér nye moduler og softwaretests dér. Angiv særskilt, når en test kræver Raspberry Pi, systemd eller tilsluttet hardware. Python-værktøjer bruger almindelig Python-navngivning (`snake_case`); C/C++-tabellen gælder ikke Python.
