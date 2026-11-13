@@ -6,4 +6,8 @@
 - SHA-256: `a7d26257914a3c4304b7ad137738e901f96148040eb1aac9830f0d0e87aa70dd`
 - Status: tomt dokument
 
+
+
 ---
+
+Dokumentet indeholder ingen hovedtekst, tabeller eller formler.

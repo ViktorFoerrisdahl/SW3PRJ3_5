@@ -16,7 +16,7 @@
 
 ## PTP:
 
-##
+
 
 ## Datastreaming: Mads
 
@@ -62,9 +62,9 @@ Hvis vi tæller alle samples siden start, bliver tælleren et ur: sample nr 4800
 
 Når klappet identificeres ved sample 1040 på den ene mikrofon, og klappet identificeres ved sample 1000 på den anden mikrofon, har vi der en tidsforskel på 40 samples, altså 40/48000 = 0.83 ms. Det er den tidsforskel hyperbler laves til TDOA algoritmen.
 
-## TUI:
+## TUI: 
 
-## Pegepind og motor:
+## Pegepind og motor: 
 
 ### **Mulighed 1 - Servomotor**
 
@@ -82,7 +82,10 @@ Stepper motor, der roterer med et vis antal steps. Denne har typisk altid 360+ g
 
 Der bruges en KY-008 laser module som pegepind.
 
-## TDOA-algoritme:
+## TDOA-algoritme: 
+
+
+
 
 ### Billedtekst (OCR) — asset-19bc66e881d5e55e3064.png
 
@@ -98,6 +101,7 @@ plads 6
 plads 7
 ©) Nyeste (skrevet efter wrap)
 © Ældste, overskrives nu
+
 
 ---
 
