@@ -6,8 +6,8 @@
 static const uint32_t SAMPLE_RATE_HZ = 44100;
 
 // Same clap in every channel, delayed by distance / speed of sound.
-static std::vector<NODE_EVENT> MakeMockEvents(const std::vector<MIC_POSITION>& mics, 
-                                                     double src_x_m, double src_y_m) 
+static std::vector<NODE_EVENT> MakeMockEvents(const std::vector<MIC_POSITION>& mics,
+                                                     double src_x_m, double src_y_m)
 {
     // 1. The clap: 64 random values, fixed seed -> same every run
     std::mt19937 rng(42);
@@ -40,7 +40,7 @@ static std::vector<NODE_EVENT> MakeMockEvents(const std::vector<MIC_POSITION>& m
 
 }
 
-int main() 
+int main()
 {
     std::vector<MIC_POSITION> mics = {
         {"A", 0.0, 0.0}, {"B", 3.0, 0.0}, {"C", 3.0, 3.0}, {"D", 0.0, 3.0}};
@@ -54,6 +54,6 @@ int main()
         std::printf("true (%.2f, %.2f)  estimate (%.2f, %.2f)  error %.1f cm  valid %d\n",
                     point[0], point[1], result.x_m, result.y_m, error_cm, result.valid);
     }
-    
+
     return 0;
 }

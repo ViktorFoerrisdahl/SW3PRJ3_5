@@ -9,5 +9,3 @@
 > Formatet .drawio understøttes ikke til tekstudtræk. Eksportér til DOCX, PDF eller Markdown; originalen er bevaret.
 
 ---
-
-

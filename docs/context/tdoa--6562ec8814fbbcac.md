@@ -26,7 +26,7 @@ Fire mikrofoner, to på hver Raspberry Pi. Et klap rammer dem på forskellige ti
 - Faktisk muligt med kun 2 pi's, hvor én af dem også står for beregningerne -> mere interresant med 3, hvor timestamps streames til en buffer på "beregner pi'en"
 
 To mikrofoner på samme Pi deler samplingsklokke -> tidsforskellen inden for et par er præcis uden synkronisering.
-- 
+-
 - eller 3D (stort set samme koncept, bare skaleret op med endu en dimension)
 
 ## Pi1 controller

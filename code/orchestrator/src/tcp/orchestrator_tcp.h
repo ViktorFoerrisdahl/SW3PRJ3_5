@@ -9,22 +9,22 @@
 
 class OrchestratorTCP {
 public:
-	OrchestratorTCP(int port, EventQueue& queue);
+    OrchestratorTCP(int port, EventQueue& queue);
 
-	void start();
+    void start();
 
 private:
-	std::optional<DetectedEvent> jsonToStruct(const std::string& jsonLine);
+    std::optional<DetectedEvent> jsonToStruct(const std::string& jsonLine);
 
-	void pushToQueue(DetectedEvent& ev);
+    void pushToQueue(DetectedEvent& ev);
 
-	std::string recieveJson();
+    std::string recieveJson();
 
     void receiveLoop();
 
-	int port_;
-	int listenFd_ = -1;
-	sockaddr_in addr_;
-	EventQueue& queue_;
+    int port_;
+    int listenFd_ = -1;
+    sockaddr_in addr_;
+    EventQueue& queue_;
 
 };
