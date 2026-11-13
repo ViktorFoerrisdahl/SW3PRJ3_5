@@ -18,6 +18,7 @@ struct TDOA_RESULT
     bool valid;
     double x_m;
     double y_m;
+    std::string time_stamp;
 };
 
 

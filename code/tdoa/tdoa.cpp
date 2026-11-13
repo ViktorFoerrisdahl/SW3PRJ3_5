@@ -167,7 +167,7 @@ void tdoa::GaussNewton(const std::vector<MIC_POSITION> &mics, const std::vector<
         //Check if the step is so small that we're there
         if (std::sqrt(delta_x * delta_x + delta_y * delta_y) < TOLERANCE) break;
     }
-    //Updating final result
+    // Updating final result
     x_m = x;
     y_m = y;
 }
@@ -187,14 +187,14 @@ void tdoa::SolvePosition(const std::vector<MIC_POSITION> &mics, const std::vecto
 
 TDOA_RESULT tdoa::ComputePosition(const std::vector<DetectedEvent> &events, const std::vector<MIC_POSITION> &mics)
 {
-    //Intialise lists and result
-    TDOA_RESULT result = {false, 0.0, 0.0};     //Invalid until proven otherwise
+    // Intialise lists and result
+    TDOA_RESULT result = {false, 0.0, 0.0, " "};     //Invalid until proven otherwise
     std::vector<MIC_POSITION> positions;        //Vector for microphones
     std::vector<std::vector<int32_t>> channels; //Samples of each channel
     std::vector<int64_t> t_first_ns;            //Vector for first sample time of each channel 
     uint32_t sample_rate = 0;                   //Shared variable for sample rate
 
-    //Unpack events (One from each pi, two microphones per pi)
+    // Unpack events (One from each pi, two microphones per pi)
     for (const auto &event : events){   //For each event
 
         sample_rate = event.sample_rate;                    //Grabs sample rate from here (should be same for both events)
@@ -216,7 +216,7 @@ TDOA_RESULT tdoa::ComputePosition(const std::vector<DetectedEvent> &events, cons
     }
     if (channels.size() < 3) return result; //Needs three mics: If not abandon
 
-    //Cross correlation and build a vector from this
+    // Cross correlation and build a vector from this
     std::vector<double> tdoa_s{0.0};                        //Reference 0 at index 0
     for (int i = 1; i < channels.size(); i++){              //Starting at 1
         double lag = tdoa::CrossCorrelate(channels[0], channels[i]);
@@ -224,9 +224,12 @@ TDOA_RESULT tdoa::ComputePosition(const std::vector<DetectedEvent> &events, cons
         tdoa_s.push_back((double)lag / sample_rate + offset_s);     //Samples → seconds
     }
 
-    //Call solveposition using vector
+    // Call solveposition using vector
     tdoa::SolvePosition(positions, tdoa_s, result.x_m, result.y_m);
     result.valid = true;
+
+    // Update timestamp
+
 
     //Return result
     return result;
