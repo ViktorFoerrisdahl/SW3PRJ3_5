@@ -10,7 +10,7 @@
 // Tidsparametre angives i millisekunder og omregnes til frames med
 // msToFrames(). Én frame = ét sample fra hver af nodens to mikrofoner.
 struct DetectorConfig {
-    // Hvilken mikrofonnode (slave) detektoren kører på. Sendes med i hver hændelse.
+    // Hvilken mikrofonnode detektoren kører på. Sendes med i hver hændelse.
     uint16_t node_id = 0;
 
     // Sample rate i Hz. Vi sampler med 48 kHz i ALSA-formatet S32_LE.
@@ -38,7 +38,7 @@ struct DetectorConfig {
     // den første: 3 m / 343 m/s ≈ 8,7 ms plus en margin.
     double pair_window_ms = 10.0;
 
-    // Udsnittet der sendes til master: pre_ms før og post_ms efter triggerpunktet.
+    // Udsnittet der sendes til orchestrator: pre_ms før og post_ms efter triggerpunktet.
     double pre_ms = 15.0;
     double post_ms = 35.0;
 

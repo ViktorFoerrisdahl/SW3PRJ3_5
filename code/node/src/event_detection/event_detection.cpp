@@ -68,12 +68,12 @@ EventDetector::EventDetector(const RingBuffer& ring_buffer, EventQueue& output, 
 EventDetector::~EventDetector() { stop(); }
 
 void EventDetector::start() {
-	// Start kun i tilfælde af at der ikke allerede kører en tråd
+    // Start kun i tilfælde af at der ikke allerede kører en tråd
     if (!thread_.joinable()) {
-		// Start tråden
-		// Lambda funktionen:
-		//  Vi sørger for at tråden har fuld adgang til denne instans af klassen ([this])
-		//  Lambdaen skal blot kalde run() for at påbegynde detektoren
+        // Start tråden
+        // Lambda funktionen:
+        //  Vi sørger for at tråden har fuld adgang til denne instans af klassen ([this])
+        //  Lambdaen skal blot kalde run() for at påbegynde detektoren
         thread_ = std::jthread([this](std::stop_token st) { run(st); });
     }
 }
@@ -122,15 +122,15 @@ void EventDetector::processFrame(uint64_t f, const Frame& frame) {
     // filtrene altid følger signalet.
     std::array<bool, 2> over{};
     for (int c = 0; c < 2; ++c) {
-		// Samples bit shiftes til reel PCM værdi og dc offset fjernes
+        // Samples bit shiftes til reel PCM værdi og dc offset fjernes
         const int32_t x = frame.ch[c] >> config_.sample_shift;  // aritmetisk skift, bevarer fortegn
         const int32_t y = dc_[c].process(x);
-		// Samples tilføjes til rms vindue og der vurderes om sample er over threshold
+        // Samples tilføjes til rms vindue og der vurderes om sample er over threshold
         rms_[c].push(y);
         over[c] = rms_[c].sum() > limit_[c];
     }
 
-	// Ikke lav nogen vurderinger før warmpup er færdigt
+    // Ikke lav nogen vurderinger før warmpup er færdigt
     if (warmup_left_ > 0) {
         --warmup_left_;
         return;
@@ -139,17 +139,17 @@ void EventDetector::processFrame(uint64_t f, const Frame& frame) {
     switch (state_) {
         case State::Listening:
             if (f < holdoff_until_ || !(over[0] || over[1])) {
-				// Hvis der stadig er sandsynlighed for ekko eller intet sample er over threshold -> gør intet
+                // Hvis der stadig er sandsynlighed for ekko eller intet sample er over threshold -> gør intet
                 break;
             }
-			// Hvis du er kommet så langt må der være sket en hændelse på en af mikrofonerne
+            // Hvis du er kommet så langt må der være sket en hændelse på en af mikrofonerne
             trigger_ = f;
             if (over[0] && over[1]) {
                 // Begge mikrofoner er over i samme frame -> gør klar til post
                 state_ = State::WaitingPost;
             } else {
-				// Hvis kun en mikrofon er over, gem den i first_channel_,
-				// indstil deadline for næste mikrofon og sæt state til WaitingSecond.
+                // Hvis kun en mikrofon er over, gem den i first_channel_,
+                // indstil deadline for næste mikrofon og sæt state til WaitingSecond.
                 first_channel_ = over[0] ? 0 : 1;
                 pair_deadline_ = f + pair_frames_;
                 state_ = State::WaitingSecond;
@@ -158,7 +158,7 @@ void EventDetector::processFrame(uint64_t f, const Frame& frame) {
 
         case State::WaitingSecond:
             if (over[1 - first_channel_]) {
-				// Hvis den manglende mikrofon er over, gør klar til post
+                // Hvis den manglende mikrofon er over, gør klar til post
                 state_ = State::WaitingPost;
             } else if (f >= pair_deadline_) {
                 // Den anden mikrofon nåede ikke over tærsklen i tide, så det
@@ -180,35 +180,35 @@ void EventDetector::processFrame(uint64_t f, const Frame& frame) {
 }
 
 void EventDetector::extractAndSend() {
-	// Få gobal startframe der skal kopieres fra i ringbuffer
+    // Få gobal startframe der skal kopieres fra i ringbuffer
     const uint64_t start = trigger_ - pre_frames_;
-	// Få mængden af frames der skal kopieres
+    // Få mængden af frames der skal kopieres
     const std::size_t count = static_cast<std::size_t>(pre_frames_) + post_frames_;
 
-	// Initialiser en DetectedEvent og fyld med data
+    // Initialiser en DetectedEvent og fyld med data
     DetectedEvent ev;
     ev.node_id = config_.node_id;
     ev.sample_rate = config_.sample_rate;
     ev.trigger_offset = pre_frames_;
     ev.frames.resize(count);
 
-	// Anvend ringbufferens metoder til at kopiere frames og få PTP timestamps
+    // Anvend ringbufferens metoder til at kopiere frames og få PTP timestamps
     // copyFrames() returnerer false, hvis starten af udsnittet er blevet
     // overskrevet under kopien. Så kasseres hændelsen.
     const bool copied = ring_buffer_.copyFrames(start, count, ev.frames.data());
     const bool stamped = copied && ring_buffer_.timestampNs(start, ev.t_first_ns);
 
     if (copied && stamped) {
-		// Hvis ringbuffer metoder afviklede uden fejl, skub hændelse til kø
+        // Hvis ringbuffer metoder afviklede uden fejl, skub hændelse til kø
         ev.event_seq = next_seq_++;
         output_.push(std::move(ev));
         ++events_sent_;
     } else {
-		// Ellers registrer hændelse som slettet
+        // Ellers registrer hændelse som slettet
         ++events_discarded_;
     }
 
-	// Sæt cooldown så detektoren ikke opfanger ekko og reset state
+    // Sæt cooldown så detektoren ikke opfanger ekko og reset state
     holdoff_until_ = trigger_ + holdoff_frames_;
     state_ = State::Listening;
 }

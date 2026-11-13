@@ -14,7 +14,7 @@
 #include "ring_buffer.h"
 #include "sliding_rms.h"
 
-// Hændelsesdetektering på én mikrofonnode (slave).
+// Hændelsesdetektering på én mikrofonnode.
 //
 // Detektoren kører i sin egen tråd og læser frames fra nodens ringbuffer med
 // sin egen read pointer. For hver frame og hver af de to mikrofoner:

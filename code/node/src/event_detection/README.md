@@ -1,4 +1,4 @@
-# Hændelsesdetektering (slave)
+# Hændelsesdetektering (node)
 
 Detekterer klap på én mikrofonnode og lægger et udsnit af de rå samples omkring klappet i en kø til TCP-modulet. Designet står i "Hændelsesdetektering" i rapporten.
 
@@ -9,7 +9,7 @@ Detekterer klap på én mikrofonnode og lægger et udsnit af de rå samples omkr
 | `detector_config.h` | Alle parametre (`DetectorConfig`) og formlen for `THRESHOLD_RAW` (`thresholdRaw()`) |
 | `dc_remover.h` | Løbende gennemsnit pr. kanal, der fjerner DC-offset |
 | `sliding_rms.h/.cpp` | Glidende RMS-vindue med `int64_t`-sum |
-| `event_queue.h` | `DetectedEvent` (output) og den trådsikre kø til TCP-modulet |
+| `event_queue.h` | `DetectedEvent` (output) med JSON-format og den trådsikre kø til TCP-modulet |
 | `event_detection.h/.cpp` | `EventDetector`: tråden, tilstandsmaskinen og udklip af udsnittet |
 
 Tests og en mock af ringbufferen ligger i `tests/event_detection/`. Byggekommandoen står øverst i testfilen.
@@ -46,7 +46,7 @@ Det kræver af ringbufferen:
 
 ## Output til TCP-modulet
 
-TCP-modulet kalder `EventQueue::pop(stop_token)`, som venter på næste `DetectedEvent`. Hændelsen indeholder node-id, løbenummer, sample rate, timestamp for udsnittets første frame, triggerpunktets placering i udsnittet og de rå interleaved samples. At pakke det til bytes (header, endianness) er TCP-modulets ansvar. Er køen fuld, smides den ældste hændelse væk, så detektoren aldrig venter på netværket.
+TCP-modulet kalder `EventQueue::pop(stop_token)`, som venter på næste `DetectedEvent`. Hændelsen indeholder node-id, løbenummer, sample rate, timestamp for udsnittets første frame, triggerpunktets placering i udsnittet og de rå interleaved samples. `DetectedEvent::json_io()` bestemmer, hvordan hændelsen formateres som JSON med json_dto, og TCP-modulet sender den som én JSON-linje afsluttet med `\n`. Samples ligger i `frames` som ét fladt array: `[ch0, ch1, ch0, ch1, ...]`. Er køen fuld, smides den ældste hændelse væk, så detektoren aldrig venter på netværket.
 
 ## Brug
 
