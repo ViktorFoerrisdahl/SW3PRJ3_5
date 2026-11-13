@@ -188,7 +188,7 @@ void tdoa::SolvePosition(const std::vector<MIC_POSITION> &mics, const std::vecto
 TDOA_RESULT tdoa::ComputePosition(const std::vector<DetectedEvent> &events, const std::vector<MIC_POSITION> &mics)
 {
     // Intialise lists and result
-    TDOA_RESULT result = {false, 0.0, 0.0, " "};     //Invalid until proven otherwise
+    TDOA_RESULT result = {false, 0.0, 0.0, 0LL};     //Invalid until proven otherwise
     std::vector<MIC_POSITION> positions;        //Vector for microphones
     std::vector<std::vector<int32_t>> channels; //Samples of each channel
     std::vector<int64_t> t_first_ns;            //Vector for first sample time of each channel
@@ -229,7 +229,10 @@ TDOA_RESULT tdoa::ComputePosition(const std::vector<DetectedEvent> &events, cons
     result.valid = true;
 
     // Update timestamp
-
+    const DetectedEvent &event = events[0];
+    result.time_stamp_ns = event.t_first_ns + (int64_t)event.trigger_offset
+                                                      /sample_rate  //Divided by sample rate to get time (s)
+                                                      *1e-9;        //Converted to nanoseconds
 
     //Return result
     return result;
