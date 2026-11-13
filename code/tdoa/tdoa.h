@@ -26,10 +26,10 @@ class tdoa
 {
 
 private:
-    // Maximum lag between mics based on maximum distance between mics in (3x3m)
+    //Maximum lag between mics based on maximum distance between mics in (3x3m)
     static const int MAX_LAG_SAMPLES = 600; // 3x3 m diagonal (4.24 m) - 4.24m divided by speed of sound then multiplied with sample frequency 48kHz: Roughly 594 samples (600 cap to be safe)
 
-    // Initiliaze functions
+    //Initiliaze functions
     static const MIC_POSITION* FindMic(const std::vector<MIC_POSITION> &mics, const uint16_t &node_id, const uint16_t &channel);
     static double CrossCorrelate(const std::vector<int32_t> &ref, const std::vector<int32_t> &sig);
     static void GridSearch(const std::vector<MIC_POSITION> &mics, const std::vector<double> &tdoa_s, double &x_m, double &y_m);

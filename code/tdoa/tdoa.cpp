@@ -36,8 +36,8 @@ double tdoa::CrossCorrelate(const std::vector<int32_t> &ref, const std::vector<i
         sums[lag + MAX_LAG_SAMPLES] = sum;  // Remember the score (index 0 = lag -600): Used in parabolic interpolation
         if (sum > best_sum)
             best_sum = sum, best_lag = lag; // If the found sum for this lag is bigger than the previous best, overwrite best_lag
-    
-    } 
+
+    }
 
     // Parabolic interpolation: Using neighbours of the best lag, where is the true peak.
 
@@ -45,7 +45,7 @@ double tdoa::CrossCorrelate(const std::vector<int32_t> &ref, const std::vector<i
     if (best_lag == -MAX_LAG_SAMPLES || best_lag == MAX_LAG_SAMPLES)
     {
         return best_lag;
-    }    
+    }
 
     // Set left, right and peak using the best_lag found
     double y_left  = sums[best_lag - 1 + MAX_LAG_SAMPLES];
@@ -191,7 +191,7 @@ TDOA_RESULT tdoa::ComputePosition(const std::vector<DetectedEvent> &events, cons
     TDOA_RESULT result = {false, 0.0, 0.0, " "};     //Invalid until proven otherwise
     std::vector<MIC_POSITION> positions;        //Vector for microphones
     std::vector<std::vector<int32_t>> channels; //Samples of each channel
-    std::vector<int64_t> t_first_ns;            //Vector for first sample time of each channel 
+    std::vector<int64_t> t_first_ns;            //Vector for first sample time of each channel
     uint32_t sample_rate = 0;                   //Shared variable for sample rate
 
     // Unpack events (One from each pi, two microphones per pi)
