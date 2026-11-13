@@ -71,8 +71,6 @@ int main()
 
         std::thread t1([&p]() { p.plotNewEventAndDelete(1, 3, 1, WAITTIME_BEFORE_DELETION); });
 
-        sleep(5);
-
         std::thread t2([&p]() { p.plotNewEventAndDelete(2, 2.5, 2.1, WAITTIME_BEFORE_DELETION); });
 
         int input{23};

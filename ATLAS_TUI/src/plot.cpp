@@ -19,13 +19,17 @@ void plot::startPyPlot(int AmountOfMics, std::vector<MIC_POSITION> vectorMic)
         command.append(" ");
     }
 
-    FILE *plot = popen(command.c_str(), "w");
-    if (plot == nullptr)
     {
-        perror("popen in plot contructor");
-        return;
+        std::lock_guard<std::mutex> lock(python_lock_);
+
+        FILE *plot = popen(command.c_str(), "w");
+        if (plot == nullptr)
+        {
+            perror("popen in plot contructor");
+            return;
+        }
+        plot_ = plot;
     }
-    plot_ = plot;
 }
 
 void plot::plotNewEventAndDelete(int ID, float x, float y, int waittime)
@@ -48,8 +52,12 @@ void plot::plotNewEventAndDelete(int ID, float x, float y, int waittime)
     event.append(std::to_string(ID));
     event.append("\n");
 
-    fputs(event.c_str(), plot_);
-    fflush(plot_);
+    {
+        std::lock_guard<std::mutex> lock(python_lock_);
+        fputs(event.c_str(), plot_);
+        fflush(plot_);
+        sleep(5);
+    }
 
     sleep(waittime);
 
@@ -58,8 +66,11 @@ void plot::plotNewEventAndDelete(int ID, float x, float y, int waittime)
     DEL.append("DEL");
     DEL.append("\n");
 
-    fputs(DEL.c_str(), plot_);
-    fflush(plot_);
+    {
+        std::lock_guard<std::mutex> lock(python_lock_);
+        fputs(DEL.c_str(), plot_);
+        fflush(plot_);
+    }
 }
 
 void plot::stopPyPlot()
@@ -69,8 +80,11 @@ void plot::stopPyPlot()
     STOP.append("STOP");
     STOP.append("\n");
 
-    fputs(STOP.c_str(), plot_);
-    fflush(plot_);
+    {
+        std::lock_guard<std::mutex> lock(python_lock_);
+        fputs(STOP.c_str(), plot_);
+        fflush(plot_);
+    }
 }
 
 void plot::EnterNewMics(microphones &m)
@@ -137,7 +151,9 @@ void plot::EnterNewMics(microphones &m)
 
     NEWMICS.append("\n");
 
-    fputs(NEWMICS.c_str(), plot_);
-    fflush(plot_);
+    {
+        std::lock_guard<std::mutex> lock(python_lock_);
+        fputs(NEWMICS.c_str(), plot_);
+        fflush(plot_);
+    }
 }
-
