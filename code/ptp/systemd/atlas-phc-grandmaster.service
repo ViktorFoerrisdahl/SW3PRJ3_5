@@ -1,0 +1,11 @@
+[Unit]
+Description=ATLAS system clock to PTP hardware clock
+BindsTo=atlas-ptp-grandmaster.service
+After=atlas-ptp-grandmaster.service
+
+[Service]
+ExecStart=/usr/sbin/phc2sys -s CLOCK_REALTIME -c eth0 -z /run/atlas-ptp4l -w -q -m
+Restart=on-failure
+RestartSec=1
+StandardOutput=journal
+StandardError=journal

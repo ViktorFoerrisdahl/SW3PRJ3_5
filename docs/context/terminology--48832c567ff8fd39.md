@@ -3,10 +3,10 @@
 > Genereret fil. Ret originalen, ikke denne kopi.
 
 - Kilde: [Projektstyring/terminology.md](../Projektstyring/terminology.md)
-- SHA-256: `13f149366c07a7c159a9cbf24a413f8113df2a01a47cbed82eef1351e8bf4948`
-- Status: tekst kopieret
+- SHA-256: `8d22c5f5cfa49d254719f8157a1e550b8183d9857328d0cf20f3f0ef1005003b`
+- Status: klar til læsning
 
-> Relative links i kildeteksten er relative til originalfilens mappe.
+
 
 ---
 
@@ -17,7 +17,7 @@ Denne liste fastlægger fælles sprogbrug. Definitionerne er sproglige konventio
 ## Projektets begreber
 
 | Foretrukken betegnelse i dokumentation | Engelsk term i kode og kommentarer | Betydning og brug |
-| --- | --- | --- |
+|----|----|----|
 | ATLAS | ATLAS | Acoustic TDOA Localization and Alert System. Brug store bogstaver. |
 | lydkilde | sound source | Den fysiske kilde, som udsender et akustisk signal; i proof of concept et klap. |
 | akustisk signal | acoustic signal | Lyden før systemet har afgjort, om den indeholder en relevant hændelse. |
@@ -35,6 +35,10 @@ Denne liste fastlægger fælles sprogbrug. Definitionerne er sproglige konventio
 | timestamp | timestamp | Et tidspunkt knyttet til en eksplicit tidsreference. Brug ikke modtagelsestid som synonym for optagelsestid. |
 | ursynkronisering | clock synchronization | Tilpasning af ure mellem noder. Angiv, om der menes systemur eller samplingur. |
 | PTP | Precision Time Protocol | Protokol til ursynkronisering. Skriv linuxptp om softwarepakken og `ptp4l` om programmet. |
+| PTP-grandmaster | PTP grandmaster | Node, der leverer tidsreferencen i PTP-netværket. Rollen er uafhængig af rollen som central node. |
+| PTP-slave | PTP slave | Node, der synkroniserer sit ur til den valgte grandmaster. |
+| PTP-hardwareur (PHC) | PTP Hardware Clock | Hardwareur knyttet til netværksinterfacet. Skeln fra Linux' systemur og mikrofonernes samplingur. |
+| PTP-service | PtpService | C++-komponent til lokal styring af linuxptp og aflæsning af synkroniseringsstatus på en mikrofonnode. En softwaretest med simulerede systemkommandoer er adskilt fra afprøvning på Raspberry Pi. |
 | samplingur | sample clock | Uret, der bestemmer optagelsens samplingtidspunkter; skeln fra systemuret. |
 | sample | sample | Én måleværdi fra én kanal. Flertal: samples. |
 | frame | frame | Ét sample fra hver kanal ved samme samplingtidspunkt. Antal bytes afhænger af kanaler og sampleformat. |
@@ -46,6 +50,7 @@ Denne liste fastlægger fælles sprogbrug. Definitionerne er sproglige konventio
 | MEMS-mikrofon | MEMS microphone | Mikrofon baseret på mikroelektromekanisk teknologi. Brug I²S MEMS-mikrofon om den type, mikrofonanalysen vælger. |
 | TUI | text-based user interface | Tekstbaseret brugergrænseflade. Må ikke bruges som synonym for alle former for visualisering. |
 | proof of concept | proof of concept | Afgrænset demonstration af princippets gennemførlighed; forkortes PoC efter første forklaring. |
+| OCR | optical character recognition | Automatisk genkendelse af tekst i billeder og scannede dokumenter. Gengiver ikke i sig selv diagrammers pile og relationer. |
 
 ## Skriveregler
 
@@ -60,6 +65,6 @@ Denne liste fastlægger fælles sprogbrug. Definitionerne er sproglige konventio
 
 ## Kildegrundlag og åbne spørgsmål
 
-Listen bygger på projektformuleringen i `Inception/`, referat #4 og analyserne i `Elaboration E2/`. Betegnelser fra et tidligere chatresumé, f.eks. ToI og Orchestrator, gøres ikke til vedtagne komponentnavne uden belæg i de relevante projektfiler og diagrammer.
+Listen bygger på projektformuleringen i `Inception/`, referat \#4 og analyserne i `Elaboration E2/`. Betegnelser fra et tidligere chatresumé, f.eks. ToI og Orchestrator, gøres ikke til vedtagne komponentnavne uden belæg i de relevante projektfiler og diagrammer.
 
 Projektformuleringens Product Goal udelader klassifikation, mens hændelsesdetekteringsanalysen omtaler at afgøre, om lyd kommer fra en drone. Dette skal afklares fagligt; fælles ordvalg løser ikke konflikten.

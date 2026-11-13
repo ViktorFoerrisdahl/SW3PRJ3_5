@@ -6,12 +6,14 @@ on:
     paths:
       - 'docs/**'
       - '!docs/context/**'
-      - 'code/tools/context/**'
+      - 'code/**'
+      - '.gitignore'
       - '.github/workflows/documentation.yml'
   pull_request:
     paths:
       - 'docs/**'
-      - 'code/tools/context/**'
+      - 'code/**'
+      - '.gitignore'
       - '.github/workflows/documentation.yml'
   workflow_dispatch:
 
@@ -39,18 +41,25 @@ jobs:
       - name: Installér konverteringsværktøjer
         run: |
           sudo apt-get update
-          sudo apt-get install --yes pandoc
+          sudo apt-get install --yes pandoc poppler-utils tesseract-ocr tesseract-ocr-dan tesseract-ocr-eng
           python -m pip install -r code/tools/context/requirements.txt
+      - name: Opdatér README-navigation
+        run: python code/tools/navigation/generate.py
       - name: Generér kontekst
         run: python code/tools/context/generate.py
+      - name: Kontrollér navigation og lokale links
+        run: python code/tools/navigation/generate.py --check
       - name: Kontrollér kildeindeks
         run: python code/tools/context/generate.py --check
       - name: Gem kontekst til review og fejlsøgning
         if: always()
         uses: actions/upload-artifact@v6
         with:
-          name: documentation-context
-          path: docs/context/
+          name: repository-documentation
+          path: |
+            docs/context/
+            docs/README.md
+            code/README.md
           if-no-files-found: error
           retention-days: 14
 
@@ -66,23 +75,25 @@ jobs:
       - uses: actions/checkout@v6
       - uses: actions/download-artifact@v6
         with:
-          name: documentation-context
+          name: repository-documentation
           path: ${{ runner.temp }}/documentation-context
       - name: Erstat genererede filer
         env:
           CONTEXT_ARTIFACT: ${{ runner.temp }}/documentation-context
         run: |
           mkdir -p docs/context
-          rsync -a --delete "$CONTEXT_ARTIFACT/" docs/context/
+          rsync -a --delete "$CONTEXT_ARTIFACT/docs/context/" docs/context/
+          cp "$CONTEXT_ARTIFACT/docs/README.md" docs/README.md
+          cp "$CONTEXT_ARTIFACT/code/README.md" code/README.md
       - name: Commit og push uden force
         env:
           TARGET_BRANCH: ${{ github.ref_name }}
         run: |
-          git add -- docs/context
+          git add -- docs/context docs/README.md code/README.md
           if git diff --cached --quiet; then
             exit 0
           fi
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git commit -m 'docs: update generated project context'
+          git commit -m 'docs: update navigation and generated project context'
           git push origin "HEAD:refs/heads/$TARGET_BRANCH"

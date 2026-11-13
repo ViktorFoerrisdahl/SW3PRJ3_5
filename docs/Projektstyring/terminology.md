@@ -23,6 +23,10 @@ Denne liste fastlægger fælles sprogbrug. Definitionerne er sproglige konventio
 | timestamp | timestamp | Et tidspunkt knyttet til en eksplicit tidsreference. Brug ikke modtagelsestid som synonym for optagelsestid. |
 | ursynkronisering | clock synchronization | Tilpasning af ure mellem noder. Angiv, om der menes systemur eller samplingur. |
 | PTP | Precision Time Protocol | Protokol til ursynkronisering. Skriv linuxptp om softwarepakken og `ptp4l` om programmet. |
+| PTP-grandmaster | PTP grandmaster | Node, der leverer tidsreferencen i PTP-netværket. Rollen er uafhængig af rollen som central node. |
+| PTP-slave | PTP slave | Node, der synkroniserer sit ur til den valgte grandmaster. |
+| PTP-hardwareur (PHC) | PTP Hardware Clock | Hardwareur knyttet til netværksinterfacet. Skeln fra Linux' systemur og mikrofonernes samplingur. |
+| PTP-service | PtpService | C++-komponent til lokal styring af linuxptp og aflæsning af synkroniseringsstatus på en mikrofonnode. En softwaretest med simulerede systemkommandoer er adskilt fra afprøvning på Raspberry Pi. |
 | samplingur | sample clock | Uret, der bestemmer optagelsens samplingtidspunkter; skeln fra systemuret. |
 | sample | sample | Én måleværdi fra én kanal. Flertal: samples. |
 | frame | frame | Ét sample fra hver kanal ved samme samplingtidspunkt. Antal bytes afhænger af kanaler og sampleformat. |
@@ -34,6 +38,7 @@ Denne liste fastlægger fælles sprogbrug. Definitionerne er sproglige konventio
 | MEMS-mikrofon | MEMS microphone | Mikrofon baseret på mikroelektromekanisk teknologi. Brug I²S MEMS-mikrofon om den type, mikrofonanalysen vælger. |
 | TUI | text-based user interface | Tekstbaseret brugergrænseflade. Må ikke bruges som synonym for alle former for visualisering. |
 | proof of concept | proof of concept | Afgrænset demonstration af princippets gennemførlighed; forkortes PoC efter første forklaring. |
+| OCR | optical character recognition | Automatisk genkendelse af tekst i billeder og scannede dokumenter. Gengiver ikke i sig selv diagrammers pile og relationer. |
 
 ## Skriveregler
 
