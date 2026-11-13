@@ -35,7 +35,7 @@ Dette afsnit opdateres automatisk af CI. Ret teksten uden for markørerne.
 - [ptp/examples/ptp_node.cpp](ptp/examples/ptp_node.cpp)
 - [ptp/include/ptp_localization.h](ptp/include/ptp_localization.h)
 - [ptp/include/ptp_service.h](ptp/include/ptp_service.h)
-- [ptp/README.md](ptp/README.md)
+- [ptp/README.md](code/node/system/ptp/README.md)
 - [ptp/src/ptp_localization.cpp](ptp/src/ptp_localization.cpp)
 - [ptp/src/ptp_service.cpp](ptp/src/ptp_service.cpp)
 - [ptp/systemd/atlas-phc-grandmaster.service](ptp/systemd/atlas-phc-grandmaster.service)
