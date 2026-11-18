@@ -39,6 +39,8 @@ Denne liste fastlægger fælles sprogbrug. Definitionerne er sproglige konventio
 | TUI | text-based user interface | Tekstbaseret brugergrænseflade. Må ikke bruges som synonym for alle former for visualisering. |
 | proof of concept | proof of concept | Afgrænset demonstration af princippets gennemførlighed; forkortes PoC efter første forklaring. |
 | OCR | optical character recognition | Automatisk genkendelse af tekst i billeder og scannede dokumenter. Gengiver ikke i sig selv diagrammers pile og relationer. |
+| json_dto | json_dto | Headerbibliotek, som kobler C++-felter til JSON via `json_io()`; bruger RapidJSON. |
+| RapidJSON | RapidJSON | Headerbibliotek til læsning og skrivning af JSON, som bruges af json_dto. |
 
 ## Skriveregler
 

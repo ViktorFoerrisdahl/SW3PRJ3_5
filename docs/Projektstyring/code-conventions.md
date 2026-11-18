@@ -55,3 +55,7 @@ Eksemplet illustrerer dokumentationsformen og definerer ikke projektets kommende
 ## Ved ændringer
 
 Følg den eksisterende struktur, skriv relevante tests og kontrollér ændringerne før review. Repoets CMake bruger C++20; registrér nye moduler og softwaretests dér. Angiv særskilt, når en test kræver Raspberry Pi, systemd eller tilsluttet hardware. Python-værktøjer bruger almindelig Python-navngivning (`snake_case`); C/C++-tabellen gælder ikke Python.
+
+## Medfølgende biblioteker
+
+Tredjepartsbibliotekerne til JSON ligger i `code/tools/external/`. Bevar deres oprindelige kode og licenstekster; projektets navngivnings- og formateringsregler gælder gruppens egen kode. Orchestratorens `src/CMakeLists.txt` tilføjer mapperne som `SYSTEM`-søgestier. `.gitattributes` undtager de medfølgende biblioteker fra Gits whitespace-kontrol, mens gruppens egen kode fortsat kontrolleres.
