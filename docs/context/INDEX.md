@@ -35,6 +35,7 @@ Brug Markdown som primær læsekilde. **Klar til læsning** har ingen fundne kon
 | [Referater/Referat #3 - Møde med søren 150926.docx](../Referater/Referat%20%233%20-%20M%C3%B8de%20med%20s%C3%B8ren%20150926.docx) | [Læs](referat-3-m-de-med-s-ren-150926--5bf973b246ada4a5.md) | klar til læsning |
 | [Referater/Referat #4 - 18-09-2026 - Elaboration 1.docx](../Referater/Referat%20%234%20-%2018-09-2026%20-%20Elaboration%201.docx) | [Læs](referat-4-18-09-2026-elaboration-1--ef4106ff317643ab.md) | klar til læsning |
 | [Referater/Referat #5 - 25-09-2026.docx](../Referater/Referat%20%235%20-%2025-09-2026.docx) | [Læs](referat-5-25-09-2026--01957541a68ea745.md) | klar til læsning |
+| [construction/Activity diagram orchestrator_WIP.drawio](../construction/Activity%20diagram%20orchestrator_WIP.drawio) | [Læs](activity-diagram-orchestrator-wip--17cdec5e94030dcf.md) | manuel læsning kræves |
 | [construction/BDD-ATLAS.drawio](../construction/BDD-ATLAS.drawio) | [Læs](bdd-atlas--10871c22180e6716.md) | manuel læsning kræves |
 | [construction/IBD-ATLAS.drawio](../construction/IBD-ATLAS.drawio) | [Læs](ibd-atlas--0815fca310c0e093.md) | manuel læsning kræves |
 | [construction/Package diagram.drawio](../construction/Package%20diagram.drawio) | [Læs](package-diagram--ed503d2bc63cea95.md) | manuel læsning kræves |

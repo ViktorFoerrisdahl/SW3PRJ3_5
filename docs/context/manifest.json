@@ -195,9 +195,9 @@
   },
   {
     "source": "README.md",
-    "sha256": "5a98b5bbb3cce2f65b80c3533daf934e2046278b0a67e0202e42a4a70425cd09",
+    "sha256": "96cb369e9660864aaaa9f8ce951962d4cf91c5c4b713c185f50fa076695695f9",
     "output": "readme--b335630551682c19.md",
-    "output_sha256": "0516addc54248a75854cf1720d6cb727c4406f089ab789d81fa085b8198f31a6",
+    "output_sha256": "5d30ece1437338b465708ec04b862fd3aa4ee8c6b3858c65aa5e04daf5cf63ff",
     "status": "klar til læsning",
     "notes": []
   },
@@ -240,6 +240,16 @@
     "output_sha256": "2f1e8675c9014d23bf1eb37d183b5d6baf006410ded27ea694bcc45baa3215c9",
     "status": "klar til læsning",
     "notes": []
+  },
+  {
+    "source": "construction/Activity diagram orchestrator_WIP.drawio",
+    "sha256": "65f7a7ace09f15496f3cde0ce3f0289b422e5858e70feda6df32667a725e00d7",
+    "output": "activity-diagram-orchestrator-wip--17cdec5e94030dcf.md",
+    "output_sha256": "30fc483bbcb188282a57c361d993b8ff0b6b75faced4dfc8fe9c146d5b162482",
+    "status": "manuel læsning kræves",
+    "notes": [
+      "Formatet .drawio understøttes ikke til tekstudtræk. Eksportér til DOCX, PDF eller Markdown; originalen er bevaret."
+    ]
   },
   {
     "source": "construction/BDD-ATLAS.drawio",
