@@ -19,5 +19,3 @@ target_include_directories(main.out SYSTEM PRIVATE
     "${ATLAS_EXTERNAL_DIR}/json_dto"
     "${ATLAS_EXTERNAL_DIR}/rapidjson"
 )
-
-

@@ -4,7 +4,7 @@
 #include <vector>
 #include <cstdint>
 
-struct MIC_POSITION 
+struct MIC_POSITION
 {
     double x_m;
     double y_m;
@@ -17,7 +17,7 @@ class microphones
 private:
     int AmountOfMicrophones_ = 0;
     std::vector<MIC_POSITION> Microphones_;
-    
+
 public:
 
     microphones(int amount);
