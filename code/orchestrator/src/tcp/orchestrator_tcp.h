@@ -6,25 +6,39 @@
 #include <stop_token>
 #include <thread>
 #include <optional>
+#include <unistd.h>
+#include <atomic>
 
-class OrchestratorTCP {
+class OrchestratorTCP
+{
 public:
-    OrchestratorTCP(int port, EventQueue& queue);
+	OrchestratorTCP(int port, EventQueue &queue);
+	~OrchestratorTCP()
+	{
+		if (listenFd_ >= 0)
+			close(listenFd_);
+		for (auto &t : threads_)
+		{
+			if (t.joinable())
+				t.join();
+		}
+	}
 
-    void start();
+	void start();
 
 private:
-    std::optional<DetectedEvent> jsonToStruct(const std::string& jsonLine);
+	std::optional<DetectedEvent> jsonToStruct(const std::string &jsonLine);
 
-    void pushToQueue(DetectedEvent& ev);
+	void pushToQueue(DetectedEvent &ev);
 
-    std::string recieveJson();
+	std::string recieveJson(int fd, std::string &buf);
 
-    void receiveLoop();
+	void receiveLoop(int fd, int threadId);
 
-    int port_;
-    int listenFd_ = -1;
-    sockaddr_in addr_;
-    EventQueue& queue_;
-
+	int port_;
+	int listenFd_ = -1;
+	sockaddr_in addr_;
+	EventQueue &queue_;
+	std::thread threads_[2];
+	std::atomic<bool> done_[2]{true, true};
 };
