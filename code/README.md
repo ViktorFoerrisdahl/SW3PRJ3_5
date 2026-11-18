@@ -7,6 +7,8 @@ systemd-servicefiler og en softwaretest. Modulet bygges med projektets CMake.
 
 Se [kodekonventionerne](../docs/Projektstyring/code-conventions.md) og [AI-strategien](../docs/Projektstyring/ai-strategi.md) for sprog og arbejdsform.
 
+JSON-bibliotekerne `json_dto` og RapidJSON ligger i `tools/external/`. De er kopieret uændret fra KNP-projektets `restinio-bundle/external/` og bruges som headerfiler. Orchestratorens CMake tilføjer søgestierne, så der ikke kræves en separat installation.
+
 <!-- BEGIN GENERATED NAVIGATION -->
 
 ## Filoversigt
@@ -54,6 +56,7 @@ Dette afsnit opdateres automatisk af CI. Ret teksten uden for markørerne.
 - [node/tests/event_detection/test_event_detection.cpp](node/tests/event_detection/test_event_detection.cpp)
 - [orchestrator/system/CMakeLists.txt](orchestrator/system/CMakeLists.txt)
 - [orchestrator/system/inc/detected_event.h](orchestrator/system/inc/detected_event.h)
+- [orchestrator/system/inc/json_logger.h](orchestrator/system/inc/json_logger.h)
 - [orchestrator/system/inc/menu.h](orchestrator/system/inc/menu.h)
 - [orchestrator/system/inc/microphones.h](orchestrator/system/inc/microphones.h)
 - [orchestrator/system/inc/orchestrator_tcp.h](orchestrator/system/inc/orchestrator_tcp.h)
@@ -61,6 +64,7 @@ Dette afsnit opdateres automatisk af CI. Ret teksten uden for markørerne.
 - [orchestrator/system/inc/tdoa.h](orchestrator/system/inc/tdoa.h)
 - [orchestrator/system/requirements.txt](orchestrator/system/requirements.txt)
 - [orchestrator/system/src/CMakeLists.txt](orchestrator/system/src/CMakeLists.txt)
+- [orchestrator/system/src/json_logger.cpp](orchestrator/system/src/json_logger.cpp)
 - [orchestrator/system/src/main from tdoa.cpp](orchestrator/system/src/main%20from%20tdoa.cpp)
 - [orchestrator/system/src/main.cpp](orchestrator/system/src/main.cpp)
 - [orchestrator/system/src/menu.cpp](orchestrator/system/src/menu.cpp)
@@ -76,6 +80,48 @@ Dette afsnit opdateres automatisk af CI. Ret teksten uden for markørerne.
 - [tools/context/generate.py](tools/context/generate.py)
 - [tools/context/quality.py](tools/context/quality.py)
 - [tools/context/requirements.txt](tools/context/requirements.txt)
+- [tools/external/json_dto/json_dto/pub.hpp](tools/external/json_dto/json_dto/pub.hpp)
+- [tools/external/json_dto/json_dto/validators.hpp](tools/external/json_dto/json_dto/validators.hpp)
+- [tools/external/json_dto/LICENSE](tools/external/json_dto/LICENSE)
+- [tools/external/rapidjson/license.txt](tools/external/rapidjson/license.txt)
+- [tools/external/rapidjson/rapidjson/allocators.h](tools/external/rapidjson/rapidjson/allocators.h)
+- [tools/external/rapidjson/rapidjson/cursorstreamwrapper.h](tools/external/rapidjson/rapidjson/cursorstreamwrapper.h)
+- [tools/external/rapidjson/rapidjson/document.h](tools/external/rapidjson/rapidjson/document.h)
+- [tools/external/rapidjson/rapidjson/encodedstream.h](tools/external/rapidjson/rapidjson/encodedstream.h)
+- [tools/external/rapidjson/rapidjson/encodings.h](tools/external/rapidjson/rapidjson/encodings.h)
+- [tools/external/rapidjson/rapidjson/error/en.h](tools/external/rapidjson/rapidjson/error/en.h)
+- [tools/external/rapidjson/rapidjson/error/error.h](tools/external/rapidjson/rapidjson/error/error.h)
+- [tools/external/rapidjson/rapidjson/filereadstream.h](tools/external/rapidjson/rapidjson/filereadstream.h)
+- [tools/external/rapidjson/rapidjson/filewritestream.h](tools/external/rapidjson/rapidjson/filewritestream.h)
+- [tools/external/rapidjson/rapidjson/fwd.h](tools/external/rapidjson/rapidjson/fwd.h)
+- [tools/external/rapidjson/rapidjson/internal/biginteger.h](tools/external/rapidjson/rapidjson/internal/biginteger.h)
+- [tools/external/rapidjson/rapidjson/internal/clzll.h](tools/external/rapidjson/rapidjson/internal/clzll.h)
+- [tools/external/rapidjson/rapidjson/internal/diyfp.h](tools/external/rapidjson/rapidjson/internal/diyfp.h)
+- [tools/external/rapidjson/rapidjson/internal/dtoa.h](tools/external/rapidjson/rapidjson/internal/dtoa.h)
+- [tools/external/rapidjson/rapidjson/internal/ieee754.h](tools/external/rapidjson/rapidjson/internal/ieee754.h)
+- [tools/external/rapidjson/rapidjson/internal/itoa.h](tools/external/rapidjson/rapidjson/internal/itoa.h)
+- [tools/external/rapidjson/rapidjson/internal/meta.h](tools/external/rapidjson/rapidjson/internal/meta.h)
+- [tools/external/rapidjson/rapidjson/internal/pow10.h](tools/external/rapidjson/rapidjson/internal/pow10.h)
+- [tools/external/rapidjson/rapidjson/internal/regex.h](tools/external/rapidjson/rapidjson/internal/regex.h)
+- [tools/external/rapidjson/rapidjson/internal/stack.h](tools/external/rapidjson/rapidjson/internal/stack.h)
+- [tools/external/rapidjson/rapidjson/internal/strfunc.h](tools/external/rapidjson/rapidjson/internal/strfunc.h)
+- [tools/external/rapidjson/rapidjson/internal/strtod.h](tools/external/rapidjson/rapidjson/internal/strtod.h)
+- [tools/external/rapidjson/rapidjson/internal/swap.h](tools/external/rapidjson/rapidjson/internal/swap.h)
+- [tools/external/rapidjson/rapidjson/istreamwrapper.h](tools/external/rapidjson/rapidjson/istreamwrapper.h)
+- [tools/external/rapidjson/rapidjson/memorybuffer.h](tools/external/rapidjson/rapidjson/memorybuffer.h)
+- [tools/external/rapidjson/rapidjson/memorystream.h](tools/external/rapidjson/rapidjson/memorystream.h)
+- [tools/external/rapidjson/rapidjson/msinttypes/inttypes.h](tools/external/rapidjson/rapidjson/msinttypes/inttypes.h)
+- [tools/external/rapidjson/rapidjson/msinttypes/stdint.h](tools/external/rapidjson/rapidjson/msinttypes/stdint.h)
+- [tools/external/rapidjson/rapidjson/ostreamwrapper.h](tools/external/rapidjson/rapidjson/ostreamwrapper.h)
+- [tools/external/rapidjson/rapidjson/pointer.h](tools/external/rapidjson/rapidjson/pointer.h)
+- [tools/external/rapidjson/rapidjson/prettywriter.h](tools/external/rapidjson/rapidjson/prettywriter.h)
+- [tools/external/rapidjson/rapidjson/rapidjson.h](tools/external/rapidjson/rapidjson/rapidjson.h)
+- [tools/external/rapidjson/rapidjson/reader.h](tools/external/rapidjson/rapidjson/reader.h)
+- [tools/external/rapidjson/rapidjson/schema.h](tools/external/rapidjson/rapidjson/schema.h)
+- [tools/external/rapidjson/rapidjson/stream.h](tools/external/rapidjson/rapidjson/stream.h)
+- [tools/external/rapidjson/rapidjson/stringbuffer.h](tools/external/rapidjson/rapidjson/stringbuffer.h)
+- [tools/external/rapidjson/rapidjson/uri.h](tools/external/rapidjson/rapidjson/uri.h)
+- [tools/external/rapidjson/rapidjson/writer.h](tools/external/rapidjson/rapidjson/writer.h)
 - [tools/navigation/generate.py](tools/navigation/generate.py)
 
 <!-- END GENERATED NAVIGATION -->

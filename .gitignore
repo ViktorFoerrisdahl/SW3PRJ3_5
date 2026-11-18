@@ -85,3 +85,6 @@ rules.ninja
 *.lof
 *.lot
 rapport/*.pdf
+
+# Logs
+/code/orchestrator/system/logs/

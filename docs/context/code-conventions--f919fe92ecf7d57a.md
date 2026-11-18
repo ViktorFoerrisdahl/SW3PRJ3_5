@@ -3,7 +3,7 @@
 > Genereret fil. Ret originalen, ikke denne kopi.
 
 - Kilde: [Projektstyring/code-conventions.md](../Projektstyring/code-conventions.md)
-- SHA-256: `b977655e7fd56b4eb7232b3dc0830fb3975855858e4bf2a4e797cd08815747fc`
+- SHA-256: `ccd5f54e3acf507986533dde5d9c1f255fe096de435bbfd4216b0064e45fce5d`
 - Status: klar til læsning
 
 
@@ -67,3 +67,7 @@ Eksemplet illustrerer dokumentationsformen og definerer ikke projektets kommende
 ## Ved ændringer
 
 Følg den eksisterende struktur, skriv relevante tests og kontrollér ændringerne før review. Repoets CMake bruger C++20; registrér nye moduler og softwaretests dér. Angiv særskilt, når en test kræver Raspberry Pi, systemd eller tilsluttet hardware. Python-værktøjer bruger almindelig Python-navngivning (`snake_case`); C/C++-tabellen gælder ikke Python.
+
+## Medfølgende biblioteker
+
+Tredjepartsbibliotekerne til JSON ligger i `code/tools/external/`. Bevar deres oprindelige kode og licenstekster; projektets navngivnings- og formateringsregler gælder gruppens egen kode. Orchestratorens `src/CMakeLists.txt` tilføjer mapperne som `SYSTEM`-søgestier.
