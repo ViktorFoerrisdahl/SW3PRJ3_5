@@ -481,7 +481,7 @@ protected:
         if (RAPIDJSON_LIKELY(level_stack_.GetSize() != 0)) { // this value is not at root
             Level* level = level_stack_.template Top<Level>();
             if (level->valueCount > 0) {
-                if (level->inArray) 
+                if (level->inArray)
                     os_->Put(','); // add comma if it is not the first element in array
                 else  // in object
                     os_->Put((level->valueCount % 2 == 0) ? ',' : ':');
@@ -574,7 +574,6 @@ inline bool Writer<StringBuffer>::WriteDouble(double d) {
         PutUnsafe(*os_, 'i'); PutUnsafe(*os_, 'n'); PutUnsafe(*os_, 'i'); PutUnsafe(*os_, 't'); PutUnsafe(*os_, 'y');
         return true;
     }
-    
     char *buffer = os_->Push(25);
     char* end = internal::dtoa(d, buffer, maxDecimalPlaces_);
     os_->Pop(static_cast<size_t>(25 - (end - buffer)));
