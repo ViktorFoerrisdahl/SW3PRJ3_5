@@ -1,3 +1,4 @@
 {
-    "cmake.sourceDirectory": "C:/Users/madss/repos/skole/PRJ3/SW3PRJ3_5/Simulator"
+    "cmake.sourceDirectory": "${workspaceFolder}/ATLAS_TUI",
+    "cmake.buildDirectory": "${workspaceFolder}/ATLAS_TUI/build"
 }

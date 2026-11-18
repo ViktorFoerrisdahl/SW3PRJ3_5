@@ -3,7 +3,7 @@
 > Genereret fil. Ret originalen, ikke denne kopi.
 
 - Kilde: [Projektstyring/terminology.md](../Projektstyring/terminology.md)
-- SHA-256: `8d22c5f5cfa49d254719f8157a1e550b8183d9857328d0cf20f3f0ef1005003b`
+- SHA-256: `398c7c754d98867deb172520b5f97c08f929613bd5bb5a463dc570fa01afe0b3`
 - Status: klar til læsning
 
 
@@ -51,6 +51,8 @@ Denne liste fastlægger fælles sprogbrug. Definitionerne er sproglige konventio
 | TUI                                    | text-based user interface          | Tekstbaseret brugergrænseflade. Må ikke bruges som synonym for alle former for visualisering.                                                                                                    |
 | proof of concept                       | proof of concept                   | Afgrænset demonstration af princippets gennemførlighed; forkortes PoC efter første forklaring.                                                                                                   |
 | OCR                                    | optical character recognition      | Automatisk genkendelse af tekst i billeder og scannede dokumenter. Gengiver ikke i sig selv diagrammers pile og relationer.                                                                      |
+| json_dto                               | json_dto                           | Headerbibliotek, som kobler C++-felter til JSON via `json_io()`; bruger RapidJSON.                                                                                                               |
+| RapidJSON                              | RapidJSON                          | Headerbibliotek til læsning og skrivning af JSON, som bruges af json_dto.                                                                                                                        |
 
 ## Skriveregler
 
