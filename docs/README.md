@@ -12,6 +12,7 @@ Dette afsnit opdateres automatisk af CI. Ret teksten uden for markørerne.
 
 [Genereret AI-kontekst og kildeindeks](context/INDEX.md)
 
+- [Construction/Activity diagram orchestrator v4.drawio](Construction/Activity%20diagram%20orchestrator%20v4.drawio)
 - [construction/Activity diagram orchestrator_WIP.drawio](construction/Activity%20diagram%20orchestrator_WIP.drawio)
 - [construction/BDD-ATLAS.drawio](construction/BDD-ATLAS.drawio)
 - [construction/IBD-ATLAS.drawio](construction/IBD-ATLAS.drawio)
