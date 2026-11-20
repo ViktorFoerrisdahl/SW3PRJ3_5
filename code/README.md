@@ -26,6 +26,7 @@ Dette afsnit opdateres automatisk af CI. Ret teksten uden for markørerne.
 - [node/system/event_detection/README.md](node/system/event_detection/README.md)
 - [node/system/event_detection/sliding_rms.cpp](node/system/event_detection/sliding_rms.cpp)
 - [node/system/event_detection/sliding_rms.h](node/system/event_detection/sliding_rms.h)
+- [node/system/main.cpp](node/system/main.cpp)
 - [node/system/ptp/CMakeLists.txt](node/system/ptp/CMakeLists.txt)
 - [node/system/ptp/examples/ptp_node.cpp](node/system/ptp/examples/ptp_node.cpp)
 - [node/system/ptp/include/ptp_localization.h](node/system/ptp/include/ptp_localization.h)
