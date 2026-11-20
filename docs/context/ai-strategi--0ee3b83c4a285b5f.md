@@ -3,10 +3,10 @@
 > Genereret fil. Ret originalen, ikke denne kopi.
 
 - Kilde: [Projektstyring/ai-strategi.md](../Projektstyring/ai-strategi.md)
-- SHA-256: `6de1932bc39e56f85be22068b5d88c77d6fabbcca584f7bf8d068ce67073cbd1`
-- Status: tekst kopieret
+- SHA-256: `763e96038770fcfc91d746a1f7619836f3744c730e5ae93f343670f53255ca52`
+- Status: klar til læsning
 
-> Relative links i kildeteksten er relative til originalfilens mappe.
+
 
 ---
 
@@ -28,7 +28,7 @@ AI skal tage udgangspunkt i projektets aktuelle dokumentation og kode. Projektfi
 
 Dokumenter lægges i den relevante mappe under `docs/`. CI genererer Markdown-kopier og et fælles indeks i `docs/context/`, så AI nemt kan finde og læse materialet. Kopierne opdateres, når kilder ændres, og henviser tilbage til originalerne. Vi redigerer derfor originalerne, ikke de genererede filer.
 
-Konverteringen gør konteksten tilgængelig; den fortolker eller godkender ikke indholdet. Billeder, diagrammer og visse filformater kan kræve manuel læsning, hvilket markeres i indekset.
+Konverteringen gør konteksten tilgængelig; den fortolker eller godkender ikke indholdet. Tekst, tabeller, formler og illustrationer bevares så vidt muligt i kopierne. Billedtekst udtrækkes med OCR; diagramrelationer læses i den viste illustration. Indekset markerer konkrete mangler, så originalen kun skal åbnes, når der er behov for det.
 
 ## Ansvar og kvalitet
 

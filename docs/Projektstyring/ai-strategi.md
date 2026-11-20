@@ -16,7 +16,7 @@ AI skal tage udgangspunkt i projektets aktuelle dokumentation og kode. Projektfi
 
 Dokumenter lægges i den relevante mappe under `docs/`. CI genererer Markdown-kopier og et fælles indeks i `docs/context/`, så AI nemt kan finde og læse materialet. Kopierne opdateres, når kilder ændres, og henviser tilbage til originalerne. Vi redigerer derfor originalerne, ikke de genererede filer.
 
-Konverteringen gør konteksten tilgængelig; den fortolker eller godkender ikke indholdet. Billeder, diagrammer og visse filformater kan kræve manuel læsning, hvilket markeres i indekset.
+Konverteringen gør konteksten tilgængelig; den fortolker eller godkender ikke indholdet. Tekst, tabeller, formler og illustrationer bevares så vidt muligt i kopierne. Billedtekst udtrækkes med OCR; diagramrelationer læses i den viste illustration. Indekset markerer konkrete mangler, så originalen kun skal åbnes, når der er behov for det.
 
 ## Ansvar og kvalitet
 

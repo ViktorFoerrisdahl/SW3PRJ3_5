@@ -1,0 +1,12 @@
+[Unit]
+Description=ATLAS PTP grandmaster on eth0
+After=network.target
+Wants=atlas-phc-grandmaster.service
+Conflicts=atlas-ptp-slave.service
+
+[Service]
+ExecStart=/usr/sbin/ptp4l -i eth0 -4 -H --hwts_filter=full --serverOnly=1 --uds_address=/run/atlas-ptp4l --uds_ro_address=/run/atlas-ptp4lro -q -m
+Restart=on-failure
+RestartSec=1
+StandardOutput=journal
+StandardError=journal

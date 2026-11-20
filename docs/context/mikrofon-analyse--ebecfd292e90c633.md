@@ -4,9 +4,9 @@
 
 - Kilde: [Elaboration E2/Mikrofon og Hændelsesdetektering/Mikrofon_Analyse.docx](../Elaboration%20E2/Mikrofon%20og%20H%C3%A6ndelsesdetektering/Mikrofon_Analyse.docx)
 - SHA-256: `7e0d31c9bcfa524cb5abdcdfbe167358fce1034b425b9ff7b2540c6fb4e6330e`
-- Status: tekst udtrukket – kontrollér original
+- Status: klar til læsning
 
-> Automatisk tekstudtræk: kontrollér layout, formler og tabeller i originalen.
+
 
 ---
 
@@ -23,3 +23,8 @@
 # Valg af Mikrofon type: I2S MEMS
 
 ## Bibliotek: ”libasound2”
+
+
+---
+
+Kontrol: 215 ord/tal, 1 tabeller og 4 formler sammenholdt med Word-kilden.

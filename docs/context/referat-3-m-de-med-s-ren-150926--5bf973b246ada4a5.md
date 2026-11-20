@@ -4,9 +4,9 @@
 
 - Kilde: [Referater/Referat #3 - Møde med søren 150926.docx](../Referater/Referat%20%233%20-%20M%C3%B8de%20med%20s%C3%B8ren%20150926.docx)
 - SHA-256: `0a96716fe7b37ea56aeb3b0562198470df090504992d1ff8eb069b01217202f2`
-- Status: tekst udtrukket – kontrollér original
+- Status: klar til læsning
 
-> Automatisk tekstudtræk: kontrollér layout, formler og tabeller i originalen.
+
 
 ---
 
@@ -25,3 +25,8 @@
   - Mads undersøger mikrofoner. Hvad giver mening? Ingen ADC på pi, skal være en hat hvis analog mikrofon. Er digital mikrofon overhovedet muligt? Mere forsinkelse?
 
   - Frederik og Alexander vil forsøge at synce clocken på to raspberry pi’s, for at få et indtryk af hvor kompliceret det er. Hvis det er helt galt, må vi implementere systemet som en enkelt pi med 4 mikrofoner.
+
+
+---
+
+Kontrol: 167 ord/tal, 0 tabeller og 0 formler sammenholdt med Word-kilden.

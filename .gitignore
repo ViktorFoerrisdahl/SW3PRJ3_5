@@ -1,15 +1,20 @@
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+
+# Editors
+.vscode/
+
 # Operating system files
 .DS_Store
 Thumbs.db
 Desktop.ini
 
-# Python tooling
-__pycache__/
-*.py[cod]
-.venv/
-
 # C/C++ build directories
 build/
+out/
 cmake-build-*/
 
 # CMake and Ninja generated files
@@ -74,7 +79,6 @@ rules.ninja
 *.fls
 *.log
 *.synctex.gz
-*.out
 *.toc
 *.bbl
 *.blg
@@ -82,5 +86,5 @@ rules.ninja
 *.lot
 rapport/*.pdf
 
-# Extensionless build output (compiled without CMake)
-code/tdoa/main
+# Logs
+/code/orchestrator/system/logs/

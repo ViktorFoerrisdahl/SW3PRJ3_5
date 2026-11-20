@@ -4,9 +4,9 @@
 
 - Kilde: [Inception/Samarbejdskontrakt.docx](../Inception/Samarbejdskontrakt.docx)
 - SHA-256: `a27c09af8dface914d9819a4ee377efcd0b7d50ddd273e7e066012a01dd810fd`
-- Status: tekst udtrukket – kontrollér original
+- Status: klar til læsning
 
-> Automatisk tekstudtræk: kontrollér layout, formler og tabeller i originalen.
+
 
 ---
 
@@ -61,3 +61,8 @@ Individuelt ambitionsniveau:
 Mads: 12
 
 Frederik: 12+/A+/Brad Pitt karakter
+
+
+---
+
+Kontrol: 225 ord/tal, 0 tabeller og 0 formler sammenholdt med Word-kilden.
