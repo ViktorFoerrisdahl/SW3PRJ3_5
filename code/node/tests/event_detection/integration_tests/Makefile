@@ -18,7 +18,7 @@ RB_DIR    := ../../../system/ringbuffer
 COMMON    := $(CODE)/common
 EXTERNAL  := $(CODE)/tools/external
 
-# json_dto og rapidjson bruges af event_queue.h
+# json_dto og rapidjson bruges af detected_event.h (common)
 INCLUDES := -I$(ED_DIR) -I$(RB_DIR)/include -I$(COMMON) \
             -isystem $(EXTERNAL)/json_dto -isystem $(EXTERNAL)/rapidjson
 

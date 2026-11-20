@@ -1,4 +1,4 @@
-# Test af OrchestratorTCP: modtager DetectedEvent fra noderne og udskriver dem.
+# Test af OrchestratorTCP: modtager DetectedEvent fra begge nodes, parrer dem og udskriver parrene.
 #
 # Bygges og køres på orchestratoren fra denne mappe:
 #   make              bygger orchestrator_tcp_test
@@ -16,13 +16,13 @@ SYS      := ../../system
 COMMON   := $(CODE)/common
 EXTERNAL := $(CODE)/tools/external
 
-# common før inc, så event_queue.h og DetectedEvent kommer fra common
+# common: detected_event.h, frame.h. inc: orchestrator_tcp.h, event_pair_queue.h
 INCLUDES := -I$(COMMON) -I$(SYS)/inc \
             -isystem $(EXTERNAL)/json_dto -isystem $(EXTERNAL)/rapidjson
 
 SRCS := orchestrator_tcp_test.cpp $(SYS)/src/orchestrator_tcp.cpp
 
-HEADERS := $(SYS)/inc/orchestrator_tcp.h $(wildcard $(COMMON)/*.h)
+HEADERS := $(SYS)/inc/orchestrator_tcp.h $(SYS)/inc/event_pair_queue.h $(wildcard $(COMMON)/*.h)
 
 TARGET := orchestrator_tcp_test
 PORT   ?= 5000
