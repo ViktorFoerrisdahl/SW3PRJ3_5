@@ -1,16 +1,8 @@
 #pragma once
 #include <string>
 #include <vector>
-#include "detected_event.h"
-
-// Position of one microphone (in metres)
-struct MIC_POSITION
-{
-    uint16_t node_id;
-    uint16_t channel;
-    double x_m;
-    double y_m;
-};
+#include "event_queue.h"   // DetectedEvent (code/common)
+#include "microphones.h"  // MIC_POSITION
 
 // Estimated source position (in metres)
 struct TDOA_RESULT
@@ -18,7 +10,7 @@ struct TDOA_RESULT
     bool valid;
     double x_m;
     double y_m;
-    std::string time_stamp;
+    int64_t time_stamp_ns;
 };
 
 

@@ -12,7 +12,7 @@ void json_io(JSON_IO &io, TDOA_RESULT &result)
         & json_dto::mandatory("valid", result.valid)
         & json_dto::mandatory("x_m", result.x_m)
         & json_dto::mandatory("y_m", result.y_m)
-        & json_dto::mandatory("time_stamp", result.time_stamp);
+        & json_dto::mandatory("time_stamp_ns", result.time_stamp_ns);
 }
 
 bool JsonLogger_AppendEvent(const TDOA_RESULT &result, const std::string &file_path)
