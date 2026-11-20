@@ -230,9 +230,8 @@ TDOA_RESULT tdoa::ComputePosition(const std::vector<DetectedEvent> &events, cons
 
     // Update timestamp
     const DetectedEvent &event = events[0];
-    result.time_stamp_ns = event.t_first_ns + (int64_t)event.trigger_offset
-                                                      /sample_rate  //Divided by sample rate to get time (s)
-                                                      *1e-9;        //Converted to nanoseconds
+    result.time_stamp_ns = event.t_first_ns
+        + (int64_t)((double)event.trigger_offset / sample_rate * 1e9); // frames -> s -> ns
 
     //Return result
     return result;
