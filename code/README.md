@@ -61,6 +61,7 @@ Dette afsnit opdateres automatisk af CI. Ret teksten uden for markørerne.
 - [orchestrator/system/inc/plot.h](orchestrator/system/inc/plot.h)
 - [orchestrator/system/inc/tdoa.h](orchestrator/system/inc/tdoa.h)
 - [orchestrator/system/inc/TUI_thread.h](orchestrator/system/inc/TUI_thread.h)
+- [orchestrator/system/logs/.gitkeep](orchestrator/system/logs/.gitkeep)
 - [orchestrator/system/requirements.txt](orchestrator/system/requirements.txt)
 - [orchestrator/system/src/CMakeLists.txt](orchestrator/system/src/CMakeLists.txt)
 - [orchestrator/system/src/json_logger.cpp](orchestrator/system/src/json_logger.cpp)

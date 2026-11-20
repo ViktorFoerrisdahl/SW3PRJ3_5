@@ -1,4 +1,4 @@
 {
-    "cmake.sourceDirectory": "${workspaceFolder}/ATLAS_TUI",
-    "cmake.buildDirectory": "${workspaceFolder}/ATLAS_TUI/build"
+    "cmake.sourceDirectory": "${workspaceFolder}/code/orchestrator/system/test",
+    "cmake.buildDirectory": "${workspaceFolder}/code/orchestrator/system/test/build"
 }
