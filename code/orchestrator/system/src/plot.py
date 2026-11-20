@@ -28,11 +28,11 @@ def shutdown_webagg_server():
     shutdown_timer.start() #start shutdown timer
 
 # gets filedescriptor from sys which is used by select and os.read
-stdin_fd = sys.stdin.fileno() 
+stdin_fd = sys.stdin.fileno()
 # Creates input buffer to store incoming messages from stdin
 # Collects bytes read from stdin. A message can arrive in pieces,
 # so incomplete lines stay here until the newline arrives
-input_buffer = b""       
+input_buffer = b""
 
 def poll_stdin():
     # ready is a list of filedescriptors, that has data that is ready to be read
@@ -117,7 +117,7 @@ def update_plot():
 
             elif new_data[0] == "MICS":
                 # Clears old mic arrays and datapoints as they are obsolete
-                mic_x_array.clear() 
+                mic_x_array.clear()
                 mic_y_array.clear()
                 micName_array.clear()
                 if data_x_array:
@@ -129,7 +129,7 @@ def update_plot():
                     mic_y_array.append(float(new_data[3 + mic * 2]))
                     micName_array.append(f"mic {mic + 1}")
 
-        #Clears everything drawn on the axis. 
+        #Clears everything drawn on the axis.
         #This is done to wipe the board clean everytime we update to NOT draw the same things twice on top of each other
         axis.clear()
 
@@ -173,7 +173,7 @@ if __name__ == "__main__":
 
     # arrays for events
     data_x_array = []
-    data_y_array = [] 
+    data_y_array = []
     data_event_id = []
 
     # arrays for mic locations
@@ -198,7 +198,7 @@ if __name__ == "__main__":
     shutdown_timer.add_callback(stop_ioloop) # stops server
 
     # blocking call to show open web and show fig. Now webplot function gets called every 200 ms to update plot.
-    plt.show() 
+    plt.show()
 
 # https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.pause.html
 # https://www.geeksforgeeks.org/python/matplotlib-pyplot-pause-in-python/

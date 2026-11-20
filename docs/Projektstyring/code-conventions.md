@@ -58,4 +58,4 @@ Følg den eksisterende struktur, skriv relevante tests og kontrollér ændringer
 
 ## Medfølgende biblioteker
 
-Tredjepartsbibliotekerne til JSON ligger i `code/tools/external/`. Bevar deres oprindelige kode og licenstekster; projektets navngivnings- og formateringsregler gælder gruppens egen kode. Orchestratorens `src/CMakeLists.txt` tilføjer mapperne som `SYSTEM`-søgestier.
+Tredjepartsbibliotekerne til JSON ligger i `code/tools/external/`. Bevar deres oprindelige kode og licenstekster; projektets navngivnings- og formateringsregler gælder gruppens egen kode. Orchestratorens `src/CMakeLists.txt` tilføjer mapperne som `SYSTEM`-søgestier. `.gitattributes` undtager de medfølgende biblioteker fra Gits whitespace-kontrol, mens gruppens egen kode fortsat kontrolleres.

@@ -3,7 +3,7 @@
 > Genereret fil. Ret originalen, ikke denne kopi.
 
 - Kilde: [Projektstyring/code-conventions.md](../Projektstyring/code-conventions.md)
-- SHA-256: `ccd5f54e3acf507986533dde5d9c1f255fe096de435bbfd4216b0064e45fce5d`
+- SHA-256: `ca531321e472a006e87a58c3c8a52dd29441437114e1c90394f7eebf50893a86`
 - Status: klar til læsning
 
 
@@ -70,4 +70,4 @@ Følg den eksisterende struktur, skriv relevante tests og kontrollér ændringer
 
 ## Medfølgende biblioteker
 
-Tredjepartsbibliotekerne til JSON ligger i `code/tools/external/`. Bevar deres oprindelige kode og licenstekster; projektets navngivnings- og formateringsregler gælder gruppens egen kode. Orchestratorens `src/CMakeLists.txt` tilføjer mapperne som `SYSTEM`-søgestier.
+Tredjepartsbibliotekerne til JSON ligger i `code/tools/external/`. Bevar deres oprindelige kode og licenstekster; projektets navngivnings- og formateringsregler gælder gruppens egen kode. Orchestratorens `src/CMakeLists.txt` tilføjer mapperne som `SYSTEM`-søgestier. `.gitattributes` undtager de medfølgende biblioteker fra Gits whitespace-kontrol, mens gruppens egen kode fortsat kontrolleres.

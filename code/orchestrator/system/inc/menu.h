@@ -4,7 +4,7 @@
 class menu
 {
 private:
-    
+
 public:
     menu();
     void showTitle();
