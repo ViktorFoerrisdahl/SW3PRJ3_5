@@ -1,28 +1,18 @@
 #include "microphones.h"
 
+
 microphones::microphones(int amount) : AmountOfMicrophones_(amount) {}
 
-int microphones::get_AmountOfMicrophones() const
-{
-    return AmountOfMicrophones_;
+
+
+void microphones::replace(std::vector<MIC_POSITION> newMics){
+    std::lock_guard<std::mutex> lock(dataLock_);
+    Microphones_ = std::move(newMics);
 }
 
-const std::vector<MIC_POSITION>& microphones::get_MicrophonesVector() const
-{
+std::vector<MIC_POSITION> microphones::snapshot() const{
+
+    std::lock_guard<std::mutex> lock(dataLock_);
     return Microphones_;
-}
 
-void microphones::setAmoutOfMics(int amount)
-{
-    AmountOfMicrophones_ = amount;
-}
-
-void microphones::AppendMicToVector(MIC_POSITION micLocation)
-{
-    Microphones_.push_back(micLocation);
-}
-
-void microphones::clearMicVector()
-{
-    Microphones_.clear();
 }
