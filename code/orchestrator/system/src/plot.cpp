@@ -87,61 +87,17 @@ void plot::stopPyPlot()
     }
 }
 
-void plot::EnterNewMics(microphones &m)
+void plot::EnterNewMics(microphones &mics)
 {
-    std::cout << "How many microphones? \n";
-    int tempMic;
-    std::cin >> tempMic;
-    while (tempMic < 0)
-    {
-        std::cout << "Amount of mics can't be negative number! Try again \n";
-        std::cin >> tempMic;
-    }
-
-    m.setAmoutOfMics((static_cast<int>(tempMic)));
-
-    m.clearMicVector();
-
-    for (int i = 0; i < m.get_AmountOfMicrophones(); i++)
-    {
-        MIC_POSITION tempVector;
-        std::cout << "What is the x position of microphone " << i << "?: \n";
-        int temp_x_y{};
-        std::cin >> temp_x_y;
-        tempVector.x_m = temp_x_y;
-        std::cout << "What is the y position of microphone " << i << "?: \n";
-        std::cin >> temp_x_y;
-        tempVector.y_m = temp_x_y;
-        if (i < 2)
-        {
-            tempVector.channel = 0;
-            tempVector.node_id = 0;
-            if (i == 1)
-            {
-                tempVector.channel = 1;
-                tempVector.node_id = 0;
-            }
-        }
-        else
-        {
-            tempVector.channel = 0;
-            tempVector.node_id = 1;
-            if (i == 3)
-            {
-                tempVector.channel = 1;
-                tempVector.node_id = 1;
-            }
-        }
-        m.AppendMicToVector(tempVector);
-    }
+    mics.inputMics();
 
     std::string NEWMICS;
     NEWMICS.append("MICS");
     NEWMICS.append(" ");
-    NEWMICS.append(std::to_string(m.get_AmountOfMicrophones()));
+    NEWMICS.append(std::to_string(mics.snapshot().size()));
     NEWMICS.append(" ");
 
-    for (auto m : m.get_MicrophonesVector())
+    for (auto m : mics.snapshot())
     {
         NEWMICS.append(std::to_string(m.x_m));
         NEWMICS.append(" ");
