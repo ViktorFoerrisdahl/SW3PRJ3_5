@@ -11,12 +11,23 @@ add_custom_target(copy_plot_script ALL
 )
 add_dependencies(main.out copy_plot_script)
 
-# common: detected_event.h og frame.h, som deles med noderne
-target_include_directories(main.out PUBLIC ${INC} ${PROJECT_SOURCE_DIR}/../../common)
+target_include_directories(main.out PUBLIC
+    ${INC}
+    "${CMAKE_CURRENT_SOURCE_DIR}/../../../common"
+)
 
 # Bundled JSON headers shared by the orchestrator modules.
 set(ATLAS_EXTERNAL_DIR "${CMAKE_CURRENT_SOURCE_DIR}/../../../tools/external")
 target_include_directories(main.out SYSTEM PRIVATE
     "${ATLAS_EXTERNAL_DIR}/json_dto"
     "${ATLAS_EXTERNAL_DIR}/rapidjson"
+)
+
+get_filename_component(ATLAS_PROJECT_ROOT
+    "${CMAKE_CURRENT_SOURCE_DIR}/../../../.."
+    ABSOLUTE
+)
+
+target_compile_definitions(main.out PRIVATE
+    ATLAS_PROJECT_ROOT="${ATLAS_PROJECT_ROOT}"
 )
