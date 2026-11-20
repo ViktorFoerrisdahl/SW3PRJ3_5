@@ -1,10 +1,12 @@
 #ifndef MICROPHONES_H
 #define MICROPHONES_H
 
-#include <vector>
 #include <cstdint>
+#include <mutex>
+#include <utility>
+#include <vector>
 
-struct MIC_POSITION 
+struct MIC_POSITION
 {
     double x_m;
     double y_m;
@@ -14,22 +16,19 @@ struct MIC_POSITION
 
 class microphones
 {
-private:
+  private:
     int AmountOfMicrophones_ = 0;
     std::vector<MIC_POSITION> Microphones_;
-    
-public:
+    mutable std::mutex dataLock_;
 
+  public:
     microphones(int amount);
-    void AppendMicToVector(MIC_POSITION micLocation);
-    void clearMicVector();
 
-    int get_AmountOfMicrophones() const;
-    const std::vector<MIC_POSITION>& get_MicrophonesVector() const;
+    void replace(std::vector<MIC_POSITION> newMics);
 
-    void setAmoutOfMics(int amount);
+    std::vector<MIC_POSITION> snapshot() const;
 
+    void inputMics();
 };
-
 
 #endif
