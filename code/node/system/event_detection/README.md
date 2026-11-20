@@ -9,7 +9,7 @@ Detekterer klap på én mikrofonnode og lægger et udsnit af de rå samples omkr
 | `detector_config.h` | Alle parametre (`DetectorConfig`) og formlen for `THRESHOLD_RAW` (`thresholdRaw()`) |
 | `dc_remover.h` | Løbende gennemsnit pr. kanal, der fjerner DC-offset |
 | `sliding_rms.h/.cpp` | Glidende RMS-vindue med `int64_t`-sum |
-| `event_queue.h` | `DetectedEvent` (output) med JSON-format og den trådsikre kø til TCP-modulet |
+| `event_queue.h` | Den trådsikre kø mellem detektoren og TCP-modulet. `DetectedEvent` (output) og dens JSON-format ligger i `common/detected_event.h` |
 | `event_detection.h/.cpp` | `EventDetector`: tråden, tilstandsmaskinen og udklip af udsnittet |
 
 Tests og en mock af ringbufferen ligger i `tests/event_detection/`. Byggekommandoen står øverst i testfilen.

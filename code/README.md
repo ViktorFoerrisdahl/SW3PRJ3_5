@@ -15,13 +15,14 @@ JSON-bibliotekerne `json_dto` og RapidJSON ligger i `tools/external/`. De er kop
 
 Dette afsnit opdateres automatisk af CI. Ret teksten uden for markørerne.
 
-- [common/event_queue.h](common/event_queue.h)
+- [common/detected_event.h](common/detected_event.h)
 - [common/frame.h](common/frame.h)
 - [common/test.cpp](common/test.cpp)
 - [node/system/event_detection/dc_remover.h](node/system/event_detection/dc_remover.h)
 - [node/system/event_detection/detector_config.h](node/system/event_detection/detector_config.h)
 - [node/system/event_detection/event_detection.cpp](node/system/event_detection/event_detection.cpp)
 - [node/system/event_detection/event_detection.h](node/system/event_detection/event_detection.h)
+- [node/system/event_detection/event_queue.h](node/system/event_detection/event_queue.h)
 - [node/system/event_detection/README.md](node/system/event_detection/README.md)
 - [node/system/event_detection/sliding_rms.cpp](node/system/event_detection/sliding_rms.cpp)
 - [node/system/event_detection/sliding_rms.h](node/system/event_detection/sliding_rms.h)
@@ -57,6 +58,7 @@ Dette afsnit opdateres automatisk af CI. Ret teksten uden for markørerne.
 - [node/tests/tcp/Makefile](node/tests/tcp/Makefile)
 - [node/tests/tcp/node_tcp_test.cpp](node/tests/tcp/node_tcp_test.cpp)
 - [orchestrator/system/CMakeLists.txt](orchestrator/system/CMakeLists.txt)
+- [orchestrator/system/inc/event_pair_queue.h](orchestrator/system/inc/event_pair_queue.h)
 - [orchestrator/system/inc/json_logger.h](orchestrator/system/inc/json_logger.h)
 - [orchestrator/system/inc/menu.h](orchestrator/system/inc/menu.h)
 - [orchestrator/system/inc/microphones.h](orchestrator/system/inc/microphones.h)

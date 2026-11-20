@@ -1,9 +1,11 @@
-// Test af OrchestratorTCP: modtager DetectedEvent fra noderne og udskriver dem.
+// Test af OrchestratorTCP: modtager DetectedEvent fra begge nodes, parrer dem
+// og udskriver hvert par.
 //
-//   node_tcp_test (node) --TCP/JSON--> OrchestratorTCP -> EventQueue -> udskrift
+//   node_tcp_test (node 1 og 2) --TCP/JSON--> OrchestratorTCP -> EventPairQueue -> udskrift
 //
-// Start dette program først, og start så node_tcp_test på noden med
-// orchestratorens IP-adresse (find den med: hostname -I).
+// Start dette program først, og start så node_tcp_test på begge nodes med
+// orchestratorens IP-adresse (find den med: hostname -I) og hver sit node-nr.
+// Der udskrives kun noget, når begge nodes har hørt det samme klap.
 //
 // Byg og kør på orchestratoren fra denne mappe (se Makefile):
 //   make
@@ -26,7 +28,7 @@
 #include <string>
 #include <thread>
 
-#include "event_queue.h"
+#include "event_pair_queue.h"
 #include "orchestrator_tcp.h"
 
 namespace {
@@ -78,28 +80,40 @@ void printEvent(const DetectedEvent& ev) {
     std::fflush(stdout);
 }
 
+int64_t triggerTimeNs(const DetectedEvent& ev) {
+    const double fs = ev.sample_rate > 0 ? ev.sample_rate : 1.0;
+    return ev.t_first_ns + static_cast<int64_t>(std::llround(ev.trigger_offset * 1e9 / fs));
+}
+
+void printPair(const EventPair& pair) {
+    const double dt_ms = (triggerTimeNs(pair[1]) - triggerTimeNs(pair[0])) / 1e6;
+    std::printf("=== Par: node %u #%u og node %u #%u, Δt = %.3f ms ===\n",
+                pair[0].node_id, pair[0].event_seq,
+                pair[1].node_id, pair[1].event_seq, dt_ms);
+    printEvent(pair[0]);
+    printEvent(pair[1]);
+}
+
 }  // namespace
 
 int main(int argc, char** argv) {
     const int port = (argc > 1) ? std::atoi(argv[1]) : DEFAULT_PORT;
 
-    EventQueue queue(64);
-
-    // Tråd der henter hændelser ud af køen og udskriver dem
-    std::jthread printer([&](std::stop_token st) {
-        while (auto ev = queue.pop(st)) {
-            printEvent(*ev);
-        }
-    });
+    EventPairQueue queue(64);
 
     try {
         OrchestratorTCP tcp(port, queue);
+        tcp.start();  // starter TCP-tråden og returnerer med det samme
         std::printf("Orchestrator lytter på port %d. Ctrl+C for at stoppe.\n\n", port);
         std::fflush(stdout);
-        tcp.start();  // venter på forbindelser fra noderne, returnerer ikke
+
+        // Henter par ud af køen og udskriver dem. Et tomt stop_token kan
+        // aldrig stoppes, så løkken kører, indtil programmet afbrydes.
+        while (auto pair = queue.pop(std::stop_token{})) {
+            printPair(*pair);
+        }
     } catch (const std::exception& e) {
         std::fprintf(stderr, "Fejl: %s (er porten allerede i brug?)\n", e.what());
-        printer.request_stop();
         return 1;
     }
     return 0;
