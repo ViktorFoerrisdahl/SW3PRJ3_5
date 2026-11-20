@@ -1,10 +1,13 @@
 #include <iostream>
 #include <thread>
 #include <unistd.h>
+#include <stop_token>
+
 
 #include "menu.h"
 #include "microphones.h"
 #include "plot.h"
+#include "orchestrator_tcp.h"
 
 #define WAITTIME_BEFORE_DELETION 20
 
@@ -12,6 +15,8 @@ void init_TUI()
 {
     menu menu;
     plot p;
+    std::stop_source stopsource;
+    std::stop_token stoptoken = stopsource.get_token();
 
     bool ATLAS_RUNNING = true;
 
@@ -31,6 +36,9 @@ void init_TUI()
 
         sleep(5);
 
+        //Husk at sende stoptoken med til TDOA theads og TCP.
+
+
         int input{23};
 
         while (ATLAS_RUNNING)
@@ -45,6 +53,7 @@ void init_TUI()
             {
                 p.stopPyPlot();
                 std::cout << "ATLAS now closing! BYE! \n";
+                stopsource.request_stop();
                 ATLAS_RUNNING = false;
                 break;
             }
