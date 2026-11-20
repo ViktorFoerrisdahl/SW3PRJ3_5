@@ -73,6 +73,8 @@ Dette afsnit opdateres automatisk af CI. Ret teksten uden for markørerne.
 - [orchestrator/system/src/plot.py](orchestrator/system/src/plot.py)
 - [orchestrator/system/src/tdoa.cpp](orchestrator/system/src/tdoa.cpp)
 - [orchestrator/system/src/TUI_thread.cpp](orchestrator/system/src/TUI_thread.cpp)
+- [orchestrator/system/test/CMakeLists.txt](orchestrator/system/test/CMakeLists.txt)
+- [orchestrator/system/test/logger_test.cpp](orchestrator/system/test/logger_test.cpp)
 - [Simulator/CMakeLists.txt](Simulator/CMakeLists.txt)
 - [Simulator/include/simulator.h](Simulator/include/simulator.h)
 - [Simulator/src/main.cpp](Simulator/src/main.cpp)

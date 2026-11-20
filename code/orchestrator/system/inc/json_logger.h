@@ -10,5 +10,4 @@
  * @return true, hvis skrivning og lukning lykkes; false ved filfejl.
  */
 bool JsonLogger_AppendEvent(
-    const TDOA_RESULT& result,
-    const std::string& file_path);
+    const TDOA_RESULT& result);
