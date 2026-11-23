@@ -87,4 +87,5 @@ rules.ninja
 rapport/*.pdf
 
 # Logs
-/code/orchestrator/system/logs/
+/code/orchestrator/system/logs/*
+!/code/orchestrator/system/logs/.gitkeep

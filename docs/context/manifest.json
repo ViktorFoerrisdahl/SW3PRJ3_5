@@ -1,9 +1,29 @@
 [
   {
+    "source": "Construction/Activity diagram TCP (kode).drawio",
+    "sha256": "38c4a5f71024b0109e33921c15ebd432be7667c402f7a4c4e4869faeb06172da",
+    "output": "activity-diagram-tcp-kode--a0020e11f79a32b5.md",
+    "output_sha256": "233948cd04988c3341491527c7e77425b5b5cd5150663303cf23a2b9e7f87409",
+    "status": "manuel læsning kræves",
+    "notes": [
+      "Formatet .drawio understøttes ikke til tekstudtræk. Eksportér til DOCX, PDF eller Markdown; originalen er bevaret."
+    ]
+  },
+  {
+    "source": "Construction/Activity diagram node.drawio",
+    "sha256": "d74e0d5004648eb531bcc127a325a1c79eacb4f33f48233105250d088bd9b584",
+    "output": "activity-diagram-node--858746c70587b0e6.md",
+    "output_sha256": "aba302c9356729d5c2286ea0e3ac74185ed40eea6d2c4ba23ef31bcd577c338f",
+    "status": "manuel læsning kræves",
+    "notes": [
+      "Formatet .drawio understøttes ikke til tekstudtræk. Eksportér til DOCX, PDF eller Markdown; originalen er bevaret."
+    ]
+  },
+  {
     "source": "Construction/Activity diagram orchestrator v4.drawio",
-    "sha256": "797c05fed8c1320751e99835cddbdfcea98e8c4fc7a998c930c12fdddc9c65cf",
+    "sha256": "8021d0e0afe410a9e98ee15aaa7c64e4ed3a732f6cf012ecbfd18b815be66e3f",
     "output": "activity-diagram-orchestrator-v4--3a89febe6a5b8bbb.md",
-    "output_sha256": "e7bab21b44888bf0f02ded30c9efcd8b6a39a528cf8ceb310fbbc9ce8efe2a97",
+    "output_sha256": "26b0ab7cc484f74d9c044441444ebaae96b692039d73b08b37e3c90fe22b6265",
     "status": "manuel læsning kræves",
     "notes": [
       "Formatet .drawio understøttes ikke til tekstudtræk. Eksportér til DOCX, PDF eller Markdown; originalen er bevaret."
@@ -205,9 +225,9 @@
   },
   {
     "source": "README.md",
-    "sha256": "0ea4a13255080dea20d6a7f081c75c80d12ea5e32b88a6af848c8e6fd4991e9e",
+    "sha256": "a1c3fbd79da9bcec220e661fb9dd6ed11a8290ab660942c9e2b99ece52e4aa1c",
     "output": "readme--b335630551682c19.md",
-    "output_sha256": "b147f945e1cfe349795032639452ac1fc56fe2ff355d9b6fe3597b9f7ba273d6",
+    "output_sha256": "55e02db488a942fb641c2e5101711065d53439b5291fe4737788358531310524",
     "status": "klar til læsning",
     "notes": []
   },

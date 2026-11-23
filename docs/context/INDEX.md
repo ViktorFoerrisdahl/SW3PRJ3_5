@@ -8,6 +8,8 @@ Brug Markdown som primær læsekilde. **Klar til læsning** har ingen fundne kon
 
 | Kilde | Markdown | Status |
 | --- | --- | --- |
+| [Construction/Activity diagram TCP (kode).drawio](../Construction/Activity%20diagram%20TCP%20%28kode%29.drawio) | [Læs](activity-diagram-tcp-kode--a0020e11f79a32b5.md) | manuel læsning kræves |
+| [Construction/Activity diagram node.drawio](../Construction/Activity%20diagram%20node.drawio) | [Læs](activity-diagram-node--858746c70587b0e6.md) | manuel læsning kræves |
 | [Construction/Activity diagram orchestrator v4.drawio](../Construction/Activity%20diagram%20orchestrator%20v4.drawio) | [Læs](activity-diagram-orchestrator-v4--3a89febe6a5b8bbb.md) | manuel læsning kræves |
 | [Construction/SD UC1 Lokaliser lydhændelse.drawio](../Construction/SD%20UC1%20Lokaliser%20lydh%C3%A6ndelse.drawio) | [Læs](sd-uc1-lokaliser-lydh-ndelse--5b999b29003084f5.md) | manuel læsning kræves |
 | [Elaboration E1/Domænemodel.url](../Elaboration%20E1/Dom%C3%A6nemodel.url) | [Læs](dom-nemodel--28236135411e0141.md) | manuel læsning kræves |
