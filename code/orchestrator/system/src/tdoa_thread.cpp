@@ -7,14 +7,14 @@ static constexpr int PLOT_WAIT_S = 60;   // Plot thread sleep 60s
 
 void TdoaThread(std::stop_token st, EventPairQueue& queue, microphones& mics, plot& p)
 {
-    // Create instance of tdoa class and event id
+    // Create instance of tdoa class and event id (starting with 1 when plotting)
     tdoa locator;
     int event_id = 0;
 
     // Wait for TCP (pred: !queue.empty(), stop_token) - nullopt = [stop requested]
     while (std::optional<EventPair> pair = queue.pop(st))
     {
-        // Get mic pos (snapshot takes the data lock internally and returns a copy)
+        // Get mic pos
         std::vector<MIC_POSITION> mic_pos = mics.snapshot();
 
         // Compute TDOA
