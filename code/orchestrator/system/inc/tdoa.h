@@ -1,7 +1,7 @@
 #pragma once
 #include <string>
 #include <vector>
-#include "event_queue.h"   // DetectedEvent (code/common)
+#include "detected_event.h"  // DetectedEvent (code/common)
 #include "microphones.h"  // MIC_POSITION
 
 // Estimated source position (in metres)

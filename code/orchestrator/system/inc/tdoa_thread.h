@@ -1,18 +1,10 @@
 #pragma once
-#include <condition_variable>
-#include <mutex>
-#include <queue>
 #include <stop_token>
-#include <vector>
-#include "event_queue.h"
+#include "event_pair_queue.h"   // EventPairQueue, EventPair (from TCP)
 #include "microphones.h"
 #include "plot.h"
 
-// One event from each node
-using EventPair = std::vector<DetectedEvent>;
-
-// TDOA thread
-void TdoaThread(std::stop_token st,
-                std::queue<EventPair>& queue, std::mutex& event_lock,
-                std::condition_variable_any& cv_tdoa,
-                microphones& mics, std::mutex& data_lock, plot& p);
+// TDOA thread (box D + E in the activity diagram)
+// Waits for a pair from TCP, computes the position, logs it and starts a plot thread.
+// Ends when stop is requested on st.
+void TdoaThread(std::stop_token st, EventPairQueue& queue, microphones& mics, plot& p);
