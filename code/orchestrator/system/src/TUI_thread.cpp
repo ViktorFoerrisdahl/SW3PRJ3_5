@@ -7,7 +7,8 @@
 #include "menu.h"
 #include "microphones.h"
 #include "plot.h"
-#include "orchestrator_tcp.h"
+#include "TCP_thread.h"
+#include "TDOA_thread.h"
 
 #define WAITTIME_BEFORE_DELETION 20
 
@@ -36,8 +37,13 @@ void init_TUI()
 
         sleep(5);
 
-        //Husk at sende stoptoken med til TDOA theads og TCP.
+        EventPairQueue shared_queue{16};
 
+        OrchestratorTCP orch(5000,shared_queue);
+
+        std::jthread TDOA_Thread(TdoaThread, stoptoken, std::ref(shared_queue), std::ref(mics), std::ref(p));
+
+        std::jthread OrchestratorTCP_Thread([&] {orch.start();} );
 
         int input{23};
 
