@@ -20,6 +20,11 @@ void TdoaThread(std::stop_token st, EventPairQueue& queue, microphones& mics, pl
         // Compute TDOA
         TDOA_RESULT result = locator.ComputePosition(*pair, mic_pos);
 
+        // If
+        if (result.valid == false){
+            std::cerr << "Result invalid\n";
+        }
+
         // Append event to the log
         JsonLogger_AppendEvent(result);
 

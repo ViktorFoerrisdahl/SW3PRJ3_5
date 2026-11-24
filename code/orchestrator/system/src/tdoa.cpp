@@ -67,8 +67,6 @@ double tdoa::CrossCorrelate(const std::vector<int32_t> &ref, const std::vector<i
 // Computes a rough estimate using grid search. 20cm steps.
 void tdoa::GridSearch(const std::vector<MIC_POSITION> &mics, const std::vector<double> &tdoa_s, double &x_m, double &y_m)
 {
-    if (mics.empty()) return; //Failsafe
-
     double min_error = std::numeric_limits<double>::max(); // Maximum limit
 
     //For x and y move 20 cm in the grid (0.20 m)
@@ -102,8 +100,6 @@ void tdoa::GridSearch(const std::vector<MIC_POSITION> &mics, const std::vector<d
 // Computes the position using gauss newton least squares.
 void tdoa::GaussNewton(const std::vector<MIC_POSITION> &mics, const std::vector<double> &tdoa_s, double &x_m, double &y_m)
 {
-    if (mics.size() < 3) return;
-
     //Current guessed position from Grid Search
     double x = x_m;
     double y = y_m;
@@ -174,8 +170,6 @@ void tdoa::GaussNewton(const std::vector<MIC_POSITION> &mics, const std::vector<
 
 void tdoa::SolvePosition(const std::vector<MIC_POSITION> &mics, const std::vector<double> &tdoa_s, double &x_m, double &y_m)
 {
-    if (mics.size() < 3) return;  //Check for mics
-
     tdoa::GridSearch(mics, tdoa_s, x_m, y_m);  //Call grid search
 
     std::cout << "Result after Grid Search: {" << x_m << ", " << y_m << "}\n";
@@ -188,11 +182,11 @@ void tdoa::SolvePosition(const std::vector<MIC_POSITION> &mics, const std::vecto
 TDOA_RESULT tdoa::ComputePosition(const std::vector<DetectedEvent> &events, const std::vector<MIC_POSITION> &mics)
 {
     // Intialise lists and result
-    TDOA_RESULT result = {false, 0.0, 0.0, 0LL};     //Invalid until proven otherwise
-    std::vector<MIC_POSITION> positions;        //Vector for microphones
-    std::vector<std::vector<int32_t>> channels; //Samples of each channel
-    std::vector<int64_t> t_first_ns;            //Vector for first sample time of each channel
-    uint32_t sample_rate = 0;                   //Shared variable for sample rate
+    TDOA_RESULT result = {false, 0.0, 0.0, 0LL};    //Invalid until proven otherwise
+    std::vector<MIC_POSITION> positions;            //Vector for microphones
+    std::vector<std::vector<int32_t>> channels;     //Samples of each channel
+    std::vector<int64_t> t_first_ns;                //Vector for first sample time of each channel
+    uint32_t sample_rate = 0;                       //Shared variable for sample rate
 
     // Unpack events (One from each pi, two microphones per pi)
     for (const auto &event : events){   //For each event
@@ -214,7 +208,7 @@ TDOA_RESULT tdoa::ComputePosition(const std::vector<DetectedEvent> &events, cons
             t_first_ns.push_back(event.t_first_ns);         //Push back first sample time
         }
     }
-    if (channels.size() < 3) return result; //Needs three mics: If not abandon
+    if (channels.size() < 4) return result; //Needs four mics: If not abandon
 
     // Cross correlation and build a vector from this
     std::vector<double> tdoa_s{0.0};                        //Reference 0 at index 0
