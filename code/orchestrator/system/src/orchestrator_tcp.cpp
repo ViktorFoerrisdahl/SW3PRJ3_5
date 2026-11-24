@@ -177,6 +177,16 @@ void OrchestratorTCP::enableKeepAlive(int fd)
 	setsockopt(fd, IPPROTO_TCP, TCP_KEEPCNT, &count, sizeof(count));
 }
 
+// Navn på forbindelsen til udskrift, fx "Node 2 (plads 1)". Er node_id ikke
+// kendt endnu (ingen hændelse modtaget), står der "Ukendt node (plads 1)".
+std::string OrchestratorTCP::nodeLabel(const Connection &conn) const
+{
+	const int slot = static_cast<int>(&conn - connections_);
+	if (conn.nodeId < 0)
+		return "Ukendt node (plads " + std::to_string(slot) + ")";
+	return "Node " + std::to_string(conn.nodeId) + " (plads " + std::to_string(slot) + ")";
+}
+
 void OrchestratorTCP::closeConnection(Connection &conn)
 {
 	if (conn.fd < 0)
@@ -200,12 +210,12 @@ bool OrchestratorTCP::readFromConnection(Connection &conn)
 
 	if (n == 0)
 	{
-		std::cerr << "Node " << conn.nodeId << " lukkede forbindelsen\n";
+		std::cerr << nodeLabel(conn) << " mistede forbindelsen (lukket af noden)\n";
 		return false;
 	}
 	if (n < 0)
 	{
-		std::cerr << "Node " << conn.nodeId << ": recv() failed: " << std::strerror(errno) << "\n";
+		std::cerr << nodeLabel(conn) << " mistede forbindelsen: " << std::strerror(errno) << "\n";
 		return false;
 	}
 	conn.buffer.append(chunk, static_cast<std::size_t>(n));
@@ -223,7 +233,7 @@ bool OrchestratorTCP::readFromConnection(Connection &conn)
 	// Beskyt mod en node, der sender data uden '\n'
 	if (conn.buffer.size() > MAX_BUFFER_SIZE)
 	{
-		std::cerr << "Node " << conn.nodeId << ": besked for stor, lukker forbindelsen\n";
+		std::cerr << nodeLabel(conn) << ": besked for stor, lukker forbindelsen\n";
 		return false;
 	}
 	return true;
@@ -252,7 +262,7 @@ void OrchestratorTCP::handleLine(Connection &conn, const std::string &line)
 		{
 			if (&other != &conn && other.fd >= 0 && other.nodeId == conn.nodeId)
 			{
-				std::cerr << "Node " << conn.nodeId << " har forbundet igen, lukker den gamle forbindelse\n";
+				std::cerr << nodeLabel(conn) << " har forbundet igen, lukker den gamle forbindelse\n";
 				closeConnection(other);
 			}
 		}
