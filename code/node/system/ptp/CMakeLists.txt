@@ -13,10 +13,11 @@ if(Python3_Interpreter_FOUND)
   set_tests_properties(ptp_service_test PROPERTIES TIMEOUT 30)
 endif()
 
-add_library(ptp_localization src/ptp_localization.cpp ../tdoa/tdoa.cpp)
-target_include_directories(ptp_localization PUBLIC
-  ${CMAKE_CURRENT_SOURCE_DIR}/include
-  ${CMAKE_CURRENT_SOURCE_DIR}/../tdoa)
+# PTP-aware localization. The TDOA solver lives in the orchestrator
+# (code/orchestrator/system/src/tdoa.cpp), built there as orchestrator_tdoa.
+add_library(ptp_localization src/ptp_localization.cpp)
+target_include_directories(ptp_localization PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/include)
+target_link_libraries(ptp_localization PUBLIC ptp_service orchestrator_tdoa)
 target_compile_features(ptp_localization PUBLIC cxx_std_20)
 
 add_executable(ptp_localization_test tests/ptp_localization_test.cpp)

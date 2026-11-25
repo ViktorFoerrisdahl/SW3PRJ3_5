@@ -21,7 +21,7 @@ if(ALSA_FOUND)
   target_link_libraries(alsa_capture PUBLIC ringbuffer ALSA::ALSA)
 
   # Hardware test with the real microphones. Not in ctest: it needs the mics and
-  # someone to clap. Run: ./build/ringbuffer/alsa_hw_test hw:0,0 --wav capture.wav
+  # someone to clap. Run: ./build/code/node/system/ringbuffer/alsa_hw_test hw:0,0 --wav capture.wav
   add_executable(alsa_hw_test tests/alsa_hw_test.cpp)
   target_link_libraries(alsa_hw_test PRIVATE alsa_capture)
 else()
