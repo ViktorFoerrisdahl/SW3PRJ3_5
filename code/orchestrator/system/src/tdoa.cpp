@@ -208,13 +208,6 @@ TDOA_RESULT tdoa::ComputePosition(const std::vector<DetectedEvent> &events, cons
             const MIC_POSITION *p_mic = tdoa::FindMic(mics, event.node_id, i); // Find mic
             if (p_mic == nullptr) return result; // Unknown id: Abandon
 
-            if (channels.size() < 4)
-            { // Needs four mics: If not abandon
-                std::cerr << "Result invalid: only " << channels.size() << "mics \n";
-                return result;
-            }
-
-
             // De-interleave samples
             std::vector<int32_t> samples;
             for (const Frame &f : event.frames)
@@ -229,7 +222,10 @@ TDOA_RESULT tdoa::ComputePosition(const std::vector<DetectedEvent> &events, cons
         }
     }
     if (channels.size() < 4)
-        return result; // Needs four mics: If not abandon
+            { // Needs four mics: If not abandon
+                std::cerr << "Result invalid: only " << channels.size() << "mics \n";
+                return result;
+            }
 
     // Cross correlation and build a vector from this
     std::vector<double> tdoa_s{0.0}; // Reference 0 at index 0
