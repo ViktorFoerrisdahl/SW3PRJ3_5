@@ -18,6 +18,7 @@ Dette afsnit opdateres automatisk af CI. Ret teksten uden for markørerne.
 - [common/detected_event.h](common/detected_event.h)
 - [common/frame.h](common/frame.h)
 - [common/test.cpp](common/test.cpp)
+- [node/system/CMakeLists.txt](node/system/CMakeLists.txt)
 - [node/system/event_detection/dc_remover.h](node/system/event_detection/dc_remover.h)
 - [node/system/event_detection/detector_config.h](node/system/event_detection/detector_config.h)
 - [node/system/event_detection/event_detection.cpp](node/system/event_detection/event_detection.cpp)
