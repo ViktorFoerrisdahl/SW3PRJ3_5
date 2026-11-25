@@ -67,6 +67,8 @@ private:
 
 	void closeConnection(Connection &conn);
 
+	std::string nodeLabel(const Connection &conn) const;
+
 	bool readFromConnection(Connection &conn);
 
 	void handleLine(Connection &conn, const std::string &line);
