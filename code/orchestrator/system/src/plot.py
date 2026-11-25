@@ -8,6 +8,8 @@ import matplotlib.pyplot as plt
 import matplotlib
 matplotlib.use("webagg")
 matplotlib.rcParams["webagg.port"] = 8988
+matplotlib.rcParams["webagg.address"] = "0.0.0.0" # listen on all interfaces so other machines on the network can view the plot
+matplotlib.rcParams["webagg.open_in_browser"] = False
 
 def stop_ioloop():
     tornado.ioloop.IOLoop.current().stop() # stops webagg server
