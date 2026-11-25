@@ -185,7 +185,7 @@ double tdoa::SolvePosition(const std::vector<MIC_POSITION> &mics, const std::vec
     tdoa::GridSearch(mics, tdoa_s, x_m, y_m); // Call grid search
 
     double rms = tdoa::GaussNewton(mics, tdoa_s, x_m, y_m);   // Refine the grid search guess, keep the error
-    return rms; //Return error  
+    return rms; //Return error
 
 }
 
@@ -238,7 +238,7 @@ TDOA_RESULT tdoa::ComputePosition(const std::vector<DetectedEvent> &events, cons
 
     // Call solveposition using vector
     double rms = tdoa::SolvePosition(positions, tdoa_s, result.x_m, result.y_m);   // Solve, and get the error
-    result.valid = (rms < MAX_RESIDUAL_M); 
+    result.valid = (rms < MAX_RESIDUAL_M);
 
     // Update timestamp
     const DetectedEvent &event = events[0];
