@@ -3,9 +3,8 @@
 #include <cmath>
 #include <iostream>
 
-
 // Function to find specific microphone. Failsafe to get mics in right order.
-const MIC_POSITION* tdoa::FindMic(const std::vector<MIC_POSITION> &mics, const uint16_t &node_id, const uint16_t &channel)
+const MIC_POSITION *tdoa::FindMic(const std::vector<MIC_POSITION> &mics, const uint16_t &node_id, const uint16_t &channel)
 {
     for (const auto &mic : mics)
     {
@@ -19,12 +18,12 @@ const MIC_POSITION* tdoa::FindMic(const std::vector<MIC_POSITION> &mics, const u
 double tdoa::CrossCorrelate(const std::vector<int32_t> &ref, const std::vector<int32_t> &sig)
 {
     std::vector<double> sums(2 * MAX_LAG_SAMPLES + 1); // One score per lag
-    double best_sum = -1e300; // Comparison metric: Initialised to an extremely small number that any real sum will surpass
-    int best_lag = 0;         // Lag that matches the best sum (this value is returned)
+    double best_sum = -1e300;                          // Comparison metric: Initialised to an extremely small number that any real sum will surpass
+    int best_lag = 0;                                  // Lag that matches the best sum (this value is returned)
 
     for (int lag = -MAX_LAG_SAMPLES; lag <= MAX_LAG_SAMPLES; lag++)
     {
-        double sum = 0; // Initialise local sum set to zero
+        double sum = 0;                      // Initialise local sum set to zero
         for (int i = 0; i < ref.size(); i++) // Loop through indexes of ref
         {
             int j = i + lag;
@@ -33,10 +32,9 @@ double tdoa::CrossCorrelate(const std::vector<int32_t> &ref, const std::vector<i
                 sum += (double)ref[i] * sig[j]; //>= zero: doesn't calculate on indexes outside the vector
             }
         }
-        sums[lag + MAX_LAG_SAMPLES] = sum;  // Remember the score (index 0 = lag -600): Used in parabolic interpolation
+        sums[lag + MAX_LAG_SAMPLES] = sum; // Remember the score (index 0 = lag -600): Used in parabolic interpolation
         if (sum > best_sum)
             best_sum = sum, best_lag = lag; // If the found sum for this lag is bigger than the previous best, overwrite best_lag
-
     }
 
     // Parabolic interpolation: Using neighbours of the best lag, where is the true peak.
@@ -48,17 +46,19 @@ double tdoa::CrossCorrelate(const std::vector<int32_t> &ref, const std::vector<i
     }
 
     // Set left, right and peak using the best_lag found
-    double y_left  = sums[best_lag - 1 + MAX_LAG_SAMPLES];
-    double y_peak  = best_sum;
+    double y_left = sums[best_lag - 1 + MAX_LAG_SAMPLES];
+    double y_peak = best_sum;
     double y_right = sums[best_lag + 1 + MAX_LAG_SAMPLES];
 
     // Fit a parabola through the three points
     double denom = y_left - 2.0 * y_peak + y_right;
-    if (denom >= 0.0) return best_lag;
+    if (denom >= 0.0)
+        return best_lag;
 
     // Calculate the delta
     double delta = 0.5 * (y_left - y_right) / denom;
-    if (std::abs(delta) > 0.5) return best_lag;
+    if (std::abs(delta) > 0.5)
+        return best_lag;
 
     // Add the delta to get the true lag and return it
     return best_lag + delta;
@@ -69,25 +69,25 @@ void tdoa::GridSearch(const std::vector<MIC_POSITION> &mics, const std::vector<d
 {
     double min_error = std::numeric_limits<double>::max(); // Maximum limit
 
-    //For x and y move 20 cm in the grid (0.20 m)
+    // For x and y move 20 cm in the grid (0.20 m)
     for (double x = 0.0; x < 3.0; x += 0.20)
     {
         for (double y = 0.0; y < 3.0; y += 0.20)
         {
-            double current_error = 0.0; //Current error to be measured for the given x and y values
+            double current_error = 0.0; // Current error to be measured for the given x and y values
 
-            double dist_ref = std::sqrt(std::pow(mics[0].x_m - x, 2) + std::pow(mics[0].y_m - y, 2)); //The distance to the reference microphone
+            double dist_ref = std::sqrt(std::pow(mics[0].x_m - x, 2) + std::pow(mics[0].y_m - y, 2)); // The distance to the reference microphone
 
-            for (int i = 1; i < mics.size(); i++) //Looping through each microphone except reference 0
+            for (int i = 1; i < mics.size(); i++) // Looping through each microphone except reference 0
             {
-                double dist_i = std::sqrt(std::pow(mics[i].x_m - x, 2) + std::pow(mics[i].y_m - y, 2)); //Distance to any of the other microphones
+                double dist_i = std::sqrt(std::pow(mics[i].x_m - x, 2) + std::pow(mics[i].y_m - y, 2)); // Distance to any of the other microphones
 
-                double theoretical_diff = dist_i - dist_ref; //The theoretical difference in distance
-                double measured_diff = tdoa_s[i] * SPEED_OF_SOUND_M_PER_S; //The measured difference in distance
+                double theoretical_diff = dist_i - dist_ref;               // The theoretical difference in distance
+                double measured_diff = tdoa_s[i] * SPEED_OF_SOUND_M_PER_S; // The measured difference in distance
 
-                current_error += std::pow(theoretical_diff - measured_diff, 2); //Comparing the two differences with Sum of Squared Errors (SSE)
+                current_error += std::pow(theoretical_diff - measured_diff, 2); // Comparing the two differences with Sum of Squared Errors (SSE)
             }
-            if (current_error < min_error) //Using SSE to find the lowest sum, which will give the most likely (x,y) coordinate
+            if (current_error < min_error) // Using SSE to find the lowest sum, which will give the most likely (x,y) coordinate
             {
                 min_error = current_error;
                 x_m = x;
@@ -98,135 +98,156 @@ void tdoa::GridSearch(const std::vector<MIC_POSITION> &mics, const std::vector<d
 }
 
 // Computes the position using gauss newton least squares.
-void tdoa::GaussNewton(const std::vector<MIC_POSITION> &mics, const std::vector<double> &tdoa_s, double &x_m, double &y_m)
+double tdoa::GaussNewton(const std::vector<MIC_POSITION> &mics, const std::vector<double> &tdoa_s, double &x_m, double &y_m)
 {
-    //Current guessed position from Grid Search
+    // Current guessed position from Grid Search
     double x = x_m;
     double y = y_m;
 
-    //Position of mic 0
+    // Position of mic 0
     double x0 = mics[0].x_m;
     double y0 = mics[0].y_m;
 
-    int MAX_ITERATIONS = 80; //Maximum wanted iterations to ensure quick solution
-    double TOLERANCE = 1e-4; //0.1 mm
+    int MAX_ITERATIONS = 80; // Maximum wanted iterations to ensure quick solution
+    double TOLERANCE = 1e-4; // 0.1 mm
 
     for (int iter = 0; iter < MAX_ITERATIONS; iter++)
     {
-        //Elements in 2x2 Matrix
+        // Elements in 2x2 Matrix
         double Hxx = 0.0, Hxy = 0.0, Hyy = 0.0;
 
-        //Elements in vector
+        // Elements in vector
         double gx = 0.0, gy = 0.0;
 
-        double d0 = std::sqrt((x - x0)*(x - x0) + (y - y0)*(y - y0)); //Distance til referencemikrofon
+        double d0 = std::sqrt((x - x0) * (x - x0) + (y - y0) * (y - y0)); // Distance til referencemikrofon
 
         for (size_t i = 1; i < mics.size(); i++)
         {
             double xi = mics[i].x_m;
             double yi = mics[i].y_m;
 
-            double di = std::sqrt((x - xi)*(x - xi) + (y - yi)*(y - yi)); //Distance til den enkelte mikrofon
+            double di = std::sqrt((x - xi) * (x - xi) + (y - yi) * (y - yi)); // Distance til den enkelte mikrofon
 
-            //Calculating error r (residual)
+            // Calculating error r (residual)
             double theoretical_diff = di - d0;
             double measured_diff = tdoa_s[i] * SPEED_OF_SOUND_M_PER_S;
             double r = theoretical_diff - measured_diff;
 
-            //The slope of the given mic
+            // The slope of the given mic
             double Jx = (x - xi) / di - (x - x0) / d0;
             double Jy = (y - yi) / di - (y - y0) / d0;
 
-            //Building J^T * J
+            // Building J^T * J
             Hxx += Jx * Jx;
             Hxy += Jx * Jy;
             Hyy += Jy * Jy;
 
-            //Building J^T * r
+            // Building J^T * r
             gx += Jx * r;
             gy += Jy * r;
         }
 
-        //Calculating determinant
+        // Calculating determinant
         double det = (Hxx * Hyy) - (Hxy * Hxy);
 
-        //If determinant is close to 0 it is unsolvable
-        if (std::abs(det) < 1e-9) break;
+        // If determinant is close to 0 it is unsolvable
+        if (std::abs(det) < 1e-9)
+            break;
 
-        //Solve the step to take using the inverse matrix
+        // Solve the step to take using the inverse matrix
         double delta_x = (Hyy * gx - Hxy * gy) / det;
         double delta_y = (Hxx * gy - Hxy * gx) / det;
 
         x -= delta_x;
         y -= delta_y;
 
-        //Check if the step is so small that we're there
-        if (std::sqrt(delta_x * delta_x + delta_y * delta_y) < TOLERANCE) break;
+        // Check if the step is so small that we're there
+        if (std::sqrt(delta_x * delta_x + delta_y * delta_y) < TOLERANCE)
+            break;
     }
     // Updating final result
     x_m = x;
     y_m = y;
+
+    double d0 = std::hypot(x - x0, y - y0);  // Distance from final position to reference mic 0
+    double sse = 0.0;                        // Sum of squared errors, starts at 0
+    for (size_t i = 1; i < mics.size(); i++) // Each mic except the reference
+    {
+        double di = std::hypot(x - mics[i].x_m, y - mics[i].y_m);  // Distance from final position to mic i
+        double r = (di - d0) - tdoa_s[i] * SPEED_OF_SOUND_M_PER_S; // Theoretical distance difference minus measured one
+        sse += r * r;                                              // Square it so + and - errors don't cancel, then add up
+    }
+    return std::sqrt(sse / (mics.size() - 1)); // Average error over the mics (RMS), in metres
 }
 
-void tdoa::SolvePosition(const std::vector<MIC_POSITION> &mics, const std::vector<double> &tdoa_s, double &x_m, double &y_m)
+double tdoa::SolvePosition(const std::vector<MIC_POSITION> &mics, const std::vector<double> &tdoa_s, double &x_m, double &y_m)
 {
-    tdoa::GridSearch(mics, tdoa_s, x_m, y_m);  //Call grid search
+    tdoa::GridSearch(mics, tdoa_s, x_m, y_m); // Call grid search
 
-    std::cout << "Result after Grid Search: {" << x_m << ", " << y_m << "}\n";
+    double rms = tdoa::GaussNewton(mics, tdoa_s, x_m, y_m);   // Refine the grid search guess, keep the error
+    return rms; //Return error  
 
-    tdoa::GaussNewton(mics, tdoa_s, x_m, y_m);  //Call gauss newton
-
-    std::cout << "Result after Gauss Newton: {" << x_m << ", " << y_m << "}\n";
 }
 
 TDOA_RESULT tdoa::ComputePosition(const std::vector<DetectedEvent> &events, const std::vector<MIC_POSITION> &mics)
 {
     // Intialise lists and result
-    TDOA_RESULT result = {false, 0.0, 0.0, 0LL};    //Invalid until proven otherwise
-    std::vector<MIC_POSITION> positions;            //Vector for microphones
-    std::vector<std::vector<int32_t>> channels;     //Samples of each channel
-    std::vector<int64_t> t_first_ns;                //Vector for first sample time of each channel
-    uint32_t sample_rate = 0;                       //Shared variable for sample rate
+    TDOA_RESULT result = {false, 0.0, 0.0, 0LL}; // Invalid until proven otherwise
+    std::vector<MIC_POSITION> positions;         // Vector for microphones
+    std::vector<std::vector<int32_t>> channels;  // Samples of each channel
+    std::vector<int64_t> t_first_ns;             // Vector for first sample time of each channel
+    uint32_t sample_rate = 0;                    // Shared variable for sample rate
 
     // Unpack events (One from each pi, two microphones per pi)
-    for (const auto &event : events){   //For each event
+    for (const auto &event : events)
+    { // For each event
 
-        sample_rate = event.sample_rate;                    //Grabs sample rate from here (should be same for both events)
-        for (int i = 0; i < 2; i++){                        //For each microphone
-            const MIC_POSITION* p_mic = tdoa::FindMic(mics, event.node_id, i);  //Find mic
-            if (p_mic == nullptr) return result;            //Unknown id: Abandon
+        sample_rate = event.sample_rate; // Grabs sample rate from here (should be same for both events)
+        for (int i = 0; i < 2; i++)
+        {                                                                      // For each microphone
+            const MIC_POSITION *p_mic = tdoa::FindMic(mics, event.node_id, i); // Find mic
+            if (p_mic == nullptr) return result; // Unknown id: Abandon
 
-            //De-interleave samples
-            std::vector<int32_t> samples;
-            for (const Frame& f : event.frames){
-                samples.push_back(f.ch[i]);                 //Push back sample for this mic
+            if (channels.size() < 4)
+            { // Needs four mics: If not abandon
+                std::cerr << "Result invalid: only " << channels.size() << "mics \n";
+                return result;
             }
 
-            //Push back data
-            positions.push_back(*p_mic);                    //Push back mic
-            channels.push_back(samples);                    //Push back samples
-            t_first_ns.push_back(event.t_first_ns);         //Push back first sample time
+
+            // De-interleave samples
+            std::vector<int32_t> samples;
+            for (const Frame &f : event.frames)
+            {
+                samples.push_back(f.ch[i]); // Push back sample for this mic
+            }
+
+            // Push back data
+            positions.push_back(*p_mic);            // Push back mic
+            channels.push_back(samples);            // Push back samples
+            t_first_ns.push_back(event.t_first_ns); // Push back first sample time
         }
     }
-    if (channels.size() < 4) return result; //Needs four mics: If not abandon
+    if (channels.size() < 4)
+        return result; // Needs four mics: If not abandon
 
     // Cross correlation and build a vector from this
-    std::vector<double> tdoa_s{0.0};                        //Reference 0 at index 0
-    for (int i = 1; i < channels.size(); i++){              //Starting at 1
+    std::vector<double> tdoa_s{0.0}; // Reference 0 at index 0
+    for (int i = 1; i < channels.size(); i++)
+    { // Starting at 1
         double lag = tdoa::CrossCorrelate(channels[0], channels[i]);
-        double offset_s = (t_first_ns[i] - t_first_ns[0]) * 1e-9;   //Convert ns to s
-        tdoa_s.push_back((double)lag / sample_rate + offset_s);     //Samples → seconds
+        double offset_s = (t_first_ns[i] - t_first_ns[0]) * 1e-9; // Convert ns to s
+        tdoa_s.push_back((double)lag / sample_rate + offset_s);   // Samples → seconds
     }
 
     // Call solveposition using vector
-    tdoa::SolvePosition(positions, tdoa_s, result.x_m, result.y_m);
-    result.valid = true;
+    double rms = tdoa::SolvePosition(positions, tdoa_s, result.x_m, result.y_m);   // Solve, and get the error
+    result.valid = (rms < MAX_RESIDUAL_M); 
 
     // Update timestamp
     const DetectedEvent &event = events[0];
-    result.time_stamp_ns = event.t_first_ns
-        + (int64_t)((double)event.trigger_offset / sample_rate * 1e9); // frames -> s -> ns
+    result.time_stamp_ns = event.t_first_ns + (int64_t)((double)event.trigger_offset / sample_rate * 1e9); // frames -> s -> ns
 
-    //Return result
+    // Return result
     return result;
 }
