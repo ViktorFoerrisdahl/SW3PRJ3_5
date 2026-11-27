@@ -1,9 +1,9 @@
-# BDD-ATLAS.drawio
+# IBD-ATLAS.drawio
 
 > Genereret fil. Ret originalen, ikke denne kopi.
 
-- Kilde: [Construction/BDD-ATLAS.drawio](../Construction/BDD-ATLAS.drawio)
-- SHA-256: `942e3a0b4351273f98b7e3f03d8e593aee068281bee7c35b0c5dabd2eb252e13`
+- Kilde: [construction/IBD-ATLAS.drawio](../construction/IBD-ATLAS.drawio)
+- SHA-256: `3564b26df0428bf41af4a8549129b156faae3f68ad91464dfdcd3ed6b631dfb0`
 - Status: manuel læsning kræves
 
 > Formatet .drawio understøttes ikke til tekstudtræk. Eksportér til DOCX, PDF eller Markdown; originalen er bevaret.

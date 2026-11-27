@@ -6,7 +6,7 @@
 - SHA-256: `ba291fbfa5fa44d84bd4d8e924fda6be96cdef7cbca71c7ada47b48eb92ea030`
 - Status: kontrollér markerede mangler
 
-> OCR markerer 1 af 45 ord som usikre; sammenhold dem med den viste illustration.
+> OCR markerer 3 af 46 ord som usikre; sammenhold dem med den viste illustration.
 
 ---
 
@@ -70,11 +70,9 @@ Når klappet identificeres ved sample 1040 på den ene mikrofon, og klappet iden
 
 Der bruges Servomotor, der peger på en bestemt vinkel, som bestemmes af systemet. Vinklen kan beregnes ud fra formlen
 
-``` math
-\theta = atan2(y - y_{m},x - x_{m})
-```
+$$\theta = atan2(y - y_{m},x - x_{m})$$
 
-Hvor $`x_{m},y_{m}`$ er servoens placering og $`(x,y)`$ er den estimerede lydposition. Problemet med denne formel er, at det kun er servomotorer uden continuos rotation, der rigtigt kan gøre brug af vinkelstyring og 360 graders servomotorer uden continuos rotation er sværere at finde. Motorer med continuos rotation gør brug af PWM signal til at styre rotationsretning og hastighed, så der skal bruges en encoder før at vinkelberegningen bliver en realitet, hvilket er en ekstra kompleksitet. Alternativt kan der muligvis bruges 2x $`270{^\circ}`$ servomotorer i et system som skaber fuld $`360{^\circ}`$ rotation.
+Hvor $x_{m},y_{m}$ er servoens placering og $(x,y)$ er den estimerede lydposition. Problemet med denne formel er, at det kun er servomotorer uden continuos rotation, der rigtigt kan gøre brug af vinkelstyring og 360 graders servomotorer uden continuos rotation er sværere at finde. Motorer med continuos rotation gør brug af PWM signal til at styre rotationsretning og hastighed, så der skal bruges en encoder før at vinkelberegningen bliver en realitet, hvilket er en ekstra kompleksitet. Alternativt kan der muligvis bruges 2x $270{^\circ}$ servomotorer i et system som skaber fuld $360{^\circ}$ rotation.
 
 ### **Mulighed 2 - Steppermotor**
 
@@ -92,7 +90,7 @@ Der bruges en KY-008 laser module som pegepind.
 ### Billedtekst (OCR) — asset-19bc66e881d5e55e3064.png
 
 Her er et mini-eksempel med kun 8 pladser, hvor der er skrevet 11 samples ind (#0 til #10):
-Neeste sample skrives her
+Næste sample skrives her
 plads 0
 plads1
 plads 2
@@ -100,9 +98,9 @@ plads 3
 plads 4
 plads 5
 plads 6
-plads7
+plads 7
 ©) Nyeste (skrevet efter wrap)
-© Adldste, overskrives nu
+© Ældste, overskrives nu
 
 
 ---
