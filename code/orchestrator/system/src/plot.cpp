@@ -40,7 +40,6 @@ void plot::plotNewEventAndDelete(int ID, double x, double y, int waittime, doubl
         return;
     }
 
-    sleep(2);
 
     std::string event;
     event.append("NEW");
