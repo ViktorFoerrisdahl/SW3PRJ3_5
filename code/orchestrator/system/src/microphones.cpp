@@ -2,7 +2,7 @@
 
 #include "microphones.h"
 #include "plot.h"
-#include "menu.h"
+#include "menu1.h"
 
 microphones::microphones(int amount) : AmountOfMicrophones_(amount)
 {

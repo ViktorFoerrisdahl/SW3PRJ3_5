@@ -11,9 +11,9 @@
   },
   {
     "source": "Construction/Activity diagram node.drawio",
-    "sha256": "d74e0d5004648eb531bcc127a325a1c79eacb4f33f48233105250d088bd9b584",
+    "sha256": "4ab10fdce0afd285303375c2e4679d939a4addd763a1e0b30bf30f20a2749061",
     "output": "activity-diagram-node--858746c70587b0e6.md",
-    "output_sha256": "aba302c9356729d5c2286ea0e3ac74185ed40eea6d2c4ba23ef31bcd577c338f",
+    "output_sha256": "5a76a3e8f46353ddf4d95302b8a1e1d8f5608fd347016e2b18f3c4f7c7918973",
     "status": "manuel læsning kræves",
     "notes": [
       "Formatet .drawio understøttes ikke til tekstudtræk. Eksportér til DOCX, PDF eller Markdown; originalen er bevaret."
@@ -21,9 +21,9 @@
   },
   {
     "source": "Construction/Activity diagram orchestrator v4.drawio",
-    "sha256": "8021d0e0afe410a9e98ee15aaa7c64e4ed3a732f6cf012ecbfd18b815be66e3f",
+    "sha256": "fa555c47811d266d321729d71393a2be7cbe390095c0cd7072235efcbb635b2e",
     "output": "activity-diagram-orchestrator-v4--3a89febe6a5b8bbb.md",
-    "output_sha256": "26b0ab7cc484f74d9c044441444ebaae96b692039d73b08b37e3c90fe22b6265",
+    "output_sha256": "c864adcb2509081eb4d34dbbe76e18856cd620683f71f0db322e87f26cb96676",
     "status": "manuel læsning kræves",
     "notes": [
       "Formatet .drawio understøttes ikke til tekstudtræk. Eksportér til DOCX, PDF eller Markdown; originalen er bevaret."
@@ -225,9 +225,9 @@
   },
   {
     "source": "README.md",
-    "sha256": "a1c3fbd79da9bcec220e661fb9dd6ed11a8290ab660942c9e2b99ece52e4aa1c",
+    "sha256": "c98ab00b3ec016179836367c4db1757a8d04a46ae91ea7b6001110078eb51d99",
     "output": "readme--b335630551682c19.md",
-    "output_sha256": "55e02db488a942fb641c2e5101711065d53439b5291fe4737788358531310524",
+    "output_sha256": "9a1b1337f901884da6462c540fb700e715a929524dc2ad709e4e986e8589595a",
     "status": "klar til læsning",
     "notes": []
   },
@@ -303,9 +303,9 @@
   },
   {
     "source": "construction/Package diagram.drawio",
-    "sha256": "275fb6dbffe0973c2f495fe2d374e52199fdaab9f01fbb00f6de06354f1e12fe",
+    "sha256": "42b44ff412f4d8ee91a96b078c909c69c0c4fd3b8ee2ab098a7bbbef62d6d5ec",
     "output": "package-diagram--ed503d2bc63cea95.md",
-    "output_sha256": "27149c023b5e0a68ffe7df6e3dbf637bb876d4beb65b4b7cff1c43e09ab0a8ef",
+    "output_sha256": "18391f0591f05a94d038beead448b6fbbb98c433d813d6ffc15fa3bf8f73f658",
     "status": "manuel læsning kræves",
     "notes": [
       "Formatet .drawio understøttes ikke til tekstudtræk. Eksportér til DOCX, PDF eller Markdown; originalen er bevaret."

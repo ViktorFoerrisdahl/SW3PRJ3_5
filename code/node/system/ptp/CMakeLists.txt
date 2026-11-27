@@ -5,13 +5,10 @@ target_compile_features(ptp_service PUBLIC cxx_std_20)
 add_executable(ptp_node examples/ptp_node.cpp)
 target_link_libraries(ptp_node PRIVATE ptp_service)
 
-find_package(Python3 COMPONENTS Interpreter QUIET)
-if(Python3_Interpreter_FOUND)
-  add_test(NAME ptp_service_test
-    COMMAND ${Python3_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/tests/ptp_service_test.py
-            $<TARGET_FILE:ptp_node>)
-  set_tests_properties(ptp_service_test PROPERTIES TIMEOUT 30)
-endif()
+add_executable(ptp_service_test tests/ptp_service_test.cpp)
+add_dependencies(ptp_service_test ptp_node)
+add_test(NAME ptp_service_test COMMAND ptp_service_test $<TARGET_FILE:ptp_node>)
+set_tests_properties(ptp_service_test PROPERTIES TIMEOUT 30)
 
 # PTP-aware localization. The TDOA solver lives in the orchestrator
 # (code/orchestrator/system/src/tdoa.cpp), built there as orchestrator_tdoa.

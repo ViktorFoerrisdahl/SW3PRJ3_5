@@ -72,6 +72,7 @@ def pipe_reciver():
                 new_data.append(float(message_argv[1])) # x value
                 new_data.append(float(message_argv[2])) # y value
                 new_data.append(int(message_argv[3])) # event ID
+                new_data.append(float(message_argv[4])) # RMS value
                 pipe_to_plot_array.append(new_data) #append new data to pipe to plot array
                 message_recived_from_pipe = True
 
@@ -110,12 +111,14 @@ def update_plot():
                 data_x_array.append(new_data[1])
                 data_y_array.append(new_data[2])
                 data_event_id.append(new_data[3])
+                data_rms_value.append(new_data[4])
 
             elif new_data[0] == "DEL":
                 if data_x_array:
                     data_event_id.pop(0)
                     data_x_array.pop(0)
                     data_y_array.pop(0)
+                    data_rms_value.pop(0)
 
             elif new_data[0] == "MICS":
                 # Clears old mic arrays and datapoints as they are obsolete
@@ -145,8 +148,8 @@ def update_plot():
         axis.plot(data_x_array,data_y_array, 'rx')
 
         #Plot event ID's and coordinates next to events coordinates
-        for x, y, event_id in zip(data_x_array, data_y_array, data_event_id):
-            text = f"EventID: {event_id} - ({x:.2f}, {y:.2f})"
+        for x, y, event_id, rms in zip(data_x_array, data_y_array, data_event_id, data_rms_value):
+            text = f"EventID: {event_id} - ({x:.2f}, {y:.2f},) - RMS {rms:.2f}"
             axis.annotate(text, (x, y), textcoords="offset points", xytext=(5, 5), fontsize=10)
 
         #Plot mics as red dots
@@ -177,6 +180,7 @@ if __name__ == "__main__":
     data_x_array = []
     data_y_array = []
     data_event_id = []
+    data_rms_value = []
 
     # arrays for mic locations
     mic_x_array = []
