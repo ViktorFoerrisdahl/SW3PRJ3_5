@@ -267,6 +267,11 @@ void OrchestratorTCP::handleLine(Connection &conn, const std::string &line)
 		if (!rememberNode(conn, status->node_id))
 			return;
 		ptp_status_.update(*status);
+		std::cout << "PTP node " << status->node_id << ": ";
+		if (status->synchronized)
+			std::cout << "synchronized (offset budget " << status->offset_budget_ns << " ns)\n";
+		else
+			std::cout << "not synchronized\n";
 		return;
 	}
 
