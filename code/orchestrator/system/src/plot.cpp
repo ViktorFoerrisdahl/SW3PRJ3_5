@@ -10,26 +10,26 @@ plot::plot() : EventID_(0)
 
 void plot::startPyPlot(int AmountOfMics, std::vector<MIC_POSITION> vectorMic)
 {
-    std::string command = "python3 plot.py " + std::to_string(AmountOfMics) + " ";
-    for (auto m : vectorMic)
-    {
-        command.append(std::to_string(m.x_m));
-        command.append(" ");
-        command.append(std::to_string(m.y_m));
-        command.append(" ");
-    }
+	std::string command = "python3 plot.py " + std::to_string(AmountOfMics) + " ";
+	for (auto m : vectorMic)
+	{
+		command.append(std::to_string(m.x_m));
+		command.append(" ");
+		command.append(std::to_string(m.y_m));
+		command.append(" ");
+	}
 
-    {
-        std::lock_guard<std::mutex> lock(python_lock_);
+	{
+		std::lock_guard<std::mutex> lock(python_lock_);
 
-        FILE *plot = popen(command.c_str(), "w");
-        if (plot == nullptr)
-        {
-            perror("popen in plot contructor");
-            return;
-        }
-        plot_ = plot;
-    }
+		FILE *plot = popen(command.c_str(), "w");
+		if (plot == nullptr)
+		{
+			perror("popen in plot contructor");
+			return;
+		}
+		plot_ = plot;
+	}
 }
 
 void plot::plotNewEventAndDelete(int ID, double x, double y, int waittime, double rms)
@@ -76,41 +76,41 @@ void plot::plotNewEventAndDelete(int ID, double x, double y, int waittime, doubl
 
 void plot::stopPyPlot()
 {
-    std::string STOP;
+	std::string STOP;
 
-    STOP.append("STOP");
-    STOP.append("\n");
+	STOP.append("STOP");
+	STOP.append("\n");
 
-    {
-        std::lock_guard<std::mutex> lock(python_lock_);
-        fputs(STOP.c_str(), plot_);
-        fflush(plot_);
-    }
+	{
+		std::lock_guard<std::mutex> lock(python_lock_);
+		fputs(STOP.c_str(), plot_);
+		fflush(plot_);
+	}
 }
 
 void plot::EnterNewMics(microphones &mics)
 {
-    mics.inputMics();
+	mics.inputMics();
 
-    std::string NEWMICS;
-    NEWMICS.append("MICS");
-    NEWMICS.append(" ");
-    NEWMICS.append(std::to_string(mics.snapshot().size()));
-    NEWMICS.append(" ");
+	std::string NEWMICS;
+	NEWMICS.append("MICS");
+	NEWMICS.append(" ");
+	NEWMICS.append(std::to_string(mics.snapshot().size()));
+	NEWMICS.append(" ");
 
-    for (auto m : mics.snapshot())
-    {
-        NEWMICS.append(std::to_string(m.x_m));
-        NEWMICS.append(" ");
-        NEWMICS.append(std::to_string(m.y_m));
-        NEWMICS.append(" ");
-    }
+	for (auto m : mics.snapshot())
+	{
+		NEWMICS.append(std::to_string(m.x_m));
+		NEWMICS.append(" ");
+		NEWMICS.append(std::to_string(m.y_m));
+		NEWMICS.append(" ");
+	}
 
-    NEWMICS.append("\n");
+	NEWMICS.append("\n");
 
-    {
-        std::lock_guard<std::mutex> lock(python_lock_);
-        fputs(NEWMICS.c_str(), plot_);
-        fflush(plot_);
-    }
+	{
+		std::lock_guard<std::mutex> lock(python_lock_);
+		fputs(NEWMICS.c_str(), plot_);
+		fflush(plot_);
+	}
 }
