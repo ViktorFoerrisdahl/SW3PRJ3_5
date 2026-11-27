@@ -135,5 +135,8 @@ Dette afsnit opdateres automatisk af CI. Ret teksten uden for markørerne.
 - [tools/external/rapidjson/rapidjson/uri.h](tools/external/rapidjson/rapidjson/uri.h)
 - [tools/external/rapidjson/rapidjson/writer.h](tools/external/rapidjson/rapidjson/writer.h)
 - [tools/navigation/generate.py](tools/navigation/generate.py)
+- [tools/start/start-node0.sh](tools/start/start-node0.sh)
+- [tools/start/start-node1.sh](tools/start/start-node1.sh)
+- [tools/start/start-orchestrator.sh](tools/start/start-orchestrator.sh)
 
 <!-- END GENERATED NAVIGATION -->
