@@ -15,7 +15,7 @@ const MIC_POSITION *tdoa::FindMic(const std::vector<MIC_POSITION> &mics, const u
 }
 
 // Lag in samples where sig best matches ref.
-double tdoa::CrossCorrelate(const std::vector<int32_t> &ref, const std::vector<int32_t> &sig)
+double tdoa::CrossCorrelate(const std::vector<double> &ref, const std::vector<double> &sig)
 {
     std::vector<double> sums(2 * MAX_LAG_SAMPLES + 1); // One score per lag
     double best_sum = -1e300;                          // Comparison metric: Initialised to an extremely small number that any real sum will surpass
@@ -192,9 +192,9 @@ double tdoa::SolvePosition(const std::vector<MIC_POSITION> &mics, const std::vec
 TDOA_RESULT tdoa::ComputePosition(const std::vector<DetectedEvent> &events, const std::vector<MIC_POSITION> &mics)
 {
     // Intialise lists and result
-    TDOA_RESULT result = {false, 0.0, 0.0, 0LL}; // Invalid until proven otherwise
+    TDOA_RESULT result = {false, 0.0, 0.0, 0LL, 0.0}; // Invalid until proven otherwise
     std::vector<MIC_POSITION> positions;         // Vector for microphones
-    std::vector<std::vector<int32_t>> channels;  // Samples of each channel
+    std::vector<std::vector<double>> channels;  // Samples of each channel
     std::vector<int64_t> t_first_ns;             // Vector for first sample time of each channel
     uint32_t sample_rate = 0;                    // Shared variable for sample rate
 
@@ -208,12 +208,17 @@ TDOA_RESULT tdoa::ComputePosition(const std::vector<DetectedEvent> &events, cons
             const MIC_POSITION *p_mic = tdoa::FindMic(mics, event.node_id, i); // Find mic
             if (p_mic == nullptr) return result; // Unknown id: Abandon
 
-            // De-interleave samples
-            std::vector<int32_t> samples;
+            //De-interleave samples og remove DC-offset
+            std::vector<double> samples;
+            double sum = 0.0;
             for (const Frame &f : event.frames)
             {
-                samples.push_back(f.ch[i]); // Push back sample for this mic
+                samples.push_back((double)f.ch[i]); //Push back sample for this mic
+                sum += f.ch[i];
             }
+            double mean = sum / samples.size();
+            for (double &s : samples)
+            s -= mean;                          //Remove DC top pulling lag towards 0
 
             // Push back data
             positions.push_back(*p_mic);            // Push back mic
@@ -239,6 +244,7 @@ TDOA_RESULT tdoa::ComputePosition(const std::vector<DetectedEvent> &events, cons
     // Call solveposition using vector
     double rms = tdoa::SolvePosition(positions, tdoa_s, result.x_m, result.y_m);   // Solve, and get the error
     result.valid = (rms < MAX_RESIDUAL_M);
+    result.rms = rms;
 
     // Update timestamp
     const DetectedEvent &event = events[0];
