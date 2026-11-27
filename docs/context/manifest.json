@@ -1,5 +1,106 @@
 [
   {
+    "source": "Construction/Activity diagram TCP (kode).drawio",
+    "sha256": "38c4a5f71024b0109e33921c15ebd432be7667c402f7a4c4e4869faeb06172da",
+    "output": "activity-diagram-tcp-kode--a0020e11f79a32b5.md",
+    "output_sha256": "233948cd04988c3341491527c7e77425b5b5cd5150663303cf23a2b9e7f87409",
+    "status": "manuel læsning kræves",
+    "notes": [
+      "Formatet .drawio understøttes ikke til tekstudtræk. Eksportér til DOCX, PDF eller Markdown; originalen er bevaret."
+    ]
+  },
+  {
+    "source": "Construction/Activity diagram node.drawio",
+    "sha256": "4ab10fdce0afd285303375c2e4679d939a4addd763a1e0b30bf30f20a2749061",
+    "output": "activity-diagram-node--858746c70587b0e6.md",
+    "output_sha256": "5a76a3e8f46353ddf4d95302b8a1e1d8f5608fd347016e2b18f3c4f7c7918973",
+    "status": "manuel læsning kræves",
+    "notes": [
+      "Formatet .drawio understøttes ikke til tekstudtræk. Eksportér til DOCX, PDF eller Markdown; originalen er bevaret."
+    ]
+  },
+  {
+    "source": "Construction/Activity diagram orchestrator v4.drawio",
+    "sha256": "fa555c47811d266d321729d71393a2be7cbe390095c0cd7072235efcbb635b2e",
+    "output": "activity-diagram-orchestrator-v4--3a89febe6a5b8bbb.md",
+    "output_sha256": "c864adcb2509081eb4d34dbbe76e18856cd620683f71f0db322e87f26cb96676",
+    "status": "manuel læsning kræves",
+    "notes": [
+      "Formatet .drawio understøttes ikke til tekstudtræk. Eksportér til DOCX, PDF eller Markdown; originalen er bevaret."
+    ]
+  },
+  {
+    "source": "Construction/Activity diagram orchestrator_WIP.drawio",
+    "sha256": "65f7a7ace09f15496f3cde0ce3f0289b422e5858e70feda6df32667a725e00d7",
+    "output": "activity-diagram-orchestrator-wip--1341398c983f56f1.md",
+    "output_sha256": "666f2fb1339c30331c724101d1cfad398ec6fe744d72eae62ebe8cf97fe0978b",
+    "status": "manuel læsning kræves",
+    "notes": [
+      "Formatet .drawio understøttes ikke til tekstudtræk. Eksportér til DOCX, PDF eller Markdown; originalen er bevaret."
+    ]
+  },
+  {
+    "source": "Construction/BDD-ATLAS.drawio",
+    "sha256": "942e3a0b4351273f98b7e3f03d8e593aee068281bee7c35b0c5dabd2eb252e13",
+    "output": "bdd-atlas--9a68ecb9e3111b52.md",
+    "output_sha256": "3d124294f07dbfc929b37224f55d0f77583558dee6492d50168222c96e3577f9",
+    "status": "manuel læsning kræves",
+    "notes": [
+      "Formatet .drawio understøttes ikke til tekstudtræk. Eksportér til DOCX, PDF eller Markdown; originalen er bevaret."
+    ]
+  },
+  {
+    "source": "Construction/IBD-ATLAS.drawio",
+    "sha256": "3564b26df0428bf41af4a8549129b156faae3f68ad91464dfdcd3ed6b631dfb0",
+    "output": "ibd-atlas--09fd1cc18dd6a858.md",
+    "output_sha256": "4220f7c5a3ec943aa926dccbc1909b0a3aed0c95ce0c272ccb5cea064cd6ecd9",
+    "status": "manuel læsning kræves",
+    "notes": [
+      "Formatet .drawio understøttes ikke til tekstudtræk. Eksportér til DOCX, PDF eller Markdown; originalen er bevaret."
+    ]
+  },
+  {
+    "source": "Construction/Package diagram.drawio",
+    "sha256": "42b44ff412f4d8ee91a96b078c909c69c0c4fd3b8ee2ab098a7bbbef62d6d5ec",
+    "output": "package-diagram--1e1bc9402422d9dd.md",
+    "output_sha256": "e524a3fa8557ec42f5e5adbcea0104ba11098e24d53e7b702264031156b379c3",
+    "status": "manuel læsning kræves",
+    "notes": [
+      "Formatet .drawio understøttes ikke til tekstudtræk. Eksportér til DOCX, PDF eller Markdown; originalen er bevaret."
+    ]
+  },
+  {
+    "source": "Construction/SD UC1 Lokaliser lydhændelse.drawio",
+    "sha256": "199dd938c06aaf6b7366846391248d37d1900aaa7a26c6698280e576e82a5be6",
+    "output": "sd-uc1-lokaliser-lydh-ndelse--5b999b29003084f5.md",
+    "output_sha256": "b761591e78c559636f0c3953fd8a1657ea5fb96603e9ebe8d1753ffbe13954b6",
+    "status": "manuel læsning kræves",
+    "notes": [
+      "Formatet .drawio understøttes ikke til tekstudtræk. Eksportér til DOCX, PDF eller Markdown; originalen er bevaret."
+    ]
+  },
+  {
+    "source": "Construction/UML_klassediagram_NODE.drawio",
+    "sha256": "5a34b326f566dd46c1d224fe73d37498a20dc9acaf1a2e718fc9e92f38f83fb0",
+    "output": "uml-klassediagram-node--8e9ed7f9ccee0d15.md",
+    "output_sha256": "e8fcbdcd5c9593c3c92b4b9c539afd4e35f7d6778648859deac0247622cea372",
+    "status": "manuel læsning kræves",
+    "notes": [
+      "Formatet .drawio understøttes ikke til tekstudtræk. Eksportér til DOCX, PDF eller Markdown; originalen er bevaret."
+    ]
+  },
+  {
+    "source": "Construction/tegnet_udkast_softwarearkitekttur_node.jpeg",
+    "sha256": "32551c230c6120f8fa2f7e973916585c60ccfd3c52d0e6a51fd2e0408643bf07",
+    "output": "tegnet-udkast-softwarearkitekttur-node--c97be304f54f022d.md",
+    "output_sha256": "00c69ba0105e80c8e77d468338ca616ea04109a1d3ccd67724d23f1dda092263",
+    "status": "billede med OCR",
+    "notes": [
+      "OCR markerer 70 af 90 ord som usikre; sammenhold dem med den viste illustration.",
+      "OCR gengiver tekst, ikke pile, geometri eller relationer. Brug den viste illustration til visuel information."
+    ]
+  },
+  {
     "source": "Elaboration E1/Domænemodel.url",
     "sha256": "c667e9f772556e53154cdb90106a89e8b92b49bb8654072cbe2a370cb746f24f",
     "output": "dom-nemodel--28236135411e0141.md",
@@ -13,7 +114,7 @@
     "source": "Elaboration E2/Deployment diagram 29092026.png",
     "sha256": "bced1ff05fda57386a7c7d328f4037f05a10af67c3b5962483719f81e4f554f2",
     "output": "deployment-diagram-29092026--287283c36e98f852.md",
-    "output_sha256": "59310ce8aab6c3ed69c174c3a45ca0b0121efd3718a0adb85efb05ef8987848e",
+    "output_sha256": "b3f81692873ed3c0602f5d310263f4e8106f88c980d5ee6e1f4e5fb5d951fbd5",
     "status": "billede med OCR",
     "notes": [
       "OCR gengiver tekst, ikke pile, geometri eller relationer. Brug den viste illustration til visuel information."
@@ -23,7 +124,7 @@
     "source": "Elaboration E2/Mikrofon og Hændelsesdetektering/Hændelsesdetektering.docx",
     "sha256": "d9dd00fb0c101d0fc2743385a3b2255e4f1a0b76acd560ce39239eec92f5cdf5",
     "output": "h-ndelsesdetektering--f60e91899e42f164.md",
-    "output_sha256": "1d9bad5f20c6afa3272aa10aacb27a9f621e1db986b6d31356fb76028ef205d2",
+    "output_sha256": "f54ae01bf4dd2f598ebaafdcf12bfed69a85ba6d6762a03f9759952543fd9969",
     "status": "klar til læsning",
     "notes": []
   },
@@ -31,7 +132,7 @@
     "source": "Elaboration E2/Mikrofon og Hændelsesdetektering/Mikrofon_Analyse.docx",
     "sha256": "7e0d31c9bcfa524cb5abdcdfbe167358fce1034b425b9ff7b2540c6fb4e6330e",
     "output": "mikrofon-analyse--ebecfd292e90c633.md",
-    "output_sha256": "79abd5ce1282e3854f6f0d09434c46e04cc0d8de8d6058223c2792afc050d12e",
+    "output_sha256": "6a954610c76f288dffee79da578c7445e2ead0307fb49e85fdb3e94897b16875",
     "status": "klar til læsning",
     "notes": []
   },
@@ -39,10 +140,10 @@
     "source": "Elaboration E2/Package Diagram 250926.jpg",
     "sha256": "3e1afee983db3f2b3bae4358ae5c21ec91df7eb7bfda114b0be433b9c52a69d8",
     "output": "package-diagram-250926--8b5608d5eb77dcc0.md",
-    "output_sha256": "76b49312893d43c8061ef578d677fd605688ef272f3c718f0df9034be1707178",
+    "output_sha256": "7a18ea855f26dfabc79b87e3e81faa4adcfd045cc1a91d8b6ecc463c87d6bd7a",
     "status": "billede med OCR",
     "notes": [
-      "OCR markerer 51 af 73 ord som usikre; sammenhold dem med den viste illustration.",
+      "OCR markerer 55 af 70 ord som usikre; sammenhold dem med den viste illustration.",
       "OCR gengiver tekst, ikke pile, geometri eller relationer. Brug den viste illustration til visuel information."
     ]
   },
@@ -50,10 +151,10 @@
     "source": "Elaboration E2/Package diagram 25092026.png",
     "sha256": "f17bd00945793e5114e55ab9e23698c580c4926f723bd39b91fa517d1f48e764",
     "output": "package-diagram-25092026--81a82897a42234fa.md",
-    "output_sha256": "8de13d21c5656153988ff74edbe8afe6f5972516e01d632638b9715c8a18964a",
+    "output_sha256": "46b25a697fe612db754862170ea337c57f4c714579c7526b8249c3c447cd6b8a",
     "status": "billede med OCR",
     "notes": [
-      "OCR markerer 79 af 175 ord som usikre; sammenhold dem med den viste illustration.",
+      "OCR markerer 87 af 181 ord som usikre; sammenhold dem med den viste illustration.",
       "OCR gengiver tekst, ikke pile, geometri eller relationer. Brug den viste illustration til visuel information."
     ]
   },
@@ -61,10 +162,10 @@
     "source": "Elaboration E2/SSD.png",
     "sha256": "ac7d76cc4dc8b5631883299fc61fd80cd542472c555fa1674ae4b6841fdc6cc5",
     "output": "ssd--ba4a08b9c2a921b8.md",
-    "output_sha256": "31908029938cf4aee336636d40af61009830e3f0887d141ddb490e91ea499dda",
+    "output_sha256": "a4de92c3528e2ad74867c2235c9203bff0d59f8c9f41c8ac203fb83a3d5d9c49",
     "status": "billede med OCR",
     "notes": [
-      "OCR markerer 427 af 589 ord som usikre; sammenhold dem med den viste illustration.",
+      "OCR markerer 472 af 627 ord som usikre; sammenhold dem med den viste illustration.",
       "OCR gengiver tekst, ikke pile, geometri eller relationer. Brug den viste illustration til visuel information."
     ]
   },
@@ -82,10 +183,20 @@
     "source": "Elaboration E2/Teknisk Analyse.docx",
     "sha256": "ba291fbfa5fa44d84bd4d8e924fda6be96cdef7cbca71c7ada47b48eb92ea030",
     "output": "teknisk-analyse--a1f79ad9083580e7.md",
-    "output_sha256": "106c6d8e047a292789347c29a1714a44e44cb0cf530cb17b6234e483736d95ac",
+    "output_sha256": "8bae45995dadfca30883dc797246b790895f6263af8212227a4b3f52ce4b59d4",
     "status": "kontrollér markerede mangler",
     "notes": [
-      "OCR markerer 3 af 46 ord som usikre; sammenhold dem med den viste illustration."
+      "OCR markerer 1 af 45 ord som usikre; sammenhold dem med den viste illustration."
+    ]
+  },
+  {
+    "source": "Elaboration E2/UML Controller (1).drawio",
+    "sha256": "814cfb6318870dcaac0c768f355068947e956900d06ebbb61fa969ef87f4bdf1",
+    "output": "uml-controller-1--781f015bfc7e898a.md",
+    "output_sha256": "8a3b3f553caa071eba6c92e7b3f513d9ba4b1ec8de9481598d94d12d055a87b2",
+    "status": "manuel læsning kræves",
+    "notes": [
+      "Formatet .drawio understøttes ikke til tekstudtræk. Eksportér til DOCX, PDF eller Markdown; originalen er bevaret."
     ]
   },
   {
@@ -98,9 +209,9 @@
   },
   {
     "source": "Inception/Noter/TDOA.md",
-    "sha256": "b698d88a6ec8972ded63a5b4e091fe7b2124d18982ec4daf8b235c5de4947b7c",
+    "sha256": "255234d6d1a5248aac6090a24d04cd43a22c64b5230cc06338da00f9abe1b842",
     "output": "tdoa--6562ec8814fbbcac.md",
-    "output_sha256": "70f892170ac3e4ab33920eeb2d4d90ba7eb3291f6a905d13d4edcdc952aa6532",
+    "output_sha256": "e624f2560949e8b0e9e145af82e405d97091ffbb8c69e7708795e775b64cc327",
     "status": "klar til læsning",
     "notes": []
   },
@@ -124,10 +235,10 @@
     "source": "Inception/billede - 20260908-084715-0d4273c9_6801.jpeg",
     "sha256": "d1bbf4020df121bc206cdd104280d7ed9d971c53104cee786ae4c065327fdb74",
     "output": "billede-20260908-084715-0d4273c9-6801--283f6d4003ea9c86.md",
-    "output_sha256": "e055b81b39d11dae68ea5d8d54dc8078f48095f5afb33dafd5d58691a32dee0d",
+    "output_sha256": "a92798c23e3a679b672f4c99683de1f6b5c2a051b980cd78ac3c64f6ea538fbc",
     "status": "billede med OCR",
     "notes": [
-      "OCR markerer 113 af 163 ord som usikre; sammenhold dem med den viste illustration.",
+      "OCR markerer 123 af 161 ord som usikre; sammenhold dem med den viste illustration.",
       "OCR gengiver tekst, ikke pile, geometri eller relationer. Brug den viste illustration til visuel information."
     ]
   },
@@ -159,25 +270,25 @@
   },
   {
     "source": "Projektstyring/code-conventions.md",
-    "sha256": "b977655e7fd56b4eb7232b3dc0830fb3975855858e4bf2a4e797cd08815747fc",
+    "sha256": "ca531321e472a006e87a58c3c8a52dd29441437114e1c90394f7eebf50893a86",
     "output": "code-conventions--f919fe92ecf7d57a.md",
-    "output_sha256": "239bb7990ebc01cd2fe8738cfd3396975b922aea1e9854650628108904aef6b2",
+    "output_sha256": "ffa46a31e418d261a38ab2fd8d1b9de7a09fe9cb598a20b8a3aa89244a3f7f26",
     "status": "klar til læsning",
     "notes": []
   },
   {
     "source": "Projektstyring/terminology.md",
-    "sha256": "8d22c5f5cfa49d254719f8157a1e550b8183d9857328d0cf20f3f0ef1005003b",
+    "sha256": "398c7c754d98867deb172520b5f97c08f929613bd5bb5a463dc570fa01afe0b3",
     "output": "terminology--48832c567ff8fd39.md",
-    "output_sha256": "97cb6540c77d797ce69521477ea8186b0c09b3150f469ae29d574c125bd98b34",
+    "output_sha256": "fc8d5d20018dbc40b0fedd5e497eb902accd6ecb9da82519c7ba5ee7754a32fc",
     "status": "klar til læsning",
     "notes": []
   },
   {
     "source": "README.md",
-    "sha256": "b4a0b6eeddfebc7d5219615d1419293d12dc87e61249cf2e9f1662a80327a01c",
+    "sha256": "c98ab00b3ec016179836367c4db1757a8d04a46ae91ea7b6001110078eb51d99",
     "output": "readme--b335630551682c19.md",
-    "output_sha256": "94b978b50432ab4428979ffe45c3f2650757fe51a9c45adef153f6feef8977b9",
+    "output_sha256": "9a1b1337f901884da6462c540fb700e715a929524dc2ad709e4e986e8589595a",
     "status": "klar til læsning",
     "notes": []
   },
@@ -220,5 +331,67 @@
     "output_sha256": "2f1e8675c9014d23bf1eb37d183b5d6baf006410ded27ea694bcc45baa3215c9",
     "status": "klar til læsning",
     "notes": []
+  },
+  {
+    "source": "rapport/bilag/ATLAS systemskitse.png",
+    "sha256": "654519a7cec9ee2737111f2b5135af07c67a86c061f18f1376066978998a232f",
+    "output": "atlas-systemskitse--093af2fc393c2103.md",
+    "output_sha256": "9166477d00b5575dc344d3782c4a7cf9001c2059d89c785bebaa0c7146bc8638",
+    "status": "billede med OCR",
+    "notes": [
+      "OCR markerer 122 af 148 ord som usikre; sammenhold dem med den viste illustration.",
+      "OCR gengiver tekst, ikke pile, geometri eller relationer. Brug den viste illustration til visuel information."
+    ]
+  },
+  {
+    "source": "rapport/bilag/aulogo_dk_var2_blaa.png",
+    "sha256": "e531aa8f26c67730d38651f2474bf592cc446dc509926c64d777b489a68077dd",
+    "output": "aulogo-dk-var2-blaa--15360835d25d0fe8.md",
+    "output_sha256": "f69207c7ec9093548072ffcb8e7019aa06643ef2bb78aa5f930dadbb8851df53",
+    "status": "billede med OCR",
+    "notes": [
+      "OCR gengiver tekst, ikke pile, geometri eller relationer. Brug den viste illustration til visuel information."
+    ]
+  },
+  {
+    "source": "rapport/bilag/ausegl_blaa.png",
+    "sha256": "2f7fed112d37a88a84bd4b871d112914ad0414d96ef1dcc210a5d06a544b8d66",
+    "output": "ausegl-blaa--776324719b80f4ff.md",
+    "output_sha256": "96c2290de01ce7edcbc0c18be4ba222d424ea07526a0c3a12e9692f6900a2a56",
+    "status": "billede med OCR",
+    "notes": [
+      "OCR markerer 5 af 6 ord som usikre; sammenhold dem med den viste illustration.",
+      "OCR gengiver tekst, ikke pile, geometri eller relationer. Brug den viste illustration til visuel information."
+    ]
+  },
+  {
+    "source": "rapport/kravanalyse.tex",
+    "sha256": "94bd441369b34d9bcbf7adbf336e92c68f8b244ff4cd2eab9a6f4ea8cfe0c90f",
+    "output": "kravanalyse--ce9a3597f7b7d747.md",
+    "output_sha256": "bc05e429e98a248555bfcc018bf2984e73f996e357256f8f9bf98109c1ce5a32",
+    "status": "manuel læsning kræves",
+    "notes": [
+      "Formatet .tex understøttes ikke til tekstudtræk. Eksportér til DOCX, PDF eller Markdown; originalen er bevaret."
+    ]
+  },
+  {
+    "source": "rapport/projektformulering.tex",
+    "sha256": "9f8eab17d5f814dc4ef5c6d7590febfe86430d8f53e7fa27b29d480fe883962c",
+    "output": "projektformulering--fedf7d6851d2cd43.md",
+    "output_sha256": "609a689b173b06b57ae05354c53b900ea1de05e10ebe8014c6ca69c1f4b31c96",
+    "status": "manuel læsning kræves",
+    "notes": [
+      "Formatet .tex understøttes ikke til tekstudtræk. Eksportér til DOCX, PDF eller Markdown; originalen er bevaret."
+    ]
+  },
+  {
+    "source": "rapport/tekniskanalyse/Hændelsesdetektering.tex",
+    "sha256": "11182c6a41cf03c060eb0f122bc68cfe9f3b8ad59da7652c8b4638c92ec415b2",
+    "output": "h-ndelsesdetektering--6f0f02eb851714ef.md",
+    "output_sha256": "0f20ec6e8a03c57f6292027e9a891afc6556c12b629965c3abbfbc048d6f7ec0",
+    "status": "manuel læsning kræves",
+    "notes": [
+      "Formatet .tex understøttes ikke til tekstudtræk. Eksportér til DOCX, PDF eller Markdown; originalen er bevaret."
+    ]
   }
 ]

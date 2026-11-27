@@ -8,6 +8,16 @@ Brug Markdown som primær læsekilde. **Klar til læsning** har ingen fundne kon
 
 | Kilde | Markdown | Status |
 | --- | --- | --- |
+| [Construction/Activity diagram TCP (kode).drawio](../Construction/Activity%20diagram%20TCP%20%28kode%29.drawio) | [Læs](activity-diagram-tcp-kode--a0020e11f79a32b5.md) | manuel læsning kræves |
+| [Construction/Activity diagram node.drawio](../Construction/Activity%20diagram%20node.drawio) | [Læs](activity-diagram-node--858746c70587b0e6.md) | manuel læsning kræves |
+| [Construction/Activity diagram orchestrator v4.drawio](../Construction/Activity%20diagram%20orchestrator%20v4.drawio) | [Læs](activity-diagram-orchestrator-v4--3a89febe6a5b8bbb.md) | manuel læsning kræves |
+| [Construction/Activity diagram orchestrator_WIP.drawio](../Construction/Activity%20diagram%20orchestrator_WIP.drawio) | [Læs](activity-diagram-orchestrator-wip--1341398c983f56f1.md) | manuel læsning kræves |
+| [Construction/BDD-ATLAS.drawio](../Construction/BDD-ATLAS.drawio) | [Læs](bdd-atlas--9a68ecb9e3111b52.md) | manuel læsning kræves |
+| [Construction/IBD-ATLAS.drawio](../Construction/IBD-ATLAS.drawio) | [Læs](ibd-atlas--09fd1cc18dd6a858.md) | manuel læsning kræves |
+| [Construction/Package diagram.drawio](../Construction/Package%20diagram.drawio) | [Læs](package-diagram--1e1bc9402422d9dd.md) | manuel læsning kræves |
+| [Construction/SD UC1 Lokaliser lydhændelse.drawio](../Construction/SD%20UC1%20Lokaliser%20lydh%C3%A6ndelse.drawio) | [Læs](sd-uc1-lokaliser-lydh-ndelse--5b999b29003084f5.md) | manuel læsning kræves |
+| [Construction/UML_klassediagram_NODE.drawio](../Construction/UML_klassediagram_NODE.drawio) | [Læs](uml-klassediagram-node--8e9ed7f9ccee0d15.md) | manuel læsning kræves |
+| [Construction/tegnet_udkast_softwarearkitekttur_node.jpeg](../Construction/tegnet_udkast_softwarearkitekttur_node.jpeg) | [Læs](tegnet-udkast-softwarearkitekttur-node--c97be304f54f022d.md) | billede med OCR |
 | [Elaboration E1/Domænemodel.url](../Elaboration%20E1/Dom%C3%A6nemodel.url) | [Læs](dom-nemodel--28236135411e0141.md) | manuel læsning kræves |
 | [Elaboration E2/Deployment diagram 29092026.png](../Elaboration%20E2/Deployment%20diagram%2029092026.png) | [Læs](deployment-diagram-29092026--287283c36e98f852.md) | billede med OCR |
 | [Elaboration E2/Mikrofon og Hændelsesdetektering/Hændelsesdetektering.docx](../Elaboration%20E2/Mikrofon%20og%20H%C3%A6ndelsesdetektering/H%C3%A6ndelsesdetektering.docx) | [Læs](h-ndelsesdetektering--f60e91899e42f164.md) | klar til læsning |
@@ -17,6 +27,7 @@ Brug Markdown som primær læsekilde. **Klar til læsning** har ingen fundne kon
 | [Elaboration E2/SSD.png](../Elaboration%20E2/SSD.png) | [Læs](ssd--ba4a08b9c2a921b8.md) | billede med OCR |
 | [Elaboration E2/System Sekvens Diagram.url](../Elaboration%20E2/System%20Sekvens%20Diagram.url) | [Læs](system-sekvens-diagram--bf16987347345165.md) | manuel læsning kræves |
 | [Elaboration E2/Teknisk Analyse.docx](../Elaboration%20E2/Teknisk%20Analyse.docx) | [Læs](teknisk-analyse--a1f79ad9083580e7.md) | kontrollér markerede mangler |
+| [Elaboration E2/UML Controller (1).drawio](../Elaboration%20E2/UML%20Controller%20%281%29.drawio) | [Læs](uml-controller-1--781f015bfc7e898a.md) | manuel læsning kræves |
 | [Inception/Noter/CNN Warehouse.md](../Inception/Noter/CNN%20Warehouse.md) | [Læs](cnn-warehouse--583fd4e8d12e9e18.md) | klar til læsning |
 | [Inception/Noter/TDOA.md](../Inception/Noter/TDOA.md) | [Læs](tdoa--6562ec8814fbbcac.md) | klar til læsning |
 | [Inception/PRJ3 Gruppe 5 Projektformulering.pdf](../Inception/PRJ3%20Gruppe%205%20Projektformulering.pdf) | [Læs](prj3-gruppe-5-projektformulering--4a15db61402076c4.md) | tekst og illustrationer |
@@ -33,3 +44,9 @@ Brug Markdown som primær læsekilde. **Klar til læsning** har ingen fundne kon
 | [Referater/Referat #3 - Møde med søren 150926.docx](../Referater/Referat%20%233%20-%20M%C3%B8de%20med%20s%C3%B8ren%20150926.docx) | [Læs](referat-3-m-de-med-s-ren-150926--5bf973b246ada4a5.md) | klar til læsning |
 | [Referater/Referat #4 - 18-09-2026 - Elaboration 1.docx](../Referater/Referat%20%234%20-%2018-09-2026%20-%20Elaboration%201.docx) | [Læs](referat-4-18-09-2026-elaboration-1--ef4106ff317643ab.md) | klar til læsning |
 | [Referater/Referat #5 - 25-09-2026.docx](../Referater/Referat%20%235%20-%2025-09-2026.docx) | [Læs](referat-5-25-09-2026--01957541a68ea745.md) | klar til læsning |
+| [rapport/bilag/ATLAS systemskitse.png](../rapport/bilag/ATLAS%20systemskitse.png) | [Læs](atlas-systemskitse--093af2fc393c2103.md) | billede med OCR |
+| [rapport/bilag/aulogo_dk_var2_blaa.png](../rapport/bilag/aulogo_dk_var2_blaa.png) | [Læs](aulogo-dk-var2-blaa--15360835d25d0fe8.md) | billede med OCR |
+| [rapport/bilag/ausegl_blaa.png](../rapport/bilag/ausegl_blaa.png) | [Læs](ausegl-blaa--776324719b80f4ff.md) | billede med OCR |
+| [rapport/kravanalyse.tex](../rapport/kravanalyse.tex) | [Læs](kravanalyse--ce9a3597f7b7d747.md) | manuel læsning kræves |
+| [rapport/projektformulering.tex](../rapport/projektformulering.tex) | [Læs](projektformulering--fedf7d6851d2cd43.md) | manuel læsning kræves |
+| [rapport/tekniskanalyse/Hændelsesdetektering.tex](../rapport/tekniskanalyse/H%C3%A6ndelsesdetektering.tex) | [Læs](h-ndelsesdetektering--6f0f02eb851714ef.md) | manuel læsning kræves |

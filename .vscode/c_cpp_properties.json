@@ -1,0 +1,28 @@
+{
+    "configurations": [
+        {
+            "name": "Win32",
+            "compilerPath": "C:/msys64/ucrt64/bin/gcc.exe",
+            "includePath": [
+                "${workspaceFolder}/**"
+            ],
+            "defines": [],
+            "cStandard": "c17",
+            "cppStandard": "c++23",
+            "intelliSenseMode": "windows-gcc-x64"
+        },
+        {
+            "name": "Mac",
+            "includePath": [
+                "${workspaceFolder}/**"
+            ],
+            "defines": [],
+            "cStandard": "c17",
+            "cppStandard": "c++23",
+            "intelliSenseMode": "macos-clang-arm64",
+            "compilerPath": "/usr/bin/clang++",
+            "compileCommands": "${workspaceFolder}/code/orchestrator/system/test/build/compile_commands.json"
+        }
+    ],
+    "version": 4
+}

@@ -3,7 +3,7 @@
 > Genereret fil. Ret originalen, ikke denne kopi.
 
 - Kilde: [Inception/Noter/TDOA.md](../Inception/Noter/TDOA.md)
-- SHA-256: `b698d88a6ec8972ded63a5b4e091fe7b2124d18982ec4daf8b235c5de4947b7c`
+- SHA-256: `255234d6d1a5248aac6090a24d04cd43a22c64b5230cc06338da00f9abe1b842`
 - Status: klar til læsning
 
 
@@ -16,11 +16,11 @@
 
 ## Konceptet
 
-Fire mikrofoner, to på hver Raspberry Pi. Et klap rammer dem på forskellige tidspunkter. 4 mics -\> 3 hyperbler -\> 3 ligninger 2 ubekendte -\> lstsq -\> skæringspunktet er positionen. Distribueret constraint ($\ge2$ pi's) er ikke forced: uden fysisk adskilte mikrofoner er der ingen tidsforskel at måle.
+Fire mikrofoner, to på hver Raspberry Pi. Et klap rammer dem på forskellige tidspunkter. 4 mics -\> 3 hyperbler -\> 3 ligninger 2 ubekendte -\> lstsq -\> skæringspunktet er positionen. Distribueret constraint ($`\ge2`$ pi's) er ikke forced: uden fysisk adskilte mikrofoner er der ingen tidsforskel at måle.
 
 ## Opstilling
 
-- $1.5m^2$ , mikrofoner i hjørnerne
+- $`1.5m^2`$ , mikrofoner i hjørnerne
 - 2x raspberry pi's med 2x mics (kort kabel \> 30cm, for at sikre timing sikkerhed)
 - Pi's forbundet via ethernet.
 - Faktisk muligt med kun 2 pi's, hvor én af dem også står for beregningerne -\> mere interresant med 3, hvor timestamps streames til en buffer på "beregner pi'en"

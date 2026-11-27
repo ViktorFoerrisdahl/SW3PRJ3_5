@@ -1,0 +1,6 @@
+# Preserve the original formatting of bundled third-party libraries.
+code/tools/external/** -whitespace
+
+# Files not counted in the language distribution (should be >=90% c++)
+sync_overleaf.py linguist-detectable=false
+code/tools/** linguist-detectable=false

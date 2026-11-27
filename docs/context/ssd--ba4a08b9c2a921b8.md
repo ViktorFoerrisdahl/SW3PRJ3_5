@@ -6,7 +6,7 @@
 - SHA-256: `ac7d76cc4dc8b5631883299fc61fd80cd542472c555fa1674ae4b6841fdc6cc5`
 - Status: billede med OCR
 
-> OCR markerer 427 af 589 ord som usikre; sammenhold dem med den viste illustration.
+> OCR markerer 472 af 627 ord som usikre; sammenhold dem med den viste illustration.
 > OCR gengiver tekst, ikke pile, geometri eller relationer. Brug den viste illustration til visuel information.
 
 ---
@@ -16,8 +16,8 @@
 ## Billedtekst (OCR)
 
 ```text
-X
-z
+K
+K
 Monitoring
 Orchestrator
 Tol
@@ -30,73 +30,73 @@ Sound Source
 Operator
 Start system
 Start system
-09 —————
+o—____——_>
 Load configuration
 ooo
-(3
-i ee een
+0
+ee eee eee
 Configuration loaded
 Initialize PTP
 Initialize ring buffer
 a
 alize filters
-…
-re
+|
+iter
 Start microphone capture
 Synchronize clocks
 11
-eee eee ee ee ee eee ee eee eee
-we ee ee ee eee eee eee
+we ee ee ee eee ee eee eens
+we ee ee eee eens
 Return synchronization status
 System ready
-wee ee ee ee eee eee
+ee ee ee ee ee ee eee
 13
-PPPETEET TTT PETTITTE) REEL) CELE eee EEE | ETE, EEE || TET TELL) PLE TELE ELEC ELLE
+PEPE ETE TEEPE ET TTTETT eT eet ety) ESTEE) CELLET EERE EEE | TERETE, | EEE | EEE PEELE) LEE EEL TEEPE LEE EEE ELLE TEE
 [Continuous monitoring]
 Write audio samples and timestamps
-o_o ooo
+ooo
 Provide audio block
->,
+>.
 Process audio block
 oo
 ©
-ee eee ee
+ee eee
 Return signal features
 17
-CPPEETEE TET TT CETTE | LESTE EEE CELE PEPER CETTE | CEPTEE EET | CRETE COPEL: | te EEE ELE LEE LLL LL ELEC CELL ELLE LEE CELLLCLLL LLL LLLL LLL LLL LLL LLL LLL ELLE LLL ELEC LEE LLL ELLE CELE LE ELEC LLL LLL ELLE
+PEPEEEEEE ETT | PERETTI CEE CEE | CRETE || CEPT || CRETE CEE 2 tee ELEC ELLE ELLE LLL LLL ELLE CELL LLLLLL LLL LLL ELLE LLL LLL LCL ELE LLL CELL LLL LEL ELLE ELLE ELL) CELE E LLL ELL ELLE LEE
 [No sound event detected]
 Continue monitoring
-wee ee ee eee eee eee eee eee
-6 See ee ee eee
-Se Ce eee
+we ee eee ee eee eee eee eee
+0 See ee ee eee
+Se Cee eee
 [Sound event detected]
 Emit sound event
 19
 Store event window
-g-—___
+g —_
 Send event data
 @
-| Send JSON event packet
+l Send JSON event packet
 22
-Filter and 'correlate channels
+Filter and correlate channels
 23
 Return time differences
-See Cee eee
+we de eee eeee
 24
 Calculate TDOA values
-Solve OS"
-Apply “ow
+Solve oo
+Apply ow
 Return estimated position
-Be oC oe ee
+eS oe eee
 28
 Update target information
 29
-ePTTrTrrrrrr rrr rrr rire eee
+eee ree LLL
 Display detected position
-Oe PEPETETTPELET TITLE ETE ETE E ETL Eee, | LEPETEEE EET EE LTE EE Ly, a EPEC) CETTE EERE ETE ETE EEE EEE, | CELEEEE ETE EEE ET ETE EET LETT EEN | CEETETTTET LETTE EEE ETE ETRE ETT L TTL TTEET ETT ET Tete, | CETTETETTEE PTET EEE, EEE, TELE T et i) CELT eit iret Litter ei reer teeeeite) CELE
+Oe PEELE T TET ETTTT TE ETEETTEEETTELEETeEe Eee, | LEPETT LTTE EE REET REET, a CETTE EEE LETTE LEER EEE CELLET REET EE EET LETTE ETEETEE EEE, | CELT PEEP ETRE LTTE eeT TTL T Tre eee ETEe Ee Eee eee: | CEETETTETT LTTE TEETER ETE ETL T EEE ET EET LET eLETeeTtLETEtEeee eet ee, | CETETTTITETE ETT EET EEE. LETTE LETTE TELE TLE TET, LETTE ii) CETL Tit iTi iii eet iit eit eee) CELE
 30
-Peed eee eee eee reer eee ee ree eee eee eee eeeeeerereereeeey | Peer ee reer eee ee reer ee eee ree rere errr reer eee eee ere eee reer errr reees Peter eee ee eee rere eee eee eee eee eee eee eee ee eee rere ere eee e eee eee eer rere (Pere e reer rere rere reer eee eeeeeeeeeeeeeeeeeeeeees Pere reer eer ee eee rere eee reer rere ee eee reer creer eer eeerereceeeeeeeeereeeeees Oe reer eee ee reer rere errr reer eee eer ee rere ee rere rere eee eee ree rere ee rereeeeeeeeeeereeeeeees | Peer ee ree reer ee eee reer errr reer reece reer reer ee ereeeeeee, CEPee reer eee e reer errr reer reer eee ee eee eee eee rere ere reer eee eres Cee eee eee eee eee reer ee reer ee ree reer eee reer eee rere Pere eee eee rere tree reer eee eee eee eee eee eee eee eee eee eee eee eee eee eee eee eee eee eee
-GREE COE CLL | COLE, CECE COLO CEC (EL COLO LLL LLL LLL LLC LLL LLL CELULL LLL Ge
+Peed eee eee reer eee eee eee eee eee eee eee rer eereeeey | Cree reer ee ree eee eee reer errr reer reer er eer rere eee ree eee reer reer reeyrs Peer eee eer eee rere eee eee reer eee eee eee eee ee eee reer eee ee eee eee ee eeee rere (Leer ee eee eee ee eee rere er eee eee eee eee eee eee eeeees Per ee reer ee eee eee rere rere er eee ee eee eee ree re reer eereee eee eeeeeeeeeeeeeeeeees PEt eee reer rere reer rere reer eee errr reer reer ere ee eee eee reer reer eee rereereeeeeeeeeeeeee ees eee eer ee eee ree eer eee re reer eer ee reer rere er ee eee eeereeiee COP eee reer eer eer reer eee eee eee reer eee ee ere rer eee ee reer eee eeey Cee reer eee eee ee eee ree eee eee rere reer eee rere eeeree Serer eee ree eee ee eee er ee eer eee eee rere eee reer eee eerie eee eee ee eee eee eee eee eee eee
+GREE CELLU L LL LCLLLLL | COL EEOC, COE COL OE OO) CE LLL LLL LCL) COLL LLL LLL LLL LLL LLL LLL) DELLE Le
 [Testing mode]
 Inject simulated event
 31
@@ -105,25 +105,24 @@ Request performance metrics
 33
 Return timing and accuracy results
 34
-eee ee
-ee | ee
-BREE EEE EEE EEO CELLO GEE | COLELLO | CECE) COO LOL L LL CLLLLLLLLLLLLLLLLLLL CELL LLL CLLL LLL LLL LLL ELLE LLL) GEL LEE LEL EEL Lo
+See Cee
+ee. | ee ee
+BREE EEE EEE EOE LLL ELLE CELLU GES LELLELLLL | COLELLO LLL LLL LLLL | CECE OL O) CO CLL CLL LLL) GEL LLC LLL CLLL LLL LLL LLL LLL ELLE LLL LLL) CELLED
 Stop system
 35
 Shutdown
-ga—___——>
+g—_—>
 Stop microphone capture
-(37)
+7]
 Stop PTP synchronization
-oa
-|
+33)
+.
 Stop data streaming
-o
-…—…—S See eee esse
+9)
+eee ree LLL
 System stopped
-i
-X
-R
+K
+*
 Monitoring
 Microphone Nodes
 Data Streaming
