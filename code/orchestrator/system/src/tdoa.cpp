@@ -250,7 +250,7 @@ TDOA_RESULT tdoa::ComputePosition(const std::vector<DetectedEvent> &events, cons
     }
     else {
         result.valid = false;
-        std::cerr << "Event rejected: residual RMS above limit, not plotted\n";
+        std::cerr << "Event rejected: residual RMS above limit, not plotted. RMS: " << rms << "\n";
     }
     
     // Set rms value in result struct
