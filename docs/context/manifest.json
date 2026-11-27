@@ -303,9 +303,9 @@
   },
   {
     "source": "construction/Package diagram.drawio",
-    "sha256": "a8fefa3d2be507a5bec588949d446f9c2bf6c3ceb4bcc89ea21ace0291a592fa",
+    "sha256": "42b44ff412f4d8ee91a96b078c909c69c0c4fd3b8ee2ab098a7bbbef62d6d5ec",
     "output": "package-diagram--ed503d2bc63cea95.md",
-    "output_sha256": "a1b321f6de43ee87854cee3cafe4ed46de68e55bf9f0c7f445efb1138ccc66d6",
+    "output_sha256": "18391f0591f05a94d038beead448b6fbbb98c433d813d6ffc15fa3bf8f73f658",
     "status": "manuel læsning kræves",
     "notes": [
       "Formatet .drawio understøttes ikke til tekstudtræk. Eksportér til DOCX, PDF eller Markdown; originalen er bevaret."

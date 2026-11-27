@@ -40,7 +40,7 @@ Dette afsnit opdateres automatisk af CI. Ret teksten uden for markørerne.
 - [node/system/ptp/systemd/atlas-ptp-grandmaster.service](node/system/ptp/systemd/atlas-ptp-grandmaster.service)
 - [node/system/ptp/systemd/atlas-ptp-slave.service](node/system/ptp/systemd/atlas-ptp-slave.service)
 - [node/system/ptp/tests/ptp_localization_test.cpp](node/system/ptp/tests/ptp_localization_test.cpp)
-- [node/system/ptp/tests/ptp_service_test.py](node/system/ptp/tests/ptp_service_test.py)
+- [node/system/ptp/tests/ptp_service_test.cpp](node/system/ptp/tests/ptp_service_test.cpp)
 - [node/system/ringbuffer/CMakeLists.txt](node/system/ringbuffer/CMakeLists.txt)
 - [node/system/ringbuffer/include/alsa_capture.h](node/system/ringbuffer/include/alsa_capture.h)
 - [node/system/ringbuffer/include/ring_buffer.h](node/system/ringbuffer/include/ring_buffer.h)

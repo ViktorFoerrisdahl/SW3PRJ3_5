@@ -139,12 +139,12 @@ gyldig synkronisering.
 ## Softwaretest
 
 ```bash
-cmake --build build --target ptp_node ptp_localization_test
+cmake --build build --target ptp_service_test ptp_localization_test
 ctest --test-dir build -R ptp --output-on-failure
 ```
 
-Testene kan køres på macOS og Linux. Servicetesten kræver Python 3 og
-simulerer systemkommandoerne til start, stop og statuskontrol.
+Testene kan køres på macOS og Linux. Servicetesten kører `ptp_node`
+med simulerede systemkommandoer til start, stop og statuskontrol.
 Lokaliseringstesten kontrollerer grænsen på 200 µs og afviser status
 ved forbindelsestab, forældelse og manglende aflæsning.
 

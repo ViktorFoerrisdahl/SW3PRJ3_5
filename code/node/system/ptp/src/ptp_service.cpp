@@ -53,7 +53,7 @@ static bool ReadOffset(const std::string &unit, const std::string &marker,
     if (offset_ns < -PTP_MAX_OFFSET_NS || offset_ns > PTP_MAX_OFFSET_NS)
         return false;
 
-    // A recent log entry can outlive a stopped or restarted service.
+    // A recent log entry can outlive a stopped or restarted service
     std::string current;
     if (!ReadCommand("systemctl is-active " + unit, current) || current != "active\n" ||
         !ReadCommand(read_run_id_command, current) || current != run_id)
