@@ -3,7 +3,9 @@
 #include "event_pair_queue.h"   // EventPairQueue, EventPair (from TCP)
 #include "microphones.h"
 #include "plot.h"
+#include "ptp_localization.h"
 
 // Waits for a pair from TCP, computes the position, logs it and starts a plot thread.
 // Ends when stop is requested on st.
-void TdoaThread(std::stop_token st, EventPairQueue& queue, microphones& mics, plot& p);
+void TdoaThread(std::stop_token st, EventPairQueue& queue, microphones& mics,
+                plot& p, PtpStatusStore& ptp_status);

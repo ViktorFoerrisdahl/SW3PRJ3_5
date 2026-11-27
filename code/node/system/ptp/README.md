@@ -2,7 +2,7 @@
 
 `PtpService` starter og stopper lokale systemd-tjenester for `ptp4l` og
 `phc2sys`. Begge mikrofonnoder bruger samme klasse med forskellig `PtpRole`.
-Orchestratoren behøver ikke modulet.
+Den centrale node bruger PTP-status til lokalisering uden selv at starte PTP-tjenester.
 
 ```cpp
 PtpService ptp(PtpRole::Slave);
@@ -26,7 +26,7 @@ Kald `readOffsetBudgetNs(offset_ns)` for at læse aktuel status. Ved gyldig stat
 `true`, hvis systemkommandoen lykkes, ellers `false`. Controlleren håndterer
 fejlen og kalder `stop()` ved nedlukning. Hvis opstarten fejler, kan den ene
 tjeneste være startet; kald derfor også `stop()` i det tilfælde.
-Brug ét objekt pr. node, og kald metoderne fra samme controllertråd.
+Brug ét objekt pr. node. Stop statusaflæsningen, før du stopper tjenesterne.
 
 ## Opsætning på Raspberry Pi
 
@@ -36,7 +36,7 @@ Kommandoerne nedenfor køres fra repoets rod på **begge** mikrofonnoder:
 ```bash
 sudo apt update
 sudo apt install linuxptp ethtool cmake g++
-sudo install -m 644 code/ptp/systemd/*.service /etc/systemd/system/
+sudo install -m 644 code/node/system/ptp/systemd/*.service /etc/systemd/system/
 sudo systemctl daemon-reload
 sudo ethtool -T eth0
 
@@ -63,7 +63,7 @@ antage, at hardwareur og systemur bruger samme tidsskala.
 Start grandmasteren først:
 
 ```bash
-sudo ./build/code/ptp/ptp_node grandmaster
+sudo ./build/code/node/system/ptp/ptp_node grandmaster
 ```
 
 Kontrollér grandmasterens `phc2sys`-log i en anden terminal:
@@ -76,7 +76,7 @@ Vent på låst servo (`s2` eller `s3`) og en stabil, lille offset. Start derefte
 slaven på den anden Pi:
 
 ```bash
-sudo ./build/code/ptp/ptp_node slave
+sudo ./build/code/node/system/ptp/ptp_node slave
 ```
 
 Eksemplet starter tjenesterne og venter på Enter, som stopper dem igen.
@@ -91,6 +91,27 @@ sudo systemctl stop atlas-phc-slave.service atlas-ptp-slave.service
 kan programmet i stedet få specifikke systemd- og journaltilladelser, så hele
 lydprogrammet ikke behøver at køre som root. Der installeres eller startes
 ingen tjenester som del af CMake-buildet.
+
+### Genstart af mikrofonnoden ved fejl
+
+Når de fire PTP-tjenester ovenfor er installeret, kan systemd også køre
+selve mikrofonnoden. Installér først `libasound2-dev`, og kør derefter:
+
+```bash
+cmake -S . -B build
+cmake --build build --target atlas_node
+sudo install -m 755 build/code/node/system/atlas_node /usr/local/bin/atlas_node
+sudo install -m 644 code/node/system/systemd/atlas-node.service /etc/systemd/system/
+sudoedit /etc/atlas-node.conf
+```
+
+Sæt `ORCHESTRATOR_IP` til den centrale nodes IP-adresse i konfigurationsfilen,
+f.eks. `ORCHESTRATOR_IP=172.16.15.2`. Stop en eventuel manuelt startet
+mikrofonnode, og kør `sudo systemctl daemon-reload` og
+`sudo systemctl enable --now atlas-node.service`.
+Følg loggen med `journalctl -u atlas-node.service -f`. Ved fejl genstarter
+systemd programmet efter tre sekunder. Programmet venter igen på PTP og
+forbinder til den centrale node.
 
 ## Manuel kontrol
 
@@ -119,22 +140,29 @@ Grandmasteren bidrager med den absolutte afvigelse mellem systemuret og
 PTP-hardwareuret. Slaven bidrager også med den absolutte afvigelse mellem
 hardwareurene, som `ptp4l` estimerer.
 
-Orchestratoren kan kalde `Ptp_ComputePosition()` fra biblioteket
-`ptp_localization` for et par hændelser fra de to konfigurerede noder.
-Datastreamingmodulet skal sende status fra begge noder, også mellem
-lydhændelser, og melde ugyldig status ved udfald. Den centrale node bruger
-sit monotone ur til at registrere modtagelsen og markerer noden som
-afbrudt ved forbindelsestab. Funktionen afviser lokalisering, hvis en
-node er afbrudt, hvis dens status mangler, er ugyldig eller er over to
-sekunder gammel, eller hvis det samlede budget overstiger 200 µs.
-Fristerne på tre og to sekunder er valgt i implementeringen.
+Når `atlas_node` kører, aflæser `NodeTCP` PTP-status én gang i sekundet i
+en særskilt tråd. Den opretter en `PTP_STATUS`-besked med `node_id`,
+`offset_budget_ns` og `synchronized`. Kun TCP-tråden skriver til socketten;
+den sender den seneste status og lydhændelser som hver sin JSON-linje. Dermed
+blokerer en systemkommando til statuskontrol ikke afsendelsen af lydhændelser,
+og to tråde kan ikke blande deres JSON-beskeder.
 
-Koblingen til den centrale node og transporten af status hører til
-datastreamingmodulet. Vi tester dem sammen på to Raspberry Pi-enheder.
-Her kontrollerer vi P2 med den tidsreference, lydoptagelsen bruger, og
-ser efter, om lokaliseringen stopper ved udfald og genoptages, når
-begge noder igen har gyldig status. Frigiv kun hændelser optaget under
-gyldig synkronisering.
+Orchestratoren registrerer modtagelsestidspunktet med sit monotone ur og
+gemmer den seneste status fra hver node. Den markerer status som afbrudt ved
+tab af TCP-forbindelsen. `TdoaThread` kalder `Ptp_ComputePosition()` før den
+almindelige TDOA-beregning. Funktionen afviser lokalisering, hvis en node er
+afbrudt, hvis status mangler, er ugyldig eller er over to sekunder gammel,
+eller hvis det samlede offsetbudget overstiger 200 µs. Fristerne på tre og to
+sekunder er valgt i implementeringen.
+
+Terminalen melder, når begge noder er klar, og hvorfor lokalisering sættes på
+pause, hvis status bliver ugyldig. Ved afviste hændelsespar gemmer JSON-loggen
+hændelsens tidspunkt og en `rejection_reason`.
+
+Statusforløbet skal stadig afprøves på to Raspberry Pi-enheder: afbryd PTP
+eller Ethernet og kontrollér, at lokaliseringen stopper, og at den først
+genoptages efter frisk, gyldig status fra begge noder. Softwaretesten er ikke
+en hardwarevalidering af denne adfærd.
 
 ## Softwaretest
 
@@ -145,8 +173,8 @@ ctest --test-dir build -R ptp --output-on-failure
 
 Testene kan køres på macOS og Linux. Servicetesten kører `ptp_node`
 med simulerede systemkommandoer til start, stop og statuskontrol.
-Lokaliseringstesten kontrollerer grænsen på 200 µs og afviser status
-ved forbindelsestab, forældelse og manglende aflæsning.
+Lokaliseringstesten kontrollerer JSON-formatet, grænsen på 200 µs samt
+afvisning ved forbindelsestab, forældelse og manglende aflæsning.
 
 ## Kilder
 

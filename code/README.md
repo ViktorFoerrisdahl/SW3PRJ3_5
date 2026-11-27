@@ -17,6 +17,7 @@ Dette afsnit opdateres automatisk af CI. Ret teksten uden for markørerne.
 
 - [common/detected_event.h](common/detected_event.h)
 - [common/frame.h](common/frame.h)
+- [common/ptp_status.h](common/ptp_status.h)
 - [common/test.cpp](common/test.cpp)
 - [node/system/CMakeLists.txt](node/system/CMakeLists.txt)
 - [node/system/event_detection/dc_remover.h](node/system/event_detection/dc_remover.h)
@@ -47,6 +48,7 @@ Dette afsnit opdateres automatisk af CI. Ret teksten uden for markørerne.
 - [node/system/ringbuffer/src/alsa_capture.cpp](node/system/ringbuffer/src/alsa_capture.cpp)
 - [node/system/ringbuffer/tests/alsa_hw_test.cpp](node/system/ringbuffer/tests/alsa_hw_test.cpp)
 - [node/system/ringbuffer/tests/ring_buffer_test.cpp](node/system/ringbuffer/tests/ring_buffer_test.cpp)
+- [node/system/systemd/atlas-node.service](node/system/systemd/atlas-node.service)
 - [node/system/tcp/node_tcp.cpp](node/system/tcp/node_tcp.cpp)
 - [node/system/tcp/node_tcp.h](node/system/tcp/node_tcp.h)
 - [node/tests/event_detection/integration_tests/event_detection_hw_test](node/tests/event_detection/integration_tests/event_detection_hw_test)

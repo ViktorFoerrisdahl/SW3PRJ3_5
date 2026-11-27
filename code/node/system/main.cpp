@@ -94,11 +94,11 @@ int RunNode(const std::string &orchestrator_ip, const sigset_t &sigs)
 	RingBuffer rb(RING_FRAMES, SAMPLE_RATE);
 	EventQueue queue(cfg.max_queued_events);
 	EventDetector detector(rb, queue, cfg);                  // kaster, hvis cfg er ugyldig
-	NodeTCP tcp(orchestrator_ip, ORCHESTRATOR_PORT, queue);  // kaster ved ugyldig IP
+	PtpService ptp(node_id == 0 ? PtpRole::Grandmaster : PtpRole::Slave);
+	NodeTCP tcp(orchestrator_ip, ORCHESTRATOR_PORT, queue, node_id, &ptp);  // kaster ved ugyldig IP
 	AlsaCapture capture(rb);
 
 	// ---- PTP: node 0 er grandmaster, node 1 er slave ----
-	PtpService ptp(node_id == 0 ? PtpRole::Grandmaster : PtpRole::Slave);
 	if (!ptp.start())
 	{
 		std::cerr << "Kunne ikke starte PTP (kører programmet som root?)\n";
@@ -144,7 +144,7 @@ int RunNode(const std::string &orchestrator_ip, const sigset_t &sigs)
 	capture_thread.request_stop(); // snd_pcm_readi() vender tilbage inden for ~10,7 ms
 	capture_thread.join();
 	detector.stop();
-	// NodeTCP's jthread stoppes og joines i dens destruktor, når tcp går ud af scope.
+	tcp.stop();
 	ptp.stop();
 	return capture_failed ? 1 : 0;
 }

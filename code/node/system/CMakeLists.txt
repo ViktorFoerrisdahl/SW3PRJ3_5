@@ -17,7 +17,7 @@ if(UNIX)
   # TCP: EventQueue -> orchestrator
   add_library(node_tcp tcp/node_tcp.cpp)
   target_include_directories(node_tcp PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/tcp)
-  target_link_libraries(node_tcp PUBLIC event_detection common Threads::Threads)
+  target_link_libraries(node_tcp PUBLIC event_detection common ptp_service Threads::Threads)
 
   # The node program itself. Run: ./build/code/node/system/atlas_node <orchestrator-ip>
   if(TARGET alsa_capture)

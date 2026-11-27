@@ -1,5 +1,6 @@
 #pragma once
 
+#include <chrono>
 #include <condition_variable>
 #include <cstdint>
 #include <cstddef>
@@ -40,6 +41,22 @@ public:
 		std::unique_lock lock(mutex_);
 		if (!cv_.wait(lock, st, [this]
 					  { return !queue_.empty(); }))
+		{
+			return std::nullopt;
+		}
+		DetectedEvent ev = std::move(queue_.front());
+		queue_.pop_front();
+		return ev;
+	}
+
+	// Waits for the next event until timeout. Returns std::nullopt on timeout
+	// or when stop is requested.
+	template <typename Rep, typename Period>
+	std::optional<DetectedEvent> popFor(std::stop_token st, const std::chrono::duration<Rep, Period> &timeout)
+	{
+		std::unique_lock lock(mutex_);
+		if (!cv_.wait_for(lock, st, timeout, [this]
+						  { return !queue_.empty(); }))
 		{
 			return std::nullopt;
 		}

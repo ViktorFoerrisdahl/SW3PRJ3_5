@@ -3,11 +3,16 @@
 #include <fstream>
 #include <json_dto/pub.hpp>
 
-// Fortæller json_dto, hvilke felter fra TDOA-resultatet der skal gemmes.
-// Parameteren er uden const, så biblioteket vælger denne funktion.
-template <typename JSON_IO>
-void json_io(JSON_IO &io, TDOA_RESULT &result)
+struct EVENT_LOG_ENTRY
 {
+    TDOA_RESULT result;
+    std::string rejection_reason;
+};
+
+template <typename JSON_IO>
+void json_io(JSON_IO &io, EVENT_LOG_ENTRY &entry)
+{
+    auto &result = entry.result;
     const auto seconds = static_cast<std::time_t>(result.time_stamp_ns / 1'000'000'000);
     std::tm local_time{};
     localtime_r(&seconds, &local_time);
@@ -19,15 +24,16 @@ void json_io(JSON_IO &io, TDOA_RESULT &result)
         & json_dto::mandatory("RMS_value", result.rms)
         & json_dto::mandatory("x_m", result.x_m)
         & json_dto::mandatory("y_m", result.y_m)
-        & json_dto::mandatory("time_stamp", time_stamp);
+        & json_dto::mandatory("time_stamp", time_stamp)
+        & json_dto::optional("rejection_reason", entry.rejection_reason, std::string{});
 }
 
-bool JsonLogger_AppendEvent(const TDOA_RESULT &result)
+bool JsonLogger_AppendEvent(const TDOA_RESULT &result, const std::string &rejection_reason)
 {
     const std::string file_path =
         std::string(ATLAS_PROJECT_ROOT)
         + "/code/orchestrator/system/logs/events.jsonl";
-    const std::string json = json_dto::to_json(result);
+    const std::string json = json_dto::to_json(EVENT_LOG_ENTRY{result, rejection_reason});
 
     // app skriver videre i filen uden at overskrive de tidligere hændelser.
     std::ofstream file(file_path, std::ios::app);

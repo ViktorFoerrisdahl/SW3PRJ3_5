@@ -50,7 +50,7 @@ target_include_directories(common SYSTEM INTERFACE
   ${ATLAS_EXTERNAL_DIR}/json_dto
   ${ATLAS_EXTERNAL_DIR}/rapidjson)
 
-# Orchestrator first: the node's ptp_localization uses its TDOA library
+# The orchestrator and microphone node build their own PTP components.
 if(UNIX)
   add_subdirectory(code/orchestrator/system)
 endif()

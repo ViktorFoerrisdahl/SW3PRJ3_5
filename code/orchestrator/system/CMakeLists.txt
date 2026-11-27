@@ -12,9 +12,11 @@ if(CMAKE_SOURCE_DIR STREQUAL PROJECT_SOURCE_DIR)
   set(CMAKE_CXX_EXTENSIONS OFF)
   set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
   add_compile_options(-Wall -Wextra)
+  enable_testing()
 endif()
 
 find_package(Threads REQUIRED)
 
+set(ATLAS_PTP_DIR "${PROJECT_SOURCE_DIR}/../../node/system/ptp")
 add_subdirectory(src)
 add_subdirectory(test)

@@ -15,7 +15,8 @@
 
 #include <json_dto/pub.hpp>
 
-OrchestratorTCP::OrchestratorTCP(int port, EventPairQueue &queue) : queue_(queue)
+OrchestratorTCP::OrchestratorTCP(int port, EventPairQueue &queue, PtpStatusStore &ptp_status)
+	: queue_(queue), ptp_status_(ptp_status)
 {
 	addr_.sin_family = AF_INET;							 // IPv4
 	addr_.sin_addr.s_addr = htonl(INADDR_ANY);			 // Lyt på alle netkort
@@ -75,6 +76,7 @@ void OrchestratorTCP::stop()
 
 void OrchestratorTCP::run(std::stop_token st)
 {
+	bool ptp_ready = false;
 	while (!st.stop_requested())
 	{
 		// Byg listen over sockets, som poll() skal holde øje med:
@@ -106,9 +108,6 @@ void OrchestratorTCP::run(std::stop_token st)
 			std::cerr << "poll() failed: " << std::strerror(errno) << "\n";
 			break;
 		}
-		if (ready == 0)
-			continue; // timeout
-
 		// Læs fra de nodes, der har sendt noget
 		for (nfds_t k = 1; k < count; ++k)
 		{
@@ -125,6 +124,17 @@ void OrchestratorTCP::run(std::stop_token st)
 		// Ny node vil forbinde
 		if (fds[0].revents & POLLIN)
 			acceptConnection();
+
+		const auto reason = Ptp_StatusError(ptp_status_.snapshot());
+		const bool ready_now = reason.empty();
+		if (ready_now != ptp_ready)
+		{
+			if (ready_now)
+				std::cout << "PTP ready on both nodes\n";
+			else
+				std::cerr << "Localization paused: " << reason << '\n';
+			ptp_ready = ready_now;
+		}
 	}
 
 	// Ryd op, når tråden stopper
@@ -172,7 +182,11 @@ void OrchestratorTCP::enableKeepAlive(int fd)
 {
 	int yes = 1, idle = 2, interval = 1, count = 3;
 	setsockopt(fd, SOL_SOCKET, SO_KEEPALIVE, &yes, sizeof(yes));
+#ifdef __APPLE__
+	setsockopt(fd, IPPROTO_TCP, TCP_KEEPALIVE, &idle, sizeof(idle));
+#else
 	setsockopt(fd, IPPROTO_TCP, TCP_KEEPIDLE, &idle, sizeof(idle));
+#endif
 	setsockopt(fd, IPPROTO_TCP, TCP_KEEPINTVL, &interval, sizeof(interval));
 	setsockopt(fd, IPPROTO_TCP, TCP_KEEPCNT, &count, sizeof(count));
 }
@@ -193,6 +207,8 @@ void OrchestratorTCP::closeConnection(Connection &conn)
 		return;
 	close(conn.fd);
 	conn.fd = -1;
+	if (conn.nodeId >= 0)
+		ptp_status_.markDisconnected(static_cast<std::uint16_t>(conn.nodeId));
 	conn.nodeId = -1;
 	conn.buffer.clear();
 }
@@ -241,6 +257,19 @@ bool OrchestratorTCP::readFromConnection(Connection &conn)
 
 void OrchestratorTCP::handleLine(Connection &conn, const std::string &line)
 {
+	if (auto status = jsonToPtpStatus(line))
+	{
+		if (status->node_id >= MAX_NODES)
+		{
+			std::cerr << "PTP status from unsupported node " << status->node_id << ", ignored\n";
+			return;
+		}
+		if (!rememberNode(conn, status->node_id))
+			return;
+		ptp_status_.update(*status);
+		return;
+	}
+
 	auto ev = jsonToStruct(line);
 	if (ev == std::nullopt)
 	{
@@ -252,12 +281,29 @@ void OrchestratorTCP::handleLine(Connection &conn, const std::string &line)
 		std::cerr << "Ugyldig hændelse #" << ev->event_seq << " fra node " << ev->node_id << ", ignoreret\n";
 		return;
 	}
-
-	// Husk hvilken node forbindelsen tilhører. Har en anden forbindelse samme
-	// node_id, er det en gammel forbindelse fra før noden genstartede.
-	if (conn.nodeId != ev->node_id)
+	if (ev->node_id >= MAX_NODES)
 	{
-		conn.nodeId = ev->node_id;
+		std::cerr << "Hændelse fra ikke-understøttet node " << ev->node_id << ", ignoreret\n";
+		return;
+	}
+
+	if (!rememberNode(conn, ev->node_id))
+		return;
+	pairOrStore(std::move(*ev));
+}
+
+bool OrchestratorTCP::rememberNode(Connection &conn, std::uint16_t node_id)
+{
+	// Remember which node owns this connection. A second connection with the
+	// same node ID is from a restarted node and replaces the old connection.
+	if (conn.nodeId >= 0 && conn.nodeId != static_cast<int>(node_id))
+	{
+		std::cerr << nodeLabel(conn) << " changed node ID, message ignored\n";
+		return false;
+	}
+	if (conn.nodeId < 0)
+	{
+		conn.nodeId = static_cast<int>(node_id);
 		for (Connection &other : connections_)
 		{
 			if (&other != &conn && other.fd >= 0 && other.nodeId == conn.nodeId)
@@ -267,8 +313,7 @@ void OrchestratorTCP::handleLine(Connection &conn, const std::string &line)
 			}
 		}
 	}
-
-	pairOrStore(std::move(*ev));
+	return true;
 }
 
 std::optional<DetectedEvent> OrchestratorTCP::jsonToStruct(const std::string &jsonLine)
@@ -276,6 +321,18 @@ std::optional<DetectedEvent> OrchestratorTCP::jsonToStruct(const std::string &js
 	try
 	{
 		return json_dto::from_json<DetectedEvent>(jsonLine); // Kaster exception, hvis JSON ikke passer til structen
+	}
+	catch (const json_dto::ex_t &)
+	{
+		return std::nullopt;
+	}
+}
+
+std::optional<PTP_STATUS> OrchestratorTCP::jsonToPtpStatus(const std::string &jsonLine)
+{
+	try
+	{
+		return json_dto::from_json<PTP_STATUS>(jsonLine);
 	}
 	catch (const json_dto::ex_t &)
 	{

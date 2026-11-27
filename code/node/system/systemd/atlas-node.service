@@ -1,0 +1,13 @@
+[Unit]
+Description=ATLAS microphone node
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+EnvironmentFile=/etc/atlas-node.conf
+ExecStart=/usr/local/bin/atlas_node ${ORCHESTRATOR_IP}
+Restart=on-failure
+RestartSec=3
+
+[Install]
+WantedBy=multi-user.target

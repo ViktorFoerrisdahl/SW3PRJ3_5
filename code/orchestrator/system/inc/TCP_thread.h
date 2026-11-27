@@ -13,6 +13,7 @@
 
 #include "detected_event.h"	  // DetectedEvent (fra common/detected_event.h)
 #include "event_pair_queue.h" // EventPairQueue, EventPair
+#include "ptp_localization.h"
 
 // Modtager DetectedEvent fra de to nodes over TCP (én JSON-linje pr. hændelse),
 // finder de to hændelser fra hver sin node, der hører til samme klap, og
@@ -24,7 +25,7 @@
 class OrchestratorTCP
 {
 public:
-	OrchestratorTCP(int port, EventPairQueue &queue);
+	OrchestratorTCP(int port, EventPairQueue &queue, PtpStatusStore &ptp_status);
 	~OrchestratorTCP();
 
 	OrchestratorTCP(const OrchestratorTCP &) = delete;
@@ -47,7 +48,7 @@ private:
 	struct Connection
 	{
 		int fd = -1;		// -1 = pladsen er ledig
-		int nodeId = -1;	// node_id fra første hændelse, -1 = ukendt endnu
+		int nodeId = -1;	// node_id from the first message, -1 = unknown
 		std::string buffer; // modtagne bytes, der endnu ikke er en hel linje
 	};
 
@@ -73,7 +74,11 @@ private:
 
 	void handleLine(Connection &conn, const std::string &line);
 
+	bool rememberNode(Connection &conn, std::uint16_t node_id);
+
 	std::optional<DetectedEvent> jsonToStruct(const std::string &jsonLine);
+
+	std::optional<PTP_STATUS> jsonToPtpStatus(const std::string &jsonLine);
 
 	bool isValid(const DetectedEvent &ev);
 
@@ -86,6 +91,7 @@ private:
 	int listenFd_ = -1;
 	sockaddr_in addr_{};
 	EventPairQueue &queue_;
+	PtpStatusStore &ptp_status_;
 	Connection connections_[MAX_NODES];
 	std::vector<Pending> pending_;
 	std::jthread thread_; // skal stå sidst, så tråden stoppes før de andre members nedlægges

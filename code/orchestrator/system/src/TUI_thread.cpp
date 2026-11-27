@@ -9,6 +9,7 @@
 #include "plot.h"
 #include "TCP_thread.h"
 #include "TDOA_thread.h"
+#include "ptp_localization.h"
 
 #define WAITTIME_BEFORE_DELETION 20
 
@@ -38,10 +39,12 @@ void init_TUI()
         sleep(5);
 
         EventPairQueue shared_queue{16};
+        PtpStatusStore ptp_status;
 
-        OrchestratorTCP orch(5000,shared_queue);
+        OrchestratorTCP orch(5000, shared_queue, ptp_status);
 
-        std::jthread TDOA_Thread(TdoaThread, stoptoken, std::ref(shared_queue), std::ref(mics), std::ref(p));
+        std::jthread TDOA_Thread(TdoaThread, stoptoken, std::ref(shared_queue),
+                                 std::ref(mics), std::ref(p), std::ref(ptp_status));
 
         std::jthread OrchestratorTCP_Thread([&] {orch.start();} );
 

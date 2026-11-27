@@ -1,14 +1,14 @@
 #include "TDOA_thread.h"
+#include <iostream>
 #include <thread>
-#include "tdoa.h"
 #include "json_logger.h"
 
 static constexpr int PLOT_WAIT_S = 60; // Plot thread sleep 60s
 
-void TdoaThread(std::stop_token st, EventPairQueue &queue, microphones &mics, plot &p)
+void TdoaThread(std::stop_token st, EventPairQueue &queue, microphones &mics,
+                plot &p, PtpStatusStore &ptp_status)
 {
-	// Create instance of tdoa class and event id (starting with 1 when plotting)
-	tdoa locator;
+	// Create event id (starting with 1 when plotting)
 	int event_id = 0;
 
 	// Wait for TCP (pred: !queue.empty(), stop_token) - nullopt = [stop requested]
@@ -17,11 +17,13 @@ void TdoaThread(std::stop_token st, EventPairQueue &queue, microphones &mics, pl
 		// Get mic pos
 		std::vector<MIC_POSITION> mic_pos = mics.snapshot();
 
-		// Compute TDOA
-		TDOA_RESULT result = locator.ComputePosition(*pair, mic_pos);
+		// Compute TDOA only if the latest PTP status from both nodes is usable.
+		const auto localization = Ptp_ComputePosition(*pair, mic_pos, ptp_status.snapshot());
+		const auto &result = localization.position;
 
 		// Append event to the log
-		JsonLogger_AppendEvent(result);
+		if (!JsonLogger_AppendEvent(result, localization.rejection_reason))
+			std::cerr << "Could not write localization result to the event log\n";
 
 		// Skip plotting if result is invalid
 		if(result.valid == false) continue;

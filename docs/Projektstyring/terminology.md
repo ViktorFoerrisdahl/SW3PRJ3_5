@@ -27,6 +27,7 @@ Denne liste fastlægger fælles sprogbrug. Definitionerne er sproglige konventio
 | PTP-slave | PTP slave | Node, der synkroniserer sit ur til den valgte grandmaster. |
 | PTP-hardwareur (PHC) | PTP Hardware Clock | Hardwareur knyttet til netværksinterfacet. Skeln fra Linux' systemur og mikrofonernes samplingur. |
 | PTP-service | PtpService | C++-komponent til lokal styring af linuxptp og aflæsning af synkroniseringsstatus på en mikrofonnode. En softwaretest med simulerede systemkommandoer er adskilt fra afprøvning på Raspberry Pi. |
+| PTP-status | PTP_STATUS | JSON-besked med en mikrofonnodes synkroniseringsstatus, som den centrale node bruger til at afgøre, om et hændelsespar kan lokaliseres. |
 | samplingur | sample clock | Uret, der bestemmer optagelsens samplingtidspunkter; skeln fra systemuret. |
 | sample | sample | Én måleværdi fra én kanal. Flertal: samples. |
 | frame | frame | Ét sample fra hver kanal ved samme samplingtidspunkt. Antal bytes afhænger af kanaler og sampleformat. |

@@ -19,6 +19,10 @@ target_include_directories(orchestrator_headers SYSTEM INTERFACE
 add_library(orchestrator_tdoa tdoa.cpp)
 target_link_libraries(orchestrator_tdoa PUBLIC orchestrator_headers)
 
+add_library(ptp_localization "${ATLAS_PTP_DIR}/src/ptp_localization.cpp")
+target_include_directories(ptp_localization PUBLIC "${ATLAS_PTP_DIR}/include")
+target_link_libraries(ptp_localization PUBLIC orchestrator_tdoa Threads::Threads)
+
 # JSON event log. Writes to <repo>/code/orchestrator/system/logs/events.jsonl
 add_library(orchestrator_logger json_logger.cpp)
 target_link_libraries(orchestrator_logger PUBLIC orchestrator_headers)
@@ -36,7 +40,7 @@ add_executable(main.out
     TUI_thread.cpp
 )
 target_link_libraries(main.out PRIVATE
-    orchestrator_tdoa
+    ptp_localization
     orchestrator_logger
     Threads::Threads
 )
