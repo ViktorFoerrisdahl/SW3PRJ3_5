@@ -32,55 +32,46 @@ void plot::startPyPlot(int AmountOfMics, std::vector<MIC_POSITION> vectorMic)
 	}
 }
 
-void plot::plotNewEventAndDelete(int ID, double x, double y, bool valid, double rms, int waittime)
+void plot::plotNewEventAndDelete(int ID, double x, double y, int waittime, double rms)
 {
-	if (plot_ == nullptr)
-	{
-		perror("plot_ == nulptr when sending");
-		return;
-	}
+    if (plot_ == nullptr)
+    {
+        perror("plot_ == nulptr when sending");
+        return;
+    }
 
-	sleep(2);
+    sleep(2);
 
-	std::string event;
-	event.append("NEW");
-	event.append(" ");
-	event.append(std::to_string(x));
-	event.append(" ");
-	event.append(std::to_string(y));
-	event.append(" ");
-	event.append(std::to_string(ID));
-	event.append("\n");
+    std::string event;
+    event.append("NEW");
+    event.append(" ");
+    event.append(std::to_string(x));
+    event.append(" ");
+    event.append(std::to_string(y));
+    event.append(" ");
+    event.append(std::to_string(ID));
+    event.append(" ");
+    event.append(std::to_string(rms));
+    event.append("\n");
 
-	{
-		std::lock_guard<std::mutex> lock(python_lock_);
-		fputs(event.c_str(), plot_);
-		fflush(plot_);
+    {
+        std::lock_guard<std::mutex> lock(python_lock_);
+        fputs(event.c_str(), plot_);
+        fflush(plot_);
+    }
 
-		// Log events in the terminal when they are shown in the plot, marked by whether the TDOA result is valid
-		if (valid)
-		{
-			std::cout << "Event " << ID << " OK: x = " << x << " m, y = " << y << " m, rms = " << rms << " m\n";
-		}
-		else
-		{
-			std::cout << "Event " << ID << " INVALID: x = " << x << " m, y = " << y << " m, rms = " << rms << " m\n";
-		}
-		sleep(5);
-	}
+    sleep(waittime);
 
-	sleep(waittime);
+    std::string DEL;
 
-	std::string DEL;
+    DEL.append("DEL");
+    DEL.append("\n");
 
-	DEL.append("DEL");
-	DEL.append("\n");
-
-	{
-		std::lock_guard<std::mutex> lock(python_lock_);
-		fputs(DEL.c_str(), plot_);
-		fflush(plot_);
-	}
+    {
+        std::lock_guard<std::mutex> lock(python_lock_);
+        fputs(DEL.c_str(), plot_);
+        fflush(plot_);
+    }
 }
 
 void plot::stopPyPlot()

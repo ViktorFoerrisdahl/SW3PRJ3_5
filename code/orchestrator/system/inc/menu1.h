@@ -1,5 +1,5 @@
-#ifndef MENU_H
-#define MENU_H
+#ifndef MENU1_H
+#define MENU1_H
 
 class menu
 {
