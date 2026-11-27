@@ -32,7 +32,7 @@ void plot::startPyPlot(int AmountOfMics, std::vector<MIC_POSITION> vectorMic)
     }
 }
 
-void plot::plotNewEventAndDelete(int ID, double x, double y, int waittime)
+void plot::plotNewEventAndDelete(int ID, double x, double y, int waittime, double RMS)
 {
     if (plot_ == nullptr)
     {
@@ -50,13 +50,14 @@ void plot::plotNewEventAndDelete(int ID, double x, double y, int waittime)
     event.append(std::to_string(y));
     event.append(" ");
     event.append(std::to_string(ID));
+    event.append(" ");
+    event.append(std::to_string(RMS));
     event.append("\n");
 
     {
         std::lock_guard<std::mutex> lock(python_lock_);
         fputs(event.c_str(), plot_);
         fflush(plot_);
-        sleep(5);
     }
 
     sleep(waittime);
