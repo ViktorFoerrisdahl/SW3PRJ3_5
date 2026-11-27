@@ -27,7 +27,7 @@ TDOA_RESULT Ptp_ComputePosition(const std::vector<DetectedEvent> &events,
                                         { return candidate.node_id == node.node_id; });
         if (event == events.end() || event->sample_rate == 0 ||
             event->sample_rate != events.front().sample_rate ||
-            event->channels != 2 || event->frames.empty())
+            event->frames.empty())
             return invalid;
     }
     if (total_ns > PTP_MAX_OFFSET_NS)

@@ -243,7 +243,17 @@ TDOA_RESULT tdoa::ComputePosition(const std::vector<DetectedEvent> &events, cons
 
     // Call solveposition using vector
     double rms = tdoa::SolvePosition(positions, tdoa_s, result.x_m, result.y_m);   // Solve, and get the error
-    result.valid = (rms < MAX_RESIDUAL_M);
+    
+    // Check rms value and call cerror
+    if(rms < MAX_RESIDUAL_M){
+        result.valid = true;
+    }
+    else {
+        result.valid = false;
+        std::cerr << "Event rejected: residual RMS above limit, not plotted\n";
+    }
+    
+    // Set rms value in result struct
     result.rms = rms;
 
     // Update timestamp
