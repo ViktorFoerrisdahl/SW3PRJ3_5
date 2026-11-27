@@ -23,6 +23,13 @@ void TdoaThread(std::stop_token st, EventPairQueue &queue, microphones &mics, pl
 		// Append event to the log
 		JsonLogger_AppendEvent(result);
 
+		//If result invalid
+		if (!result.valid)
+        {
+            std::cerr << "Event rejected: residual RMS above limit, not plotted\n";
+            continue;
+		}
+
 		// Start plot thread, detached so TDOA isn't tied to the wait time
 		std::thread(&plot::plotNewEventAndDelete, &p, ++event_id,
 					result.x_m, result.y_m, result.valid, result.rms, PLOT_WAIT_S)
