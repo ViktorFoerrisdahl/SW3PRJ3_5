@@ -70,7 +70,7 @@ def pipe_reciver():
                 new_data.append(float(message_argv[1])) # x value
                 new_data.append(float(message_argv[2])) # y value
                 new_data.append(int(message_argv[3])) # event ID
-                new_data.append(int(message_argv[4])) # RMS value
+                new_data.append(float(message_argv[4])) # RMS value
                 pipe_to_plot_array.append(new_data) #append new data to pipe to plot array
                 message_recived_from_pipe = True
 

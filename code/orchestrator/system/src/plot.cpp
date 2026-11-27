@@ -32,7 +32,7 @@ void plot::startPyPlot(int AmountOfMics, std::vector<MIC_POSITION> vectorMic)
     }
 }
 
-void plot::plotNewEventAndDelete(int ID, double x, double y, int waittime, double RMS)
+void plot::plotNewEventAndDelete(int ID, double x, double y, int waittime, double rms)
 {
     if (plot_ == nullptr)
     {
@@ -51,7 +51,7 @@ void plot::plotNewEventAndDelete(int ID, double x, double y, int waittime, doubl
     event.append(" ");
     event.append(std::to_string(ID));
     event.append(" ");
-    event.append(std::to_string(RMS));
+    event.append(std::to_string(rms));
     event.append("\n");
 
     {
