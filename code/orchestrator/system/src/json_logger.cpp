@@ -19,7 +19,7 @@ void json_io(JSON_IO &io, TDOA_RESULT &result)
         & json_dto::mandatory("x_m", result.x_m)
         & json_dto::mandatory("y_m", result.y_m)
         & json_dto::mandatory("time_stamp", time_stamp);
-}   
+}
 
 bool JsonLogger_AppendEvent(const TDOA_RESULT &result)
 {
