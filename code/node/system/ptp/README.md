@@ -155,10 +155,9 @@ afbrudt, hvis status mangler, er ugyldig eller er over to sekunder gammel,
 eller hvis det samlede offsetbudget overstiger 200 µs. Fristerne på tre og to
 sekunder er valgt i implementeringen.
 
-Den centrale nodes terminal viser hver modtaget status med nodens ID og
-offsetbudget, når noden er synkroniseret. Terminalen melder også, når begge
-noder er klar, og hvorfor lokalisering sættes på pause ved udfald. Ved afviste
-hændelsespar gemmer JSON-loggen hændelsens tidspunkt og en `rejection_reason`.
+Terminalen melder, når begge noder er klar, og hvorfor lokalisering sættes på
+pause, hvis status bliver ugyldig. Ved afviste hændelsespar gemmer JSON-loggen
+hændelsens tidspunkt og en `rejection_reason`.
 
 Statusforløbet skal stadig afprøves på to Raspberry Pi-enheder: afbryd PTP
 eller Ethernet og kontrollér, at lokaliseringen stopper, og at den først
