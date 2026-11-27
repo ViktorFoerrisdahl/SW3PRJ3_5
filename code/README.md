@@ -25,7 +25,7 @@ Dette afsnit opdateres automatisk af CI. Ret teksten uden for markørerne.
 - [ptp/systemd/atlas-ptp-grandmaster.service](ptp/systemd/atlas-ptp-grandmaster.service)
 - [ptp/systemd/atlas-ptp-slave.service](ptp/systemd/atlas-ptp-slave.service)
 - [ptp/tests/ptp_localization_test.cpp](ptp/tests/ptp_localization_test.cpp)
-- [ptp/tests/ptp_service_test.py](ptp/tests/ptp_service_test.py)
+- [ptp/tests/ptp_service_test.cpp](ptp/tests/ptp_service_test.cpp)
 - [tdoa/main.cpp](tdoa/main.cpp)
 - [tdoa/node_event.h](tdoa/node_event.h)
 - [tdoa/tdoa.cpp](tdoa/tdoa.cpp)
