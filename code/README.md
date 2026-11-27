@@ -9,6 +9,25 @@ Se [kodekonventionerne](../docs/Projektstyring/code-conventions.md) og [AI-strat
 
 JSON-bibliotekerne `json_dto` og RapidJSON ligger i `tools/external/`. De er kopieret uændret fra KNP-projektets `restinio-bundle/external/` og bruges som headerfiler. Orchestratorens CMake tilføjer søgestierne, så der ikke kræves en separat installation.
 
+## Hurtig opstart
+
+Kør én kommando på hver maskine fra dens lokale kopi af repoet.
+Start orkestratoren først, derefter node 0 (PTP-grandmaster) og node 1 (PTP-slave).
+Erstat `ORCHESTRATOR_IP` med orkestratorens IPv4-adresse i begge nodekommandoer.
+
+```sh
+./code/tools/start/start-orchestrator.sh
+./code/tools/start/start-node0.sh ORCHESTRATOR_IP
+./code/tools/start/start-node1.sh ORCHESTRATOR_IP
+```
+
+Skripterne genbruger `build/` og bygger kun det valgte program. Noderne skal
+have værtsnavne, der ender på henholdsvis `0` og `1`, samt `libasound2-dev`
+og de [installerede PTP-tjenester](node/system/ptp/README.md#opsætning-på-raspberry-pi).
+Stop en eventuel kørende `atlas-node.service` før manuel start.
+Orkestratoren kræver Python-pakkerne i
+[`requirements.txt`](orchestrator/system/requirements.txt) i det aktive Python-miljø.
+
 <!-- BEGIN GENERATED NAVIGATION -->
 
 ## Filoversigt
@@ -137,5 +156,8 @@ Dette afsnit opdateres automatisk af CI. Ret teksten uden for markørerne.
 - [tools/external/rapidjson/rapidjson/uri.h](tools/external/rapidjson/rapidjson/uri.h)
 - [tools/external/rapidjson/rapidjson/writer.h](tools/external/rapidjson/rapidjson/writer.h)
 - [tools/navigation/generate.py](tools/navigation/generate.py)
+- [tools/start/start-node0.sh](tools/start/start-node0.sh)
+- [tools/start/start-node1.sh](tools/start/start-node1.sh)
+- [tools/start/start-orchestrator.sh](tools/start/start-orchestrator.sh)
 
 <!-- END GENERATED NAVIGATION -->
