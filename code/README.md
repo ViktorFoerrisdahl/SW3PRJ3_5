@@ -61,7 +61,7 @@ Dette afsnit opdateres automatisk af CI. Ret teksten uden for markørerne.
 - [orchestrator/system/CMakeLists.txt](orchestrator/system/CMakeLists.txt)
 - [orchestrator/system/inc/event_pair_queue.h](orchestrator/system/inc/event_pair_queue.h)
 - [orchestrator/system/inc/json_logger.h](orchestrator/system/inc/json_logger.h)
-- [orchestrator/system/inc/menu.h](orchestrator/system/inc/menu.h)
+- [orchestrator/system/inc/menu1.h](orchestrator/system/inc/menu1.h)
 - [orchestrator/system/inc/microphones.h](orchestrator/system/inc/microphones.h)
 - [orchestrator/system/inc/plot.h](orchestrator/system/inc/plot.h)
 - [orchestrator/system/inc/TCP_thread.h](orchestrator/system/inc/TCP_thread.h)
