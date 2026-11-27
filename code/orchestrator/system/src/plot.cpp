@@ -32,7 +32,7 @@ void plot::startPyPlot(int AmountOfMics, std::vector<MIC_POSITION> vectorMic)
 	}
 }
 
-void plot::plotNewEventAndDelete(int ID, double x, double y, bool valid, int waittime)
+void plot::plotNewEventAndDelete(int ID, double x, double y, bool valid, double rms, int waittime)
 {
 	if (plot_ == nullptr)
 	{
@@ -60,11 +60,11 @@ void plot::plotNewEventAndDelete(int ID, double x, double y, bool valid, int wai
 		// Log events in the terminal when they are shown in the plot, marked by whether the TDOA result is valid
 		if (valid)
 		{
-			std::cout << "Event " << ID << " OK: x = " << x << " m, y = " << y << " m\n";
+			std::cout << "Event " << ID << " OK: x = " << x << " m, y = " << y << " m, rms = " << rms << " m\n";
 		}
 		else
 		{
-			std::cout << "Event " << ID << " INVALID: x = " << x << " m, y = " << y << " m\n";
+			std::cout << "Event " << ID << " INVALID: x = " << x << " m, y = " << y << " m, rms = " << rms << " m\n";
 		}
 		sleep(5);
 	}
