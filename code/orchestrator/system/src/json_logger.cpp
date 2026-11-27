@@ -13,9 +13,10 @@ void json_io(JSON_IO &io, TDOA_RESULT &result)
     localtime_r(&seconds, &local_time);
     char timestamp[32]{};
     std::strftime(timestamp, sizeof(timestamp), "%Y-%m-%d %H:%M:%S", &local_time);
+    std::string time_stamp = timestamp; // json_dto kan ikke skrive et char-array, men godt en std::string
     io
         & json_dto::mandatory("valid", result.valid)
-        & json_dto::mandatory("RMS_value", result.RMS)
+        & json_dto::mandatory("RMS_value", result.rms)
         & json_dto::mandatory("x_m", result.x_m)
         & json_dto::mandatory("y_m", result.y_m)
         & json_dto::mandatory("time_stamp", time_stamp);
