@@ -3,7 +3,7 @@
 > Genereret fil. Ret originalen, ikke denne kopi.
 
 - Kilde: [Projektstyring/terminology.md](../Projektstyring/terminology.md)
-- SHA-256: `398c7c754d98867deb172520b5f97c08f929613bd5bb5a463dc570fa01afe0b3`
+- SHA-256: `04d8506e3c21ea0f6925bc1918a4e4d89d8bad573ec9bf10b19fd74b3fc1e5dc`
 - Status: klar til læsning
 
 
@@ -39,6 +39,7 @@ Denne liste fastlægger fælles sprogbrug. Definitionerne er sproglige konventio
 | PTP-slave                              | PTP slave                          | Node, der synkroniserer sit ur til den valgte grandmaster.                                                                                                                                       |
 | PTP-hardwareur (PHC)                   | PTP Hardware Clock                 | Hardwareur knyttet til netværksinterfacet. Skeln fra Linux' systemur og mikrofonernes samplingur.                                                                                                |
 | PTP-service                            | PtpService                         | C++-komponent til lokal styring af linuxptp og aflæsning af synkroniseringsstatus på en mikrofonnode. En softwaretest med simulerede systemkommandoer er adskilt fra afprøvning på Raspberry Pi. |
+| PTP-status                             | PTP_STATUS                         | JSON-besked med en mikrofonnodes synkroniseringsstatus, som den centrale node bruger til at afgøre, om et hændelsespar kan lokaliseres.                                                          |
 | samplingur                             | sample clock                       | Uret, der bestemmer optagelsens samplingtidspunkter; skeln fra systemuret.                                                                                                                       |
 | sample                                 | sample                             | Én måleværdi fra én kanal. Flertal: samples.                                                                                                                                                     |
 | frame                                  | frame                              | Ét sample fra hver kanal ved samme samplingtidspunkt. Antal bytes afhænger af kanaler og sampleformat.                                                                                           |
