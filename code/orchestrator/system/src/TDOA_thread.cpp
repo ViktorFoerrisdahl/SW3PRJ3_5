@@ -25,6 +25,6 @@ void TdoaThread(std::stop_token st, EventPairQueue& queue, microphones& mics, pl
 
         // Start plot thread, detached so TDOA isn't tied to the wait time
         std::thread(&plot::plotNewEventAndDelete, &p, ++event_id,
-                    result.x_m, result.y_m, PLOT_WAIT_S).detach();
+                    result.x_m, result.y_m, PLOT_WAIT_S, result.rms).detach();
     }
 }
