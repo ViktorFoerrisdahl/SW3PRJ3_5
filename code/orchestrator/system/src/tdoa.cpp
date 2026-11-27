@@ -2,6 +2,7 @@
 #include <limits>
 #include <cmath>
 #include <iostream>
+#include <algorithm>
 
 // Function to find specific microphone. Failsafe to get mics in right order.
 const MIC_POSITION *tdoa::FindMic(const std::vector<MIC_POSITION> &mics, const uint16_t &node_id, const uint16_t &channel)
@@ -219,6 +220,22 @@ TDOA_RESULT tdoa::ComputePosition(const std::vector<DetectedEvent> &events, cons
             double mean = sum / samples.size();
             for (double &s : samples)
             s -= mean;                          //Remove DC top pulling lag towards 0
+
+            // ───── NEW BLOCK STARTS HERE ─────
+            double noise = 0.0, peak = 0.0;
+            size_t noise_n = std::min<size_t>(128, samples.size());               // start of buffer = pre-trigger noise
+            for (size_t n = 0; n < noise_n; n++) noise += samples[n] * samples[n];
+            noise = std::sqrt(noise / noise_n);
+            for (double s : samples) peak = std::max(peak, std::abs(s));
+            double threshold = std::max(0.2 * peak, 6.0 * noise);               // 20% of peak, at least 6x noise
+
+            size_t onset = 0;
+            while (onset < samples.size() && std::abs(samples[onset]) <= threshold) onset++;
+
+            for (size_t n = 0; n < samples.size(); n++)
+                if (n + 16 < onset || n >= onset + 96)                          // keep 16 before .. 96 after onset (2 ms)
+                    samples[n] = 0.0;
+            // ───── NEW BLOCK ENDS HERE ─────
 
             // Push back data
             positions.push_back(*p_mic);            // Push back mic
