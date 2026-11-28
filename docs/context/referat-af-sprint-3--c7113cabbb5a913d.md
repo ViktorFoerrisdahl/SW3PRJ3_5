@@ -1,0 +1,39 @@
+# Referat af sprint 3.txt
+
+> Genereret fil. Ret originalen, ikke denne kopi.
+
+- Kilde: [Referater/Referat af sprint 3.txt](../Referater/Referat%20af%20sprint%203.txt)
+- SHA-256: `cad3c57f3f26eb99ec16eecdc566777bdaee5f77bc48cabf9577c492d253423f`
+- Status: tekst kopieret
+
+
+
+---
+
+```text
+Referat af sprint 3
+
+Retrospektive
+
+gode
+- Vidste hvad man skulle lave. Godt overblik over hvad man skal lave
+- Systemet er færdigt og virker.
+- 
+
+dårlige
+- Scopet var stort måske - indeholdte opgaver til rapport, som egentlig var kommet med fra planlægningsfasen. Sørg for at backloggen kun indeholder opgaver til det nuværende sprint og ikke andre random opgaver.
+- Fremvise hinanden den struktur og sørge for, at alle er med på hvor diverse funktion skal være henne osv. Sørge for at alle er med på hvordan arkitekturen skal være. 
+- Måske lave lidt mere arkitektur inden vi laver så meget kode for at være sikker på, at alle er enige osv. Flere gange hvor en atttribut skabte forvirring 
+- Kode konvetioner var nok for indviklede og folk glemte at bruge dem.
+- Svært at få arkitektur til at 
+
+
+Det havde givet mening at lave mere rapport undervejs i sprints. 
+
+
+Lave flere dayli scrum, hvor vi lige tjekker om koden lever op til de små diagrammer og arkitektur, som vi har.
+
+
+Problem:
+At vores research fase lavede meget af koden og opsætningen af hele projektet før vi ligesom havde bestemt hvordan det skulle være.
+```

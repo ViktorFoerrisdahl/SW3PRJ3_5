@@ -225,9 +225,9 @@
   },
   {
     "source": "README.md",
-    "sha256": "c98ab00b3ec016179836367c4db1757a8d04a46ae91ea7b6001110078eb51d99",
+    "sha256": "76e201edb84ee1476f5b9909052495dfc6297cb4a99d303dc19030aab051e5b7",
     "output": "readme--b335630551682c19.md",
-    "output_sha256": "9a1b1337f901884da6462c540fb700e715a929524dc2ad709e4e986e8589595a",
+    "output_sha256": "9dd666b17e8918040658aa5f4ca2cde13184eecf20090347c9769eeb8b9cdff2",
     "status": "klar til læsning",
     "notes": []
   },
@@ -269,6 +269,30 @@
     "output": "referat-5-25-09-2026--01957541a68ea745.md",
     "output_sha256": "2f1e8675c9014d23bf1eb37d183b5d6baf006410ded27ea694bcc45baa3215c9",
     "status": "klar til læsning",
+    "notes": []
+  },
+  {
+    "source": "Referater/Referat af sprint 1.txt",
+    "sha256": "a09dd5b23752edcef1688fb80ed11d9863a41a30494df53ed8152304ba31f911",
+    "output": "referat-af-sprint-1--818e92b490a4ebdd.md",
+    "output_sha256": "af213c9c692d03e01b8ae04d659708f3ebfee912ced6fe0c77ef6535413f3ad8",
+    "status": "tekst kopieret",
+    "notes": []
+  },
+  {
+    "source": "Referater/Referat af sprint 3.txt",
+    "sha256": "cad3c57f3f26eb99ec16eecdc566777bdaee5f77bc48cabf9577c492d253423f",
+    "output": "referat-af-sprint-3--c7113cabbb5a913d.md",
+    "output_sha256": "d5ec6c99967804de1e0de39f30fc3c45fd4a260f5542169ad566a648e9f429cc",
+    "status": "tekst kopieret",
+    "notes": []
+  },
+  {
+    "source": "Referater/referat af sprint 2.txt",
+    "sha256": "c791e440cb3949909275344c8427dbb71f1838183f18e3f9d0d0a54803657315",
+    "output": "referat-af-sprint-2--579a821d1142525b.md",
+    "output_sha256": "bf2080f42f24ac10d5e979f95b3d8df902f6a17fcd9de282d093200a925542c1",
+    "status": "tekst kopieret",
     "notes": []
   },
   {

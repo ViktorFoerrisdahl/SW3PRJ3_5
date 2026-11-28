@@ -55,5 +55,8 @@ Dette afsnit opdateres automatisk af CI. Ret teksten uden for markørerne.
 - [Referater/Referat #3 - Møde med søren 150926.docx](Referater/Referat%20%233%20-%20M%C3%B8de%20med%20s%C3%B8ren%20150926.docx)
 - [Referater/Referat #4 - 18-09-2026 - Elaboration 1.docx](Referater/Referat%20%234%20-%2018-09-2026%20-%20Elaboration%201.docx)
 - [Referater/Referat #5 - 25-09-2026.docx](Referater/Referat%20%235%20-%2025-09-2026.docx)
+- [Referater/Referat af sprint 1.txt](Referater/Referat%20af%20sprint%201.txt)
+- [Referater/referat af sprint 2.txt](Referater/referat%20af%20sprint%202.txt)
+- [Referater/Referat af sprint 3.txt](Referater/Referat%20af%20sprint%203.txt)
 
 <!-- END GENERATED NAVIGATION -->
