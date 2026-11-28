@@ -1,0 +1,32 @@
+referat af sprint #2 
+
+Skal laves: Mappestruktur i GitHub
+
+Retrospektive
+
+Godt
+- mere specifikt i forhold til opgaver 
+
+Skidt
+- Opdatere jira (egen process) undervejs.
+
+Svar fra lars:
+- fokuspunkter:
+censor er ik forpligtet til at kigge i bilag. 
+Prioritering:
+- Det vi gerne vil fortælle censor
+- 1-2 fully dressed used case, maks to. resten på short form (beskrivver omfang, arbejdesrumfang og processafsnit)
+- vigtigt at forklare hvordan vi brugte scrum (roller osv.) hvorfor har vi gjort hvad og hvorfor
+- Censer skal kunne danne overblik over omfang, hvordan vi har arbejder, hvordan vi kom fra a til b (beskriv udfordringer osv.)
+- acceptest indeholder kun 1 - 2 fully dressed - resten i bilag
+- husk at holde godt flow gennem rapporten (indsæt diagrammer som giver mening), resten i bilag
+- rapport skal kunne læses selvstændig
+- rapport er guldkorn fra dokumentation (kan også indeholde kodestykker, hvis det er spitsen klasse - ikke anbefalet fra lars)
+- Vi kan nøjes med at linke til githubben.
+
+
+Bødekas
+
+Otto: 5 kr.
+
+Frederik: 5 kr
